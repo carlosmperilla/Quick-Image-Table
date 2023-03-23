@@ -1,5 +1,6 @@
 <template>
     <video id="video" ref="video" @canplay="resizingDefaultVideo" :width="width" :height="height"></video>
+    <canvas></canvas>
 </template>
 
 <script setup>
@@ -12,6 +13,8 @@
     const props = defineProps({
         hasPicture: Boolean,
     })
+
+    const emit = defineEmits(['getImageData'])
 
     onMounted(() => {
         navigator.getMedia = ( navigator.getUserMedia ||
@@ -33,17 +36,25 @@
           )
     })
 
-
+    
     function resizingDefaultVideo() {
         if (!streaming.value) {
             height.value = video.value.videoHeight / (video.value.videoWidth/width.value);
             streaming.value = true;
         }
     }
-
+    
     watchEffect(() => {
         if (props.hasPicture){
+            let canvas = document.createElement('canvas')
+            canvas.setAttribute('height', height.value);
+            canvas.setAttribute('width', width.value);
+            
             video.value.pause()
+            canvas.getContext('2d').drawImage(video.value, 0, 0, width.value, height.value);
+            let data = canvas.toDataURL('image/jpeg');
+            
+            emit('getImageData', data)
         } else if (streaming.value) {
             video.value.play()
         }

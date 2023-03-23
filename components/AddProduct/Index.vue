@@ -1,7 +1,7 @@
 <template>
     <section>
         <button v-text="prevButtonContent" v-if="step > 0" @click="prevStep"></button>
-        <AddProductVideoCamera v-if="isStarted" :hasPicture="hasPicture" />
+        <AddProductVideoCamera v-if="isStarted" :hasPicture="hasPicture" @get-image-data="(data) => productImageData = data"/>
         <button v-text="CameraControlButtonContent" @click="photoAction" v-if="step === 0"></button>
         <section v-if="hasPicture">
             <button v-text="nextButtonContent" @click="nextStep"></button>
@@ -30,12 +30,15 @@
     const addProductForm = ref()
     const isFormValid = ref(false)
 
+    const productImageData = ref('')
     const productInfo = reactive({
         name: '',
         price: 0,
         quantity: 0
     })
 
+    const props = defineProps(['products'])
+    const emit = defineEmits(['addProduct'])
 
     provide('productInfo', productInfo)
 
@@ -83,12 +86,20 @@
                 return null
             }
 
+            let oldName = productInfo.name
+            productInfo.name = oldName.charAt(0).toUpperCase() + oldName.slice(1)
+
             prevButtonContent.value = '<-- Retroceder a "Formulario Producto"'
             nextButtonContent.value = 'Añadir producto a tabla -->'
         }
 
         if (step.value === 3) {
             // añadir a la tabla
+            if (props.products.findIndex((product) => product.name === productInfo.name) !== -1) {
+                let randomId = Math.round(Math.random()*(10**5)).toString()
+                productInfo.name += ' - ' + randomId
+            }
+            emit('addProduct', {imageData: productImageData.value, ...productInfo})
         }
     })
 </script>
