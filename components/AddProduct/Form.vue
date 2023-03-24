@@ -19,6 +19,9 @@
 
     function alertar(e){
         alert(e.code)
+        alert(e.keyCode)
+        alert(e.key)
+        alert(e.which)
     }
 
     defineExpose({
