@@ -2,6 +2,9 @@
     <section>
         <ProductTableMainTable :products="products" ref="mainTable"/>
         <button @click="createPDF">Crear pdf</button>
+        <div ref="imprimible">
+            imprimible xD
+        </div>
     </section>
 </template>
 
@@ -13,8 +16,12 @@
         }
     })
     const mainTable = ref()
+    // const imprimible = ref(null)
 
     function createPDF(){
+        exportToPDF('my-pdf-file.pdf', mainTable.value.getClone())
+    }
+    function createPDF_(){
         // let table = document.getElementsByTagName('table')[0].cloneNode(true)
         let table = mainTable.value.getClone()
         let style =  `
