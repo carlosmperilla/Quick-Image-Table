@@ -7,7 +7,7 @@
             <label for="product-price">Precio de producto:</label>
             <input type="number" name="product-price" id="product-price" v-model="productInfo.price" required min="0.0" step="any">
             <label for="product-quantity">Cantidad de producto:</label>
-            <input type="number" name="product-quantity" id="product-quantity" v-model="productInfo.quantity" required min="0">
+            <input type="number" name="product-quantity" id="product-quantity" v-model="productInfo.quantity" required min="0" @keydown="alertar">
         </fieldset>
     </form>
 </template>
@@ -16,6 +16,10 @@
     const productInfo = inject('productInfo')
     const form = ref(null)
     const reportValidity = () => form.value.reportValidity()
+
+    function alertar(e){
+        alert(e.code)
+    }
 
     defineExpose({
         reportValidity,
