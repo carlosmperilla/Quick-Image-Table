@@ -72,7 +72,7 @@
         return []
     }
 
-    onBeforeMount(() => {
+    onMounted(() => {
         Object.assign(products, fillProducts())
     })
 
