@@ -1,6 +1,5 @@
 <template>
     <video id="video" ref="video" @canplay="resizingDefaultVideo" :width="width" :height="height"></video>
-    <canvas></canvas>
 </template>
 
 <script setup>
@@ -21,6 +20,7 @@
                                navigator.webkitGetUserMedia ||
                                navigator.mozGetUserMedia )
 
+        // Open and record video
         navigator.getMedia(
             {
               video: true,
@@ -34,6 +34,11 @@
               console.log("An error occured! " + err);
             }
           )
+    })
+    
+    onBeforeUnmount(() => {
+        // Close Video-Camera
+        video.value.srcObject.getTracks()[0].stop()
     })
 
     
@@ -53,7 +58,7 @@
             video.value.pause()
             canvas.getContext('2d').drawImage(video.value, 0, 0, width.value, height.value);
             let data = canvas.toDataURL('image/jpeg');
-            
+
             emit('getImageData', data)
         } else if (streaming.value) {
             video.value.play()

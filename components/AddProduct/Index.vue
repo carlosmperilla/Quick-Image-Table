@@ -1,7 +1,7 @@
 <template>
     <section>
         <button v-text="prevButtonContent" v-if="step > 0" @click="prevStep"></button>
-        <AddProductVideoCamera v-if="isStarted" :hasPicture="hasPicture" @get-image-data="(data) => productImageData = data"/>
+        <AddProductVideoCamera :hasPicture="hasPicture" v-if="props.isStarted" @get-image-data="(data) => productImageData = data"/>
         <button v-text="CameraControlButtonContent" @click="photoAction" v-if="step === 0"></button>
         <section v-if="hasPicture">
             <button v-text="nextButtonContent" @click="nextStep"></button>
@@ -11,7 +11,7 @@
             ref="addProductForm"
         />
         <AddProductList
-            v-show="isFormValid"
+            v-show="isFormValid && step === 2"
         />
     </section>
 </template>
@@ -19,9 +19,9 @@
 <script setup>
     const prevButtonDefaultContent = '<-- Retroceder a "Tomar Foto"' 
     const nextButtonDefaultContent = 'Anexar más datos -->'
+    const takePictureDefaultContent = 'Tomar foto de producto'
 
-    const CameraControlButtonContent = ref('Empezar')
-    const isStarted = ref(false)
+    const CameraControlButtonContent = ref(takePictureDefaultContent)
     const hasPicture = ref(false)
     
     const step = ref(0)
@@ -37,31 +37,41 @@
         quantity: 0
     })
 
-    const props = defineProps(['products'])
+    const props = defineProps({
+        products: {
+            type: Array,
+            required: true
+        },
+        isStarted: {
+            type: Boolean,
+            required: true
+        }
+    })
     const emit = defineEmits(['addProduct'])
 
     provide('productInfo', productInfo)
-
+    
     function photoAction() {
 
-        let takePictureText = 'Tomar foto de producto'
         let takePictureAgainText = 'Volver a tomar foto'
 
-        if (!isStarted.value) {
-            isStarted.value = true
-            CameraControlButtonContent.value = takePictureText
-            return null
-        }
-        
         if (hasPicture.value === true) {
             hasPicture.value = false
-            CameraControlButtonContent.value = takePictureText
+            CameraControlButtonContent.value = takePictureDefaultContent
             return null
         }
 
         hasPicture.value = true
         CameraControlButtonContent.value = takePictureAgainText
         
+    }
+
+    function reset() {
+        step.value = 0
+        productImageData.value = ''
+        hasPicture.value = false
+        Object.assign(productInfo, {name: '', price: 0, quantity: 0})
+        CameraControlButtonContent.value = takePictureDefaultContent
     }
     
     const prevStep = () => step.value > 0 ? step.value-- : step.value
@@ -99,7 +109,9 @@
                 let randomId = Math.round(Math.random()*(10**5)).toString()
                 productInfo.name += ' - ' + randomId
             }
+            
             emit('addProduct', {imageData: productImageData.value, ...productInfo})
+            reset()
         }
     })
 </script>
