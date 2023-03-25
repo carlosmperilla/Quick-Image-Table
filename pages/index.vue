@@ -10,6 +10,8 @@
             <button @click="closeDialog">Ocultar</button>
             <AddProduct :products="products" :is-started="isModalOpen" @add-product="addProductAndPersist"/>
         </dialog>
+
+        <button @click="testLocalStorageSize">Duplicación Limite</button>
     </section>
 </template>
 
@@ -61,6 +63,33 @@
     function clean(){
         localStorage.clear()
         products.length = 0
+    }
+
+    function testLocalStorageSize() {
+        let baseProduct = products[0]
+        let size = 0
+        let n;
+        try {
+            for (let i=0; i < 100; i++){
+                let data = JSON.stringify(products)
+                size = new Blob([data]).size
+                console.log(i)
+                n = i
+                localStorage.setItem('productsQuickImageTable', data)
+                products.push(baseProduct)
+            }
+        } catch(e) {
+            // console.log(e)
+            alert(e)
+            // console.log(i)
+            alert(size)
+        }
+        finally {
+            alert(size)
+            alert('cantidad '+n.toString())
+        }
+
+        
     }
 
     watch(nameTable, () => {
