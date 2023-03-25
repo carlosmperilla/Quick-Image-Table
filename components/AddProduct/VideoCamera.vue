@@ -23,9 +23,9 @@
         // Open and record video
         navigator.getMedia(
             {
-            //   video: true,
-            //   video: {facingMode: 'user'},
-              video: {facingMode: 'environment'},
+              video: {
+                facingMode: 'environment' // Fuerza la camara trasera o principal para celulares.
+            },
               audio: false
             },
             (stream) => {
