@@ -18,13 +18,6 @@
     const reportValidity = () => form.value.reportValidity()
     const emit = defineEmits(['pressNextButton'])
 
-    function alertar(e){
-        alert(e.code)
-        alert(e.keyCode)
-        alert(e.key) // esta funciona 'Enter'
-        alert(e.which)
-    }
-
     function nextInputFocus(e) {
         let currentElement = e.target.nextElementSibling
         while (currentElement.tagName.toLowerCase() !== 'input') {

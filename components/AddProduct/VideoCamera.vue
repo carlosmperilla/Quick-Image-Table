@@ -23,7 +23,9 @@
         // Open and record video
         navigator.getMedia(
             {
-              video: true,
+            //   video: true,
+            //   video: {facingMode: 'user'},
+              video: {facingMode: 'environment'},
               audio: false
             },
             (stream) => {
