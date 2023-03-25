@@ -9,6 +9,7 @@
         <AddProductForm 
             v-show="step === 1"
             ref="addProductForm"
+            @press-next-button="nextStep"
         />
         <AddProductList
             v-show="isFormValid && step === 2"
