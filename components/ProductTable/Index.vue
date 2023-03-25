@@ -13,7 +13,7 @@
         }
     })
     const mainTable = ref()
-    
+
     async function createPDF(){
         let table = mainTable.value.getClone()
         table.style.width = "595.28pt" // Para que ocupe todo el ancho.
@@ -27,7 +27,8 @@
             floatPrecision: 'smart',
             compress: true
         }, {
-            margin: [60, 30, 60, 30] // Para conservar unos margenes.
+            margin: [60, 30, 60, 30], // Para conservar unos margenes.
+            autoPaging:'text'
         })
     }
 </script>
