@@ -8,6 +8,7 @@
         </select>
         <button v-if="currentMode === tableModes.edit" @click="() => currentMode = tableModes.view">Terminar edición</button>
         <button v-if="currentMode === tableModes.delete" @click="preRemovalProducts">Eliminar {{ checkedProducts.length }} productos</button>
+        <button v-if="currentMode === tableModes.delete" @click="preCleanProducts">¡Eliminar Tabla!</button>
         <span>Nombre:</span> 
         <input type="text" v-model="nameTable">
         <span>Cambie el nombre de ser pertinente</span>
@@ -31,7 +32,7 @@
             required: true
         }
     })
-    const emit = defineEmits(['updateProduct', 'reloadProducts', 'removeProducts'])
+    const emit = defineEmits(['updateProduct', 'reloadProducts', 'removeProducts', 'cleanProducts'])
     const tableModes = {
         view: 'view',
         edit: 'edit',
@@ -53,8 +54,19 @@
 
     function preRemovalProducts() {
         let nameProductToRemoval = checkedProducts.map((index) => props.products[index].name).join(', ')
+        if (checkedProducts.length === 0) {
+            alert('No hay productos para eliminar')
+            return null
+        }
         if (window.confirm(`¿Realmente quiere eliminar [${nameProductToRemoval}]?`)) {
             emit('removeProducts', checkedProducts)
+            currentMode.value = tableModes.view
+        }
+    }
+
+    function preCleanProducts() {
+        if (window.confirm(`¿Realmente quiere eliminar la tabla entera?`)) {
+            emit('cleanProducts')
             currentMode.value = tableModes.view
         }
     }

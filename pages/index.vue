@@ -5,8 +5,8 @@
             @update-product="updateProduct" 
             @reload-products="reloadProducts"
             @remove-products="removeProducts"
+            @clean-products="clean"
         />
-        <button @click="clean">Clean</button>
         <button @click="showDialog">Mostrar</button>
         <dialog ref="dialog">
             <button @click="closeDialog">Ocultar</button>
@@ -61,7 +61,7 @@
     }
 
     function clean(){
-        localStorage.clear()
+        localStorage.setItem('productsQuickImageTable', '[]')
         products.length = 0
     }
 
