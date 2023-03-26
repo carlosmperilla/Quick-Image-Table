@@ -1,6 +1,11 @@
 <template>
     <section>
-        <ProductTable :products="products" @update-product="updateProduct" @reload-products="reloadProducts"/>
+        <ProductTable 
+            :products="products" 
+            @update-product="updateProduct" 
+            @reload-products="reloadProducts"
+            @remove-products="removeProducts"
+        />
         <button @click="clean">Clean</button>
         <button @click="showDialog">Mostrar</button>
         <dialog ref="dialog">
@@ -23,6 +28,14 @@
     function closeDialog(){
         dialog.value.close()
         isModalOpen.value = false
+    }
+
+    function removeProducts(indexList) {
+        for (let index of indexList.sort((a, b) => b - a)) {
+            console.log(products[index].name, index)
+            products.splice(index, 1)
+            localStorage.setItem('productsQuickImageTable', JSON.stringify(products))
+        }
     }
 
     function fillProducts(){
