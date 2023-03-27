@@ -18,26 +18,6 @@
 </template>
 
 <script setup>
-    const prevButtonDefaultContent = '<-- Retroceder a "Tomar Foto"' 
-    const nextButtonDefaultContent = 'Anexar más datos -->'
-    const takePictureDefaultContent = 'Tomar foto de producto'
-
-    const CameraControlButtonContent = ref(takePictureDefaultContent)
-    const hasPicture = ref(false)
-    
-    const step = ref(0)
-    const nextButtonContent = ref(nextButtonDefaultContent)
-    const prevButtonContent = ref(prevButtonDefaultContent)
-    const addProductForm = ref()
-    const isFormValid = ref(false)
-
-    const productImageData = ref('')
-    const productInfo = reactive({
-        name: '',
-        price: 0,
-        quantity: 0
-    })
-
     const props = defineProps({
         products: {
             type: Array,
@@ -48,10 +28,57 @@
             required: true
         }
     })
+    
     const emit = defineEmits(['addProduct'])
 
+    // Constantes no reactivas.
+    const prevButtonDefaultContent = '<-- Retroceder a "Tomar Foto"' 
+    const nextButtonDefaultContent = 'Anexar más datos -->'
+    const takePictureDefaultContent = 'Tomar foto de producto'
+
+    const CameraControlButtonContent = ref(takePictureDefaultContent)
+    const prevButtonContent = ref(prevButtonDefaultContent)
+    const nextButtonContent = ref(nextButtonDefaultContent)
+    const productImageData = ref('')
+    const isFormValid = ref(false)
+    const hasPicture = ref(false)
+    const step = ref(0)
+    
+    const productInfo = reactive({
+        name: '',
+        price: 0,
+        quantity: 0
+    })
+    
+    const addProductForm = ref()
+    
     provide('productInfo', productInfo)
     
+    // Funciones Generales.
+    function capitalize(oldName){
+        productInfo.name = oldName.charAt(0).toUpperCase() + oldName.slice(1)
+    }
+
+    function generateUniqueNameProduct(){
+        let randomId = Math.round(Math.random()*(10**5)).toString()
+
+        if (props.products.findIndex((product) => product.name === productInfo.name) !== -1) {
+            productInfo.name += ' - ' + randomId
+        }
+    }
+
+    function reset() {
+        step.value = 0
+        productImageData.value = ''
+        hasPicture.value = false
+        Object.assign(productInfo, {name: '', price: 0, quantity: 0})
+        CameraControlButtonContent.value = takePictureDefaultContent
+    }
+
+    // Funciones de Evento.
+    const prevStep = () => step.value > 0 ? step.value-- : step.value
+    const nextStep = () => step.value < 3 ? step.value++ : step.value
+
     function photoAction() {
 
         let takePictureAgainText = 'Volver a tomar foto'
@@ -67,16 +94,6 @@
         
     }
 
-    function reset() {
-        step.value = 0
-        productImageData.value = ''
-        hasPicture.value = false
-        Object.assign(productInfo, {name: '', price: 0, quantity: 0})
-        CameraControlButtonContent.value = takePictureDefaultContent
-    }
-    
-    const prevStep = () => step.value > 0 ? step.value-- : step.value
-    const nextStep = () => step.value < 3 ? step.value++ : step.value
 
     watch(step, () => {
         if (step.value === 0) {
@@ -97,20 +114,14 @@
                 return null
             }
 
-            let oldName = productInfo.name
-            productInfo.name = oldName.charAt(0).toUpperCase() + oldName.slice(1)
-
+            capitalize(productInfo.name)
             prevButtonContent.value = '<-- Retroceder a "Formulario Producto"'
             nextButtonContent.value = 'Añadir producto a tabla -->'
         }
 
         if (step.value === 3) {
             // añadir a la tabla
-            if (props.products.findIndex((product) => product.name === productInfo.name) !== -1) {
-                let randomId = Math.round(Math.random()*(10**5)).toString()
-                productInfo.name += ' - ' + randomId
-            }
-            
+            generateUniqueNameProduct()
             emit('addProduct', {imageData: productImageData.value, ...productInfo})
             reset()
         }

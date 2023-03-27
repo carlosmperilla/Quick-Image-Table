@@ -14,9 +14,9 @@
 
 <script setup>
     const productInfo = inject('productInfo')
+    const emit = defineEmits(['pressNextButton'])
     const form = ref(null)
     const reportValidity = () => form.value.reportValidity()
-    const emit = defineEmits(['pressNextButton'])
 
     function nextInputFocus(e) {
         let currentElement = e.target.nextElementSibling

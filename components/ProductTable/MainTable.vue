@@ -35,7 +35,6 @@
 </template>
 
 <script setup>
-
     const props = defineProps({
         products: {
             type: Array,
@@ -51,23 +50,17 @@
         },
     })
     const emit = defineEmits(['updateProduct', 'addRemovableProduct', 'substractRemovableProduct'])
+    
     const table = ref(null)
-
-    function updateRemovableProducts(index, e) {
-        if (e.target.checked) {
-            emit('addRemovableProduct', index)
-            return null
-        }
-        emit('substractRemovableProduct', index)
-    }
-
-    function getClone() {
-        return table.value.cloneNode(true)
-    }
 
     const isEditable = computed(() => props.mode === props.tableModes.edit)
     const isRemovable = computed(() => props.mode === props.tableModes.delete)
 
+    //Funciones Generales.
+    function getClone() {
+        return table.value.cloneNode(true)
+    }
+    
     function filterByField(field, data) {
             
         if (field === 'name') {
@@ -86,6 +79,16 @@
         if (field === 'quantity') {
             return Number.parseInt(data)
         }        
+    }
+
+    // Funciones Eventos.
+
+    function updateRemovableProducts(index, e) {
+        if (e.target.checked) {
+            emit('addRemovableProduct', index)
+            return null
+        }
+        emit('substractRemovableProduct', index)
     }
 
     function updateProduct(index, event){

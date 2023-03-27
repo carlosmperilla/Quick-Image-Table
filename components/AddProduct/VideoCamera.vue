@@ -3,17 +3,39 @@
 </template>
 
 <script setup>
-
-    const streaming = ref(false)
-    const video = ref(null)
-    const width = ref(320)
-    const height = ref(0)
-
     const props = defineProps({
         hasPicture: Boolean,
     })
-
     const emit = defineEmits(['getImageData'])
+    
+    const streaming = ref(false)
+    const width = ref(320)
+    const height = ref(0)
+    
+    const video = ref(null)
+    
+    function resizingDefaultVideo() {
+        if (!streaming.value) {
+            height.value = video.value.videoHeight / (video.value.videoWidth/width.value);
+            streaming.value = true;
+        }
+    }
+
+    watchEffect(() => {
+        if (props.hasPicture){
+            let canvas = document.createElement('canvas')
+            canvas.setAttribute('height', height.value);
+            canvas.setAttribute('width', width.value);
+            
+            video.value.pause()
+            canvas.getContext('2d').drawImage(video.value, 0, 0, width.value, height.value);
+            let data = canvas.toDataURL('image/jpeg');
+
+            emit('getImageData', data)
+        } else if (streaming.value) {
+            video.value.play()
+        }
+    })
 
     onMounted(() => {
         navigator.getMedia = ( navigator.getUserMedia ||
@@ -41,30 +63,5 @@
     onBeforeUnmount(() => {
         // Close Video-Camera
         video.value.srcObject.getTracks()[0].stop()
-    })
-
-    
-    function resizingDefaultVideo() {
-        if (!streaming.value) {
-            height.value = video.value.videoHeight / (video.value.videoWidth/width.value);
-            streaming.value = true;
-        }
-    }
-    
-    watchEffect(() => {
-        if (props.hasPicture){
-            let canvas = document.createElement('canvas')
-            canvas.setAttribute('height', height.value);
-            canvas.setAttribute('width', width.value);
-            
-            video.value.pause()
-            canvas.getContext('2d').drawImage(video.value, 0, 0, width.value, height.value);
-            let data = canvas.toDataURL('image/jpeg');
-
-            emit('getImageData', data)
-        } else if (streaming.value) {
-            video.value.play()
-        }
-    })
-    
+    })    
 </script>

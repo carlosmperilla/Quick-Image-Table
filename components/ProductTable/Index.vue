@@ -31,26 +31,53 @@
             required: true
         }
     })
+    
     const emit = defineEmits(['updateProduct', 'reloadProducts', 'removeProducts', 'cleanProducts'])
+    
+    const defaultNameTable = 'MyQuickTable'
     const tableModes = {
         view: 'view',
         edit: 'edit',
         delete: 'delete'
     }
-    const mainTable = ref()
-    const defaultNameTable = 'MyQuickTable'
-    const nameTable = ref('')
-    const currentMode = ref(tableModes.view)
-    const checkedProducts = reactive([])
 
+    const currentMode = ref(tableModes.view)
+    const nameTable = ref('')
+    
+    const checkedProducts = reactive([])
+    
+    const mainTable = ref()
+
+    const totalCost = computed(() =>  props.products.reduce(
+        (accumulator, currentValue) => accumulator + currentValue.price*currentValue.quantity,
+        0
+    ))
+
+    // Funciones Generales
     function persistName(){
         let localNameTable = localStorage.getItem('nameQuickImageTable')
-        if (localNameTable !== null) {
-            return localNameTable
-        }
-        return defaultNameTable
+        return localNameTable !== null ? localNameTable : defaultNameTable
     }
 
+    function getPrintableElement(){
+        let table = mainTable.value.getClone()
+        let container = document.createElement('div')
+        let tableNameContainer = document.createElement('h1')
+        let totalCostContainer = document.createElement('h2')
+        
+        tableNameContainer.innerText = nameTable.value
+        tableNameContainer.style.textAlign = "center"
+
+        totalCostContainer.innerText = 'Costo total: $ ' + totalCost.value.toString()
+        totalCostContainer.style.textAlign = "left"
+        
+        container.style.width = "595.28pt"  // Para que ocupe todo el ancho.
+        container.append(tableNameContainer, totalCostContainer, table)
+
+        return container
+    }
+
+    // Funciones Eventos
     function preRemovalProducts() {
         let nameProductToRemoval = checkedProducts.map((index) => props.products[index].name).join(', ')
         if (checkedProducts.length === 0) {
@@ -75,45 +102,26 @@
 
         // Cuando se actualice el DOM clonamos y exportamos el PDF
         nextTick(() => {
-            let table = mainTable.value.getClone()
-            let container = document.createElement('div')
-            let tableNameContainer = document.createElement('h1')
-            let totalCostContainer = document.createElement('h2')
-            let fileName =  props.name !== '' ? `${nameTable.value}.pdf` : 'MyQuickTable.pdf'
-            
-            tableNameContainer.innerText = nameTable.value
-            tableNameContainer.style.textAlign = "center"
-            console.log(totalCost)
-            totalCostContainer.innerText = 'Costo total: $ ' + totalCost.value.toString()
-            totalCostContainer.style.textAlign = "left"
-            container.style.width = "595.28pt"  // Para que ocupe todo el ancho.
-            container.append(tableNameContainer, totalCostContainer, table)
+            let documentOptions = {
+                    orientation: 'l',
+                    unit: 'pt',
+                    format: 'a4',
+                    putOnlyUsedFonts: true,
+                    floatPrecision: 'smart',
+                    compress: true
+                }
+            let options = {
+                    margin: [60, 30, 60, 30], // Para conservar unos margenes.
+                    autoPaging:'text' // Evita que el texto aparezca cortado entre pagina y pagina.
+                }
+
+            let fileName =  props.name !== '' ? `${nameTable.value}.pdf` : `${defaultNameTable}.pdf`
+            let container = getPrintableElement()
 
             // https://sidebase.io/nuxt-pdf/getting-started/quick-start
-            exportToPDF(fileName, container, {
-                orientation: 'l',
-                unit: 'pt',
-                format: 'a4',
-                putOnlyUsedFonts: true,
-                floatPrecision: 'smart',
-                compress: true
-            }, {
-                margin: [60, 30, 60, 30], // Para conservar unos margenes.
-                autoPaging:'text' // Evita que el texto aparezca cortado entre pagina y pagina.
-            })
+            exportToPDF(fileName, container, documentOptions, options)
         })
-
-
     }
-
-    onMounted(() => {
-        nameTable.value = persistName()
-    })
-
-    const totalCost = computed(() =>  props.products.reduce(
-        (accumulator, currentValue) => accumulator + currentValue.price*currentValue.quantity,
-        0
-    ))
 
     watch(nameTable, () => {
         localStorage.setItem('nameQuickImageTable', nameTable.value)
@@ -123,13 +131,13 @@
         if (currentMode.value === tableModes.view) {
             emit('reloadProducts') // recargamos la tabla de productos.
         }
-
-        if (currentMode.value === tableModes.edit) {
-
-        }
-
+        
         if (currentMode.value === tableModes.delete) {
             checkedProducts.length = 0 // reseteamos la lista de productos checkeados.
         }
+    })
+
+    onMounted(() => {
+        nameTable.value = persistName()
     })
 </script>

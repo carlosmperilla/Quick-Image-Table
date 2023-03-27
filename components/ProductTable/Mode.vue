@@ -9,7 +9,7 @@
             <option :value="tableModes.edit">Edición</option>
             <option :value="tableModes.delete">Eliminación</option>
         </select>
-        <button v-if="currentMode === tableModes.edit" @click="() => currentMode = tableModes.view">Terminar edición</button>
+        <button v-if="currentMode === tableModes.edit" @click="$emit('update:currentMode', props.tableModes.view)">Terminar edición</button>
         <button v-if="currentMode === tableModes.delete" @click="$emit('preRemovalProducts')">Eliminar {{ checkedProducts.length }} productos</button>
         <button v-if="currentMode === tableModes.delete" @click="$emit('preCleanProducts')">¡Eliminar Tabla!</button>
     </section>
