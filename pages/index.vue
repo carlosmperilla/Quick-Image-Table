@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <main>
         <ProductTable 
             :products="products" 
             @update-product="updateProduct" 
@@ -7,12 +7,14 @@
             @remove-products="removeProducts"
             @clean-products="clean"
         />
-        <button @click="showDialog">Mostrar</button>
+        <section class="principal-action">
+            <button @click="showDialog">Mostrar</button>
+        </section>
         <dialog ref="dialog">
             <button @click="closeDialog">Ocultar</button>
             <AddProduct :products="products" :is-started="isModalOpen" @add-product="addProductAndPersist"/>
         </dialog>
-    </section>
+    </main>
 </template>
 
 <script setup>

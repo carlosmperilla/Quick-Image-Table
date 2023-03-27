@@ -1,23 +1,19 @@
 <template>
-    <section>
-        <span>Modo: </span>
-        <select v-model="currentMode">
-            <option :value="tableModes.view">Visualización</option>
-            <option :value="tableModes.edit">Edición</option>
-            <option :value="tableModes.delete">Eliminación</option>
-        </select>
-        <button v-if="currentMode === tableModes.edit" @click="() => currentMode = tableModes.view">Terminar edición</button>
-        <button v-if="currentMode === tableModes.delete" @click="preRemovalProducts">Eliminar {{ checkedProducts.length }} productos</button>
-        <button v-if="currentMode === tableModes.delete" @click="preCleanProducts">¡Eliminar Tabla!</button>
-        <br>
-        <span>Nombre:</span> 
-        <input type="text" v-model="nameTable" maxlength="20">
-        <span>Cambie el nombre de ser pertinente</span>
-        <br>
-        <span>Costo total: $ {{ totalCost }}</span>
+    <section class="product-table">
+        <ProductTableMode
+            v-model:current-mode="currentMode"
+            :table-modes="tableModes"
+            :checked-products="checkedProducts"
+            @pre-removal-products="preRemovalProducts"
+            @pre-clean-products="preCleanProducts"
+        />
+        <ProductTableNameAndCost
+            v-model:name-table="nameTable"
+            :total-cost="totalCost"
+        />
         <ProductTableMainTable 
             ref="mainTable" 
-            :tableModes="tableModes"
+            :table-modes="tableModes"
             :mode="currentMode" 
             :products="products" 
             @update-product="(index, value) => emit('updateProduct', index, value) "

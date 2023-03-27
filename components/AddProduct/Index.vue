@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="add-product">
         <button v-text="prevButtonContent" v-if="step > 0" @click="prevStep"></button>
         <AddProductVideoCamera :hasPicture="hasPicture" v-if="isStarted" @get-image-data="(data) => productImageData = data"/>
         <button v-text="CameraControlButtonContent" @click="photoAction" v-if="step === 0"></button>
