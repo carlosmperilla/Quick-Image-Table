@@ -9,9 +9,12 @@
         <button v-if="currentMode === tableModes.edit" @click="() => currentMode = tableModes.view">Terminar edición</button>
         <button v-if="currentMode === tableModes.delete" @click="preRemovalProducts">Eliminar {{ checkedProducts.length }} productos</button>
         <button v-if="currentMode === tableModes.delete" @click="preCleanProducts">¡Eliminar Tabla!</button>
+        <br>
         <span>Nombre:</span> 
         <input type="text" v-model="nameTable" maxlength="20">
         <span>Cambie el nombre de ser pertinente</span>
+        <br>
+        <span>Costo total: $ {{ totalCost }}</span>
         <ProductTableMainTable 
             ref="mainTable" 
             :tableModes="tableModes"
@@ -77,11 +80,21 @@
         // Cuando se actualice el DOM clonamos y exportamos el PDF
         nextTick(() => {
             let table = mainTable.value.getClone()
-            let fileName =  props.name !== '' ? `${nameTable.value}.pdf` : 'MyQuickTable.pdf' 
-            table.style.width = "595.28pt" // Para que ocupe todo el ancho.
+            let container = document.createElement('div')
+            let tableNameContainer = document.createElement('h1')
+            let totalCostContainer = document.createElement('h2')
+            let fileName =  props.name !== '' ? `${nameTable.value}.pdf` : 'MyQuickTable.pdf'
+            
+            tableNameContainer.innerText = nameTable.value
+            tableNameContainer.style.textAlign = "center"
+            console.log(totalCost)
+            totalCostContainer.innerText = 'Costo total: $ ' + totalCost.value.toString()
+            totalCostContainer.style.textAlign = "left"
+            container.style.width = "595.28pt"  // Para que ocupe todo el ancho.
+            container.append(tableNameContainer, totalCostContainer, table)
 
             // https://sidebase.io/nuxt-pdf/getting-started/quick-start
-            exportToPDF(fileName, table, {
+            exportToPDF(fileName, container, {
                 orientation: 'l',
                 unit: 'pt',
                 format: 'a4',
@@ -100,6 +113,11 @@
     onMounted(() => {
         nameTable.value = persistName()
     })
+
+    const totalCost = computed(() =>  props.products.reduce(
+        (accumulator, currentValue) => accumulator + currentValue.price*currentValue.quantity,
+        0
+    ))
 
     watch(nameTable, () => {
         localStorage.setItem('nameQuickImageTable', nameTable.value)

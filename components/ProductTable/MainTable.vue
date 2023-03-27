@@ -10,7 +10,6 @@
             </tr>
         </thead>
         <tbody>
-            <!-- <tr v-for="({ imageData, name, price, quantity }, index) in products" :key="index"> -->
             <tr v-for="(product, index) in products" :key="index">
                 <td v-if="isRemovable">
                     <input type="checkbox" @change="(e) => updateRemovableProducts(index, e)">
