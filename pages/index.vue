@@ -32,7 +32,6 @@
 
     function removeProducts(indexList) {
         for (let index of indexList.sort((a, b) => b - a)) {
-            console.log(products[index].name, index)
             products.splice(index, 1)
             localStorage.setItem('productsQuickImageTable', JSON.stringify(products))
         }

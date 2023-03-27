@@ -1,7 +1,7 @@
 <template>
     <section>
         <button v-text="prevButtonContent" v-if="step > 0" @click="prevStep"></button>
-        <AddProductVideoCamera :hasPicture="hasPicture" v-if="props.isStarted" @get-image-data="(data) => productImageData = data"/>
+        <AddProductVideoCamera :hasPicture="hasPicture" v-if="isStarted" @get-image-data="(data) => productImageData = data"/>
         <button v-text="CameraControlButtonContent" @click="photoAction" v-if="step === 0"></button>
         <section v-if="hasPicture">
             <button v-text="nextButtonContent" @click="nextStep"></button>

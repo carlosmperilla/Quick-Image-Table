@@ -10,14 +10,14 @@
         <button v-if="currentMode === tableModes.delete" @click="preRemovalProducts">Eliminar {{ checkedProducts.length }} productos</button>
         <button v-if="currentMode === tableModes.delete" @click="preCleanProducts">¡Eliminar Tabla!</button>
         <span>Nombre:</span> 
-        <input type="text" v-model="nameTable">
+        <input type="text" v-model="nameTable" maxlength="20">
         <span>Cambie el nombre de ser pertinente</span>
         <ProductTableMainTable 
             ref="mainTable" 
             :tableModes="tableModes"
             :mode="currentMode" 
             :products="products" 
-            @update-product="(index, value) => emit('updateProduct', index, value)"
+            @update-product="(index, value) => emit('updateProduct', index, value) "
             @add-removable-product="(index) => checkedProducts.push(index)"
             @substract-removable-product="(index) => checkedProducts.splice(checkedProducts.indexOf(index), 1)"
         />

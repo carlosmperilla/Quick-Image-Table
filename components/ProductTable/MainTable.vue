@@ -10,31 +10,33 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="({ imageData, name, price, quantity }, index) in props.products" :key="index">
+            <!-- <tr v-for="({ imageData, name, price, quantity }, index) in products" :key="index"> -->
+            <tr v-for="(product, index) in products" :key="index">
                 <td v-if="isRemovable">
                     <input type="checkbox" @change="(e) => updateRemovableProducts(index, e)">
                 </td>
                 <td>
-                    <img :src="imageData" alt="" width="90">
+                    <img :src="product.imageData" alt="" width="90">
                 </td>
-                <td 
-                    @input="(e) => updateProduct(index, 'name', e)"
-                    :contenteditable="isEditable"
-                >{{ name }}</td>
-                <td 
-                    @input="(e) => updateProduct(index, 'price', e)"
-                    :contenteditable="isEditable"
-                >{{ price }}</td>
-                <td 
-                    @input="(e) => updateProduct(index, 'quantity', e)"
-                    :contenteditable="isEditable"
-                >{{ quantity }}</td>
+                <td>
+                    {{ !isEditable ? product.name : '' }}
+                    <input type="text" name="name" v-if="isEditable" v-model="product.name" @input="(e) => updateProduct(index, e)" maxlength="50">
+                </td>
+                <td>
+                    {{ !isEditable ? product.price : '' }}
+                    <input type="number" name="price" min="0.0" step="0.01" v-if="isEditable" v-model="product.price" @input="(e) => updateProduct(index, e)">
+                </td>
+                <td>
+                {{ !isEditable ? product.quantity : '' }}
+                <input type="number" name="quantity" v-if="isEditable" v-model="product.quantity" @input="(e) => updateProduct(index, e)" min="0">
+            </td>
             </tr>
         </tbody>
     </table>
 </template>
 
 <script setup>
+
     const props = defineProps({
         products: {
             type: Array,
@@ -47,7 +49,7 @@
         tableModes: {
             type: Object,
             required: true
-        }
+        },
     })
     const emit = defineEmits(['updateProduct', 'addRemovableProduct', 'substractRemovableProduct'])
     const table = ref(null)
@@ -68,20 +70,33 @@
     const isRemovable = computed(() => props.mode === props.tableModes.delete)
 
     function filterByField(field, data) {
+            
         if (field === 'name') {
             return data.slice(0, 50)
         }
         
-        if (isNaN(data) || data < 0) {
-            return NaN
+        if (data < 0) {
+            return 0
         }
         
-        return data
+        if (field === 'price') {
+            let newData = data.endsWith('.') ? data + '0' : data
+            return Number.parseFloat(newData)
+        }
+        
+        if (field === 'quantity') {
+            return Number.parseInt(data)
+        }        
     }
- 
-    function updateProduct(index, field, event){
-        let filterData = filterByField(field, event.target.innerText)
-        emit('updateProduct', index, { [field]: filterData })
+
+    function updateProduct(index, event){
+        if (event.target.value === '') {
+            return null
+        }
+
+        let filterData = filterByField(event.target.name, event.target.value)
+        
+        emit('updateProduct', index, { [event.target.name]: filterData })
     }
 
     defineExpose({
