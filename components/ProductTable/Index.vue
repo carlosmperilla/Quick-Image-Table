@@ -1,5 +1,9 @@
 <template>
     <section class="product-table">
+        <div
+            v-show="loadingPDF"
+            class="loading-pdf-bar"
+        ></div>
         <ProductTableMode
             v-model:current-mode="currentMode"
             :table-modes="tableModes"
@@ -43,6 +47,7 @@
 
     const currentMode = ref(tableModes.view)
     const nameTable = ref('')
+    const loadingPDF = ref(false)
     
     const checkedProducts = reactive([])
     
@@ -101,7 +106,7 @@
         currentMode.value = tableModes.view // Forzamos el modo: vista.
 
         // Cuando se actualice el DOM clonamos y exportamos el PDF
-        nextTick(() => {
+        nextTick(async () => {
             let documentOptions = {
                     orientation: 'l',
                     unit: 'pt',
@@ -118,8 +123,10 @@
             let fileName =  props.name !== '' ? `${nameTable.value}.pdf` : `${defaultNameTable}.pdf`
             let container = getPrintableElement()
 
+            loadingPDF.value = true
             // https://sidebase.io/nuxt-pdf/getting-started/quick-start
-            exportToPDF(fileName, container, documentOptions, options)
+            await exportToPDF(fileName, container, documentOptions, options)
+            loadingPDF.value = false
         })
     }
 
@@ -141,3 +148,15 @@
         nameTable.value = persistName()
     })
 </script>
+
+<style scoped>
+    .loading-pdf-bar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 3px;
+        width: 100%;
+        z-index: 50;
+        background-color: lightseagreen;
+    }
+</style>
