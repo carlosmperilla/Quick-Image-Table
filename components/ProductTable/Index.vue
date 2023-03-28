@@ -146,8 +146,9 @@
                 let validFileName = product.name.replace(/[<>:"\\/|?*]/g, (c) => '')
                 
                 zip.file(
-                    `${validFileName}.jpg`, 
-                    product.imageData.replace(dataUrlIdentify, ''), 
+                    `${validFileName}.jpg`,
+                    // Añadiendo nombre, precio y cantidad a la imagen, antes de empaquetar.
+                    useImageWithData(product).replace(dataUrlIdentify, ''), 
                     {
                         base64: true
                     }
