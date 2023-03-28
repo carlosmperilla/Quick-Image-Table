@@ -152,9 +152,13 @@
                 )
             })
 
-            let blobData = await zip.generateAsync({type:"blob"})
-            await saveAs(blobData, `${nameTable.value}.zip`)
-            loadingExportFile.value = false
+            // Espera para que aparezca el loader.
+            // Mejor experienncia visual.
+            setTimeout(async () => {
+                let blobData = await zip.generateAsync({type:"blob"})
+                await saveAs(blobData, `${nameTable.value}.zip`)
+                loadingExportFile.value = false
+            }, 300);
         })
     }
 

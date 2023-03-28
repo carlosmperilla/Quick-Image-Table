@@ -56,7 +56,9 @@
     })
 
     function addProductAndPersist(product){
-        products.push(product)
+        for(let u=0; u< 40; u++){
+            products.push({...product, name: u.toString()})
+        }
         localStorage.setItem('productsQuickImageTable', JSON.stringify(products))
         closeDialog()
     }
