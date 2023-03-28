@@ -143,8 +143,10 @@
             loadingExportFile.value = true
             props.products.map((product) => {
                 let dataUrlIdentify = 'data:image/jpeg;base64,'
+                let validFileName = product.name.replace(/[<>:"\\/|?*]/g, (c) => '')
+                
                 zip.file(
-                    `${product.name}.jpg`, 
+                    `${validFileName}.jpg`, 
                     product.imageData.replace(dataUrlIdentify, ''), 
                     {
                         base64: true
