@@ -1,7 +1,7 @@
 <template>
     <section class="product-table">
         <div
-            v-show="loadingPDF"
+            v-show="loadingExportFile"
             class="loading-pdf-bar"
         ></div>
         <ProductTableMode
@@ -25,10 +25,14 @@
             @substract-removable-product="(index) => checkedProducts.splice(checkedProducts.indexOf(index), 1)"
         />
         <button @click="createPDF">Crear pdf</button>
+        <button @click="createZIP">Crear zip</button>
     </section>
 </template>
 
 <script setup>
+    import JSZip from 'jszip' // Para generar el zip de imagenes.
+    import { saveAs } from 'file-saver' // Para guardar el zip de imagenes.
+
     const props = defineProps({
         products: {
             type: Array,
@@ -47,7 +51,7 @@
 
     const currentMode = ref(tableModes.view)
     const nameTable = ref('')
-    const loadingPDF = ref(false)
+    const loadingExportFile = ref(false)
     
     const checkedProducts = reactive([])
     
@@ -123,10 +127,34 @@
             let fileName =  props.name !== '' ? `${nameTable.value}.pdf` : `${defaultNameTable}.pdf`
             let container = getPrintableElement()
 
-            loadingPDF.value = true
+            loadingExportFile.value = true
             // https://sidebase.io/nuxt-pdf/getting-started/quick-start
             await exportToPDF(fileName, container, documentOptions, options)
-            loadingPDF.value = false
+            loadingExportFile.value = false
+        })
+    }
+
+    function createZIP(){
+        currentMode.value = tableModes.view
+
+        nextTick(async () => {
+            let zip = new JSZip()
+            
+            loadingExportFile.value = true
+            props.products.map((product) => {
+                let dataUrlIdentify = 'data:image/jpeg;base64,'
+                zip.file(
+                    `${product.name}.jpg`, 
+                    product.imageData.replace(dataUrlIdentify, ''), 
+                    {
+                        base64: true
+                    }
+                )
+            })
+
+            let blobData = await zip.generateAsync({type:"blob"})
+            await saveAs(blobData, `${nameTable.value}.zip`)
+            loadingExportFile.value = false
         })
     }
 
