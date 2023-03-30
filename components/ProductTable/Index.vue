@@ -24,8 +24,11 @@
             @add-removable-product="(index) => checkedProducts.push(index)"
             @substract-removable-product="(index) => checkedProducts.splice(checkedProducts.indexOf(index), 1)"
         />
-        <button @click="createPDF">Crear pdf</button>
-        <button @click="createZIP">Crear zip</button>
+        <details v-if="products.length > 0">
+            <summary>Exportar tabla: {{ nameTable }}</summary>
+            <button @click="createPDF">Exportar a PDF</button>
+            <button @click="createZIP">Exportar a ZIP</button>
+        </details>
     </section>
 </template>
 

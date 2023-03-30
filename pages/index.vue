@@ -8,10 +8,10 @@
             @clean-products="clean"
         />
         <section class="principal-action">
-            <button @click="showDialog">Mostrar</button>
+            <button @click="showDialog">Ingresar producto</button>
         </section>
         <dialog ref="dialog">
-            <button @click="closeDialog">Ocultar</button>
+            <button @click="closeDialog">Cerrar</button>
             <AddProduct :products="products" :is-started="isModalOpen" @add-product="addProductAndPersist"/>
         </dialog>
     </main>
