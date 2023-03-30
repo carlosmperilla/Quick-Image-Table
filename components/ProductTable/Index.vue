@@ -52,7 +52,9 @@
         delete: 'delete'
     }
 
-    const currentMode = ref(tableModes.view)
+    // Nos permite mantener el modo de edición, 
+    // aunque se cambie entre paginas de la aplicación web.
+    const currentMode = useState(() => tableModes.view)
     const nameTable = ref('')
     const loadingExportFile = ref(false)
     
