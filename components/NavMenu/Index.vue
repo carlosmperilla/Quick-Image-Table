@@ -7,20 +7,8 @@
             </button>
         </div>
         <menu :class="{ 'principal-nav__menu--active': isMenuOpen  }">
-            <li v-for="n in menuLinkList">
-                <NuxtLink :to="n.route">{{n.text}}</NuxtLink>
-            </li>
-            <li @click="toggleMenu">
-                <NuxtLink to="/"><font-awesome-icon :icon="['fas', 'house']" /> Inicio</NuxtLink>
-            </li>
-            <li @click="toggleMenu">
-                <NuxtLink to="/howtouse"><font-awesome-icon :icon="['fab', 'readme']" /> ¿Cómo usar?</NuxtLink>
-            </li>
-            <li @click="toggleMenu">
-                <NuxtLink to="/about"><font-awesome-icon :icon="['fas', 'info-circle']" /> Acerca de QuickImageTable</NuxtLink>
-            </li>
-            <li @click="toggleMenu">
-                <NuxtLink to="/contact"><font-awesome-icon :icon="['fas', 'comments']" /> Mi contacto</NuxtLink>
+            <li v-for="(menuLink, index) in menuLinkList" :key="index" @click="toggleMenu">
+                <NuxtLink :to="menuLink.route"><font-awesome-icon :icon="menuLink.icon" /> {{ menuLink.text }}</NuxtLink>
             </li>
         </menu>
     </nav>
@@ -31,11 +19,27 @@
     const isMenuOpen = ref(false)
     const menuLinkList = reactive([
         {
-            text: ' Inicio',
+            text: 'Inicio',
             route: '/',
             icon: ['fas', 'house']
-        }
+        },
+        {
+            text: '¿Cómo usar?',
+            route: '/howtouse',
+            icon: ['fab', 'readme']
+        },
+        {
+            text: 'Acerca de QuickImageTable',
+            route: '/about',
+            icon: ['fas', 'info-circle']
+        },
+        {
+            text: 'Mi contacto',
+            route: '/contact',
+            icon: ['fas', 'comments']
+        },
     ])
+
     const burgerMenuIcon = computed(() => isMenuOpen.value ? 'bars-staggered' : 'bars')
 
     function toggleMenu(){
@@ -51,74 +55,97 @@
 <style lang="scss" scoped>
     @use '@/assets/styles/sass/abstracts/variables';
 
-    nav {
+    $header-bg-color: #0e5161;
+    $header-bg-color--active: #0b424f;
+    $menu-bg-color: antiquewhite;
+    $menu-li-bg-color: #eac786;
+    
+    $header-color: whitesmoke;
+    $header-color--active: white;
+    $menu-li-color: #30434f;
+    
+    $nav-height: 43px;
+    $icon-height: 60%;
+
+    @mixin center-flexbox {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        height: 43px;
+        justify-content: center;
+    }
 
+    @mixin fixed-extend-banner {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 2;
+    }
+
+    @mixin expand-box-max {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+    }
+
+    nav {
+        @include center-flexbox;
+        justify-content: space-between;
+        height: $nav-height;
+        
         .principal-nav__burger-menu-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-            background-color: #0e5161;
+            @include center-flexbox;
+            @include expand-box-max;
+            background-color: $header-bg-color;
             .principal-nav__burger-menu-container--button {
                 border: none;
-                background: none;
+                // background: none;
                 aspect-ratio: 1/1;
                 height: 90%;
                 border-radius: 50%;
-                background-color: #0e5161;
-                color: whitesmoke;
+                background-color: $header-bg-color;
+                color: $header-color;
                 &:active {
-                    background-color: #0b424f;
-                    color: white;
+                    background-color: $header-bg-color--active;
+                    color: $header-color--active;
                 }
                 .fa-bars,
                 .fa-bars-staggered {
-                    height: 60%;
+                    height: $icon-height;
                 }
             }
         }
         menu {
-            // display: inline-flex;
             display: none;
             list-style: none;
 
-            .fa-house {
+            .fa-house,
+            .fa-info-circle,
+            .fa-comments {
                 vertical-align: baseline;
             }
         }
         .principal-nav__menu--active {
-            display: flex;
-            background: antiquewhite;
-            position: fixed;
-            padding: 10px variables.$thumb-space;
-            top: 43px;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: flex;
+            @include center-flexbox;
+            @include fixed-extend-banner;
+            top: $nav-height;
             flex-direction: column;
-            align-items: center;
-            gap: 50px;
+            background-color: $menu-bg-color;
+            padding: 10px variables.$thumb-space;
             padding-top: 100px;
+            gap: 50px;
             font-size: 4.2rem;
-            z-index: 2;
             li {
-                text-align: center;
-                background: #eac786;
-                padding: 0;
+                background: $menu-li-bg-color;
                 width: 100%;
+                padding: 0;
+                text-align: center;
                 a {
+                    @include expand-box-max;
                     display: block;
-                    width: 100%;
-                    height: 100%;
                     padding: 5px 10px;
                     text-decoration: none;
-                    color: #30434f;
+                    color: $menu-li-color;
                 }
             }
         }
