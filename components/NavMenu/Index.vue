@@ -107,7 +107,7 @@
             padding: 10px variables.$thumb-space;
             padding-top: 100px;
             gap: 50px;
-            font-size: 4.2rem;
+            font-size: 3.2rem;
             li {
                 background: variables.$menu-li-bg-color;
                 width: 100%;
