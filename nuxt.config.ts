@@ -2,6 +2,9 @@
 export default defineNuxtConfig({
     pages: true, // Para la configuración de las paginas.
     modules: ['@sidebase/nuxt-pdf'],
+    css: [
+      '@fortawesome/fontawesome-svg-core/styles.css'
+    ],
     app: {
         head: {
             title: 'QuickImageTable - Generador rapido de tablas con imagenes',
@@ -21,5 +24,14 @@ export default defineNuxtConfig({
             link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
           },
           pageTransition: { name: 'page', mode: 'out-in' }
+    },
+    vite: {
+      css: {
+        preprocessorOptions: {
+          scss: {
+            additionalData: '@use "@/assets/styles/sass/app.scss" as *;'
+          }
+        }
+      }
     },
 })

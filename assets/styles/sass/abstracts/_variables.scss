@@ -1,0 +1,11 @@
+
+$primary: #ffcc00;
+$secondary: #4b4b4b;
+$thumb-space: 35px;
+
+:root{ 
+  --data-color-primary: #{$primary};
+  --data-color-secondary: #{$secondary};
+  --thumb-space: #{$thumb-space};
+}
+

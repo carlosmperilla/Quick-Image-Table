@@ -189,7 +189,9 @@
     })
 </script>
 
-<style scoped>
+<style lang="scss">
+    @use '@/assets/styles/sass/abstracts/variables';
+
     .loading-pdf-bar {
         position: fixed;
         left: 0;
@@ -198,5 +200,11 @@
         width: 100%;
         z-index: 50;
         background-color: lightseagreen;
+    }
+
+    .product-table {
+        // background-color: var(--data-color-primary);
+        // color: variables.$secondary;
+        color: initial;
     }
 </style>
