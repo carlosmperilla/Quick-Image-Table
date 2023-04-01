@@ -10,9 +10,9 @@
         </div>
         <menu :class="{ 'principal-nav__menu--active': isMenuOpen  }">
             <li v-for="(menuLink, index) in menuLinkList" :key="index" @click="toggleMenu">
-                <ClientOnly>
-                    <NuxtLink :to="menuLink.route"><font-awesome-icon :icon="menuLink.icon"/> {{ menuLink.text }}</NuxtLink>
-                </ClientOnly>
+                <NuxtLink :to="menuLink.route">
+                    <ClientOnly><font-awesome-icon :icon="menuLink.icon"/></ClientOnly> {{ menuLink.text }}
+                </NuxtLink>
             </li>
         </menu>
     </nav>
@@ -20,6 +20,7 @@
 
 <script setup>
     const router = useRouter()
+
     const isMenuOpen = ref(false)
     const menuLinkList = reactive([
         {
@@ -101,6 +102,7 @@
             @include mixins.fixed-extend-banner;
             top: variables.$nav-height;
             flex-direction: column;
+            justify-content: flex-start;
             background-color: variables.$menu-bg-color;
             padding: 10px variables.$thumb-space;
             padding-top: 100px;
