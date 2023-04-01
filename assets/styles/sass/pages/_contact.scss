@@ -1,0 +1,19 @@
+.page {
+    section {
+        p {
+            a {
+                color: lightseagreen;
+                &:visited {
+                    color: seagreen;
+                }
+                &:active {
+                    color: mediumspringgreen;
+                }
+            }
+        }
+        .page-email {
+            color: #667918;
+            text-align: center;
+        }
+    }
+}
