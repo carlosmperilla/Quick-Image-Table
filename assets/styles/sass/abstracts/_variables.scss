@@ -1,11 +1,18 @@
 
-$primary: #ffcc00;
-$secondary: #4b4b4b;
+// Background Colors
+$header-bg-color: #0e5161;
+$header-bg-color--active: #0b424f;
+$menu-bg-color: antiquewhite;
+$menu-li-bg-color: #eac786;
+
+//Text Colors
+$header-color: whitesmoke;
+$header-color--active: white;
+$menu-li-color: #30434f;
+
+// Objetive size
 $thumb-space: 35px;
+$nav-height: 43px;
 
-:root{ 
-  --data-color-primary: #{$primary};
-  --data-color-secondary: #{$secondary};
-  --thumb-space: #{$thumb-space};
-}
-
+// Relative size
+$icon-height: 60%;
