@@ -2,3 +2,41 @@
 @use "about";
 @use "contact";
 @use "howToUse";
+
+@use '@/assets/styles/sass/abstracts/variables';
+
+.page {
+    text-align: center;
+    padding: variables.$page-padding-vertical variables.$thumb-space;
+    header {
+        margin-bottom: variables.$header-margin-bottom;
+        h1 {
+            font-size: variables.$h1-font-size;
+            margin-bottom: variables.$h1-margin-bottom;
+            color: variables.$h1-color;
+        }
+    }
+    section {
+        margin-bottom: variables.$section-margin-bottom;
+        h2 {
+            text-align: left;
+            font-size: variables.$h2-font-size;
+            margin-bottom: variables.$h2-margin-bottom;
+            color: variables.$h2-color;
+        }
+        p {
+            text-align: justify;
+            font-size: variables.$p-font-size;
+            margin-bottom: variables.$p-margin-bottom;
+        }
+        ul {
+            padding-left: 1em;
+            list-style: disc;
+            text-align: left;
+            font-size: variables.$ul-font-size;
+            li {
+                margin-bottom: variables.$ul-margin-bottom;
+            }
+        }
+    }
+}

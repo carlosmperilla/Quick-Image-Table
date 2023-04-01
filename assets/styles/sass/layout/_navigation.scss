@@ -1,0 +1,65 @@
+@use '@/assets/styles/sass/abstracts/variables';
+@use '@/assets/styles/sass/abstracts/mixins';
+
+nav {
+    @include mixins.center-flexbox;
+    justify-content: space-between;
+    height: variables.$nav-height;
+    
+    .principal-nav__burger-menu-container {
+        @include mixins.center-flexbox;
+        @include mixins.expand-box-max;
+        background-color: variables.$header-bg-color;
+        .principal-nav__burger-menu-container--button {
+            border: none;
+            aspect-ratio: 1/1;
+            height: 90%;
+            border-radius: 50%;
+            background-color: variables.$header-bg-color;
+            color: variables.$header-color;
+            &:active {
+                background-color: variables.$header-bg-color--active;
+                color: variables.$header-color--active;
+            }
+            .fa-bars,
+            .fa-bars-staggered {
+                height: variables.$icon-height;
+            }
+        }
+    }
+    menu {
+        display: none;
+        list-style: none;
+
+        .fa-house,
+        .fa-info-circle,
+        .fa-comments {
+            vertical-align: baseline;
+        }
+    }
+    .principal-nav__menu--active {
+        @include mixins.center-flexbox;
+        @include mixins.fixed-extend-banner;
+        top: variables.$nav-height;
+        flex-direction: column;
+        justify-content: flex-start;
+        background-color: variables.$menu-bg-color;
+        padding: 10px variables.$thumb-space;
+        padding-top: 100px;
+        gap: 50px;
+        font-size: 3.2rem;
+        li {
+            background: variables.$menu-li-bg-color;
+            width: 100%;
+            padding: 0;
+            text-align: center;
+            a {
+                @include mixins.expand-box-max;
+                display: block;
+                padding: 5px 10px;
+                text-decoration: none;
+                color: variables.$menu-li-color;
+            }
+        }
+    }
+}

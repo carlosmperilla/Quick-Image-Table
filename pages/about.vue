@@ -1,8 +1,8 @@
 <template>
-    <article>
+    <article class="page">
         <header>
             <h1>Acerca de QuickImageTable</h1>
-            <p>
+            <p class="page-header--description">
                 QuickImageTable es una herramienta para generar tablas de productos apoyadas con imágenes.
             </p>
         </header>

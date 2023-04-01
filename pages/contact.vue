@@ -1,5 +1,5 @@
 <template>
-    <article>
+    <article class="page">
         <header>
             <h1>Contacto</h1>
         </header>

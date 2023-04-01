@@ -1,5 +1,5 @@
 <template>
-    <article>
+    <article class="page">
         <header>
             <h1>QuickImageTable: Instrucciones de uso</h1>
         </header>
