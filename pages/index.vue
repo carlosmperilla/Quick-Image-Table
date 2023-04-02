@@ -10,10 +10,12 @@
         <section class="principal-action">
             <button @click="showDialog">Ingresar producto</button>
         </section>
-        <dialog ref="dialog">
-            <button @click="closeDialog">Cerrar</button>
-            <AddProduct :products="products" :is-started="isModalOpen" @add-product="addProductAndPersist"/>
-        </dialog>
+        <Teleport to="body">
+            <dialog ref="dialog">
+                <button @click="closeDialog">Cerrar</button>
+                <AddProduct :products="products" :is-started="isModalOpen" @add-product="addProductAndPersist"/>
+            </dialog>
+        </Teleport>
     </main>
 </template>
 

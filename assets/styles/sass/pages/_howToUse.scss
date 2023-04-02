@@ -1,0 +1,16 @@
+@use '@/assets/styles/sass/abstracts/mixins';
+
+.page {
+    section {
+        @include mixins.default-details;
+    }
+    .page-limitations {
+        @include mixins.default-details;
+        details {
+            background-color: #944545;
+            summary {
+                background-color: #6a3131;
+            }
+        }
+    }
+}

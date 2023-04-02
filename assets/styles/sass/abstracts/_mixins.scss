@@ -18,3 +18,27 @@
     height: 100%;
     padding: 0;
 }
+
+@mixin default-details {
+    details {
+        contain: content;
+        background-color: #455894;
+        color: #dcf7db;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        border-radius: 25px 0px;
+        summary {
+            background-color: #313f6a;
+            font-size: 2em;
+            font-weight: bold;
+            text-align: left;
+            padding-left: 1em;
+            padding-top: 10px;
+            padding-bottom: 8px;
+        }
+        ul, p {
+            margin: 10px 2em;
+            font-size: 1.5em;
+        }
+    }
+}

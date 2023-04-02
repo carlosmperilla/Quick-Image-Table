@@ -81,7 +81,7 @@
                 </ul>
             </details>
         </section>
-        <footer>
+        <footer class="page-limitations">
             <details>
                 <summary>Limitaciones de QuickImageTable</summary>
                 <ul>
