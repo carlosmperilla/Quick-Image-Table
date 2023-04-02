@@ -87,8 +87,9 @@
     dialog {
         border-radius: 25px;
         border: none;
-        box-shadow: inset #365e5f 2px 2px 20px 1px;
+        box-shadow: inset #365e5f 2px 2px 10px 1px;
         padding: 35px 20px;
+        padding-right: 35px;
         position: relative;
         overflow: hidden;
         .dialog__close-button {

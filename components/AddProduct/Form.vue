@@ -39,7 +39,7 @@
         justify-content: center;
         align-items: center;
         fieldset {
-            border-radius: 25px;
+            border-radius: 15px;
             border: none;
             background-color: #caa377;
             display: flex;
@@ -51,7 +51,7 @@
                 text-align: center;
                 background-color: #80742c;
                 color: whitesmoke;
-                border-radius: 25px;
+                border-radius: 10px;
                 padding: 5px;
             }
             label {
