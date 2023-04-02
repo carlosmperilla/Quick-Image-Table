@@ -28,7 +28,7 @@
 <style lang="scss" scoped>
     .add-product__list {
         margin: 20px;
-        max-height: 100px;
+        max-height: 150px;
         overflow-y: auto;
         strong {
             font-size: 2em;
