@@ -11,7 +11,12 @@
         </ClientOnly>
          {{ CameraControlButtonContent }}</button>
         <section v-if="hasPicture" class="add-product__box-arrow-buttons">
-            <button v-text="prevButtonContent" v-if="step > 0" @click="prevStep"></button>
+            <button v-if="step > 0" @click="prevStep" class="add-product__box-arrow-buttons--left">
+                <ClientOnly>
+                    <font-awesome-icon :icon="['fas', 'arrow-left']" />
+                </ClientOnly>
+                 {{ prevButtonContent }}
+            </button>
             <button @click="nextStep">
                 {{ nextButtonContent }}&nbsp;
                 <ClientOnly>
@@ -45,7 +50,7 @@
     const emit = defineEmits(['addProduct'])
 
     // Constantes no reactivas.
-    const prevButtonDefaultContent = '<-- Retroceder a "Tomar Foto"' 
+    const prevButtonDefaultContent = 'Retroceder a "Tomar Foto"' 
     const nextButtonDefaultContent = 'Anexar más datos'
     const takePictureDefaultContent = 'Tomar foto de producto'
 
@@ -118,7 +123,7 @@
         if (step.value === 1) {
             isFormValid.value = false
             prevButtonContent.value = prevButtonDefaultContent
-            nextButtonContent.value = 'Vista previa -->'
+            nextButtonContent.value = 'Vista previa'
         }
 
         if (step.value === 2) {
@@ -130,8 +135,8 @@
             }
 
             capitalize(productInfo.name)
-            prevButtonContent.value = '<-- Retroceder a "Formulario Producto"'
-            nextButtonContent.value = 'Añadir producto a tabla -->'
+            prevButtonContent.value = 'Retroceder a "Formulario Producto"'
+            nextButtonContent.value = 'Añadir producto a tabla'
         }
 
         if (step.value === 3) {
@@ -160,24 +165,29 @@
             background-color: #9e7e2d;
             padding: 10px;
             max-width: 320px;
-            margin-bottom: 20px;
         }
         .add-product__box-arrow-buttons {
             border-radius: 25px;
             display: flex;
             flex-direction: row;
             contain: content;
-            height: 40px;
+            min-height: 40px;
+            gap: 5px;
+            margin-top: 20px;
             button {
                 @include config-text-dialog-button(#e0f2ff);
+                padding: 10px;
                 display: flex;
+                flex-basis: 50%;
                 flex-grow: 1;
-                height: 100%;
                 border: none;
                 background-color: steelblue;
                 text-align: center;
                 justify-content: center;
                 align-items: center;
+            }
+            .add-product__box-arrow-buttons--left {
+                background-color: cadetblue;
             }
         }
     }
