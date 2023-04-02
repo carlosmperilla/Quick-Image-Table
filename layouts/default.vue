@@ -1,6 +1,6 @@
 <template>
     <div class="layout-default">
-        <header>
+        <header ref="headerNav">
             <NavMenu />
         </header>
         <slot/>
@@ -9,22 +9,16 @@
                 <font-awesome-icon :icon="['fas', 'hand-point-up']" />
             </ClientOnly>
         </button>
-        <footer class="bottom-element" ref="bottomElement"></footer>
     </div>
 </template>
 
 <script setup>
     const buttonToUpIsVisible = ref(false)
-    const bottomElement = ref(null)
-
-    function hasScrollHeight() {
-        let rootElement = document.documentElement
-        return rootElement.scrollHeight > rootElement.clientHeight
-    }
+    const headerNav = ref(null)
 
     function callbackIntersection(entries, observer) {
         entries.forEach((entry) => {
-            if (entry.isIntersecting && hasScrollHeight()) {
+            if (!entry.isIntersecting) {
                 buttonToUpIsVisible.value = true
                 return null
             }
@@ -41,14 +35,8 @@
     }
 
     onMounted(() => {
-        let rootElement = document.documentElement
         let observer = new IntersectionObserver(callbackIntersection)
-        let resizeObserver = new ResizeObserver(entries => {
-            if (!hasScrollHeight()) buttonToUpIsVisible.value = false
-        })
-        
-        observer.observe(bottomElement.value)
-        resizeObserver.observe(rootElement)
+        observer.observe(headerNav.value)
     })
 </script>
 
