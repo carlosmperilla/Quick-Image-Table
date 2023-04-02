@@ -1,1 +1,25 @@
 @use "navigation";
+@use '@/assets/styles/sass/abstracts/variables';
+
+.button--scroll-to-up {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: none;
+    border-radius: 50%;
+    border: 3px dotted variables.$button-scroll-to-up--color;
+    width: 40px;
+    aspect-ratio: 1/1;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 0.5s ease;
+    .fa-hand-point-up {
+        color: variables.$button-scroll-to-up--color;
+        height: variables.$icon-height;
+    }
+}
+
+.button--scroll-to-up--active {
+    opacity: 1;
+    transform: translateY(0);
+}
