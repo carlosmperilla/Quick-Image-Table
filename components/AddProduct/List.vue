@@ -28,6 +28,7 @@
 <style lang="scss" scoped>
     .add-product__list {
         margin: 20px;
+        overflow-y: scroll;
         strong {
             font-size: 2em;
             background-color: #b8d7d8;
