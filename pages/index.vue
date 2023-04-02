@@ -90,6 +90,7 @@
         box-shadow: inset #365e5f 2px 2px 20px 1px;
         padding: 35px 20px;
         position: relative;
+        overflow: hidden;
         .dialog__close-button {
             height: 20px;
             aspect-ratio: 1/1;
