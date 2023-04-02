@@ -1,4 +1,5 @@
 @use '@/assets/styles/sass/abstracts/mixins';
+@use '@/assets/styles/sass/abstracts/variables';
 
 .page {
     section {
@@ -7,9 +8,9 @@
     .page-limitations {
         @include mixins.default-details;
         details {
-            background-color: #944545;
+            background-color: variables.$details-bg-color--limitations;
             summary {
-                background-color: #6a3131;
+                background-color: variables.$details-color--limitations;
             }
         }
     }

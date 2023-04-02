@@ -4,8 +4,13 @@ $header-bg-color: #0e5161;
 $header-bg-color--active: #0b424f;
 $menu-bg-color: antiquewhite;
 $menu-li-bg-color: #eac786;
+$details-bg-color: #455894;
+$summary-bg-color: #313f6a;
+$details-bg-color--limitations: #944545;
 $h1-color: #2f686b;
 $h2-color: #366580;
+$details-color: #dcf7db;
+$details-color--limitations: #6a3131;
 
 //Text Colors
 $header-color: whitesmoke;
@@ -29,9 +34,5 @@ $h1-font-size: 3em;
 $h2-font-size: 2em;
 $p-font-size: 1.5em;
 $ul-font-size: 1.3em;
-
-
-
-
-
-
+$summary-font-size: 2em;
+$details-content-font-size: 1.5em;
