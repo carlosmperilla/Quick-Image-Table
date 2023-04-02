@@ -4,7 +4,14 @@
             <NavMenu />
         </header>
         <slot/>
-        <button @click="scrollToUp" class="button--scroll-to-up" :class="{'button--scroll-to-up--active': buttonToUpIsVisible}">
+        <button 
+            alt="Botón de 'Subir hacia arriba de la página'"
+            @click="scrollToUp" 
+            class="button--scroll-to-up" 
+            :class="{
+                    'button--scroll-to-up--active': buttonToUpIsVisible
+                    }"
+        >
             <ClientOnly>
                 <font-awesome-icon :icon="['fas', 'hand-point-up']" />
             </ClientOnly>

@@ -1,10 +1,23 @@
 <template>
     <section class="add-product">
-        <button v-text="prevButtonContent" v-if="step > 0" @click="prevStep"></button>
         <AddProductVideoCamera :hasPicture="hasPicture" v-if="isStarted" @get-image-data="(data) => productImageData = data"/>
-        <button v-text="CameraControlButtonContent" @click="photoAction" v-if="step === 0"></button>
-        <section v-if="hasPicture">
-            <button v-text="nextButtonContent" @click="nextStep"></button>
+        <button 
+            @click="photoAction" 
+            v-if="step === 0"
+            class="add-product__button-take-photo"
+        >
+        <ClientOnly>
+            <font-awesome-icon :icon="['fas', takePhotoIcon]" />
+        </ClientOnly>
+         {{ CameraControlButtonContent }}</button>
+        <section v-if="hasPicture" class="add-product__box-arrow-buttons">
+            <button v-text="prevButtonContent" v-if="step > 0" @click="prevStep"></button>
+            <button @click="nextStep">
+                {{ nextButtonContent }}&nbsp;
+                <ClientOnly>
+                    <font-awesome-icon :icon="['fas', 'arrow-right']" />
+                </ClientOnly>
+            </button>
         </section>
         <AddProductForm 
             v-show="step === 1"
@@ -33,7 +46,7 @@
 
     // Constantes no reactivas.
     const prevButtonDefaultContent = '<-- Retroceder a "Tomar Foto"' 
-    const nextButtonDefaultContent = 'Anexar más datos -->'
+    const nextButtonDefaultContent = 'Anexar más datos'
     const takePictureDefaultContent = 'Tomar foto de producto'
 
     const CameraControlButtonContent = ref(takePictureDefaultContent)
@@ -54,6 +67,8 @@
     
     provide('productInfo', productInfo)
     
+    const takePhotoIcon = computed(() => !hasPicture.value ? 'camera' : 'camera-rotate')
+
     // Funciones Generales.
     function capitalize(oldName){
         productInfo.name = oldName.charAt(0).toUpperCase() + oldName.slice(1)
@@ -127,3 +142,43 @@
         }
     })
 </script>
+
+<style lang="scss" scoped>
+
+    @mixin config-text-dialog-button($color) {
+        color: $color;
+        font-weight: bold;
+        font-size: 1.8rem;
+    }
+    .add-product {
+        display: flex;
+        flex-direction: column;
+        .add-product__button-take-photo {
+            @include config-text-dialog-button(antiquewhite);
+            border-radius: 0 0 25px 25px;
+            border: none;
+            background-color: #9e7e2d;
+            padding: 10px;
+            max-width: 320px;
+            margin-bottom: 20px;
+        }
+        .add-product__box-arrow-buttons {
+            border-radius: 25px;
+            display: flex;
+            flex-direction: row;
+            contain: content;
+            height: 40px;
+            button {
+                @include config-text-dialog-button(#e0f2ff);
+                display: flex;
+                flex-grow: 1;
+                height: 100%;
+                border: none;
+                background-color: steelblue;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+</style>

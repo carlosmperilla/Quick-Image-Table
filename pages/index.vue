@@ -12,7 +12,15 @@
         </section>
         <Teleport to="body">
             <dialog ref="dialog">
-                <button @click="closeDialog">Cerrar</button>
+                <button 
+                    alt="Botón de 'Cerrar'"
+                    @click="closeDialog" 
+                    class="dialog__close-button"
+                >
+                    <ClientOnly>
+                        <font-awesome-icon :icon="['fas', 'circle-xmark']" />
+                    </ClientOnly>
+                </button>
                 <AddProduct :products="products" :is-started="isModalOpen" @add-product="addProductAndPersist"/>
             </dialog>
         </Teleport>
@@ -20,15 +28,23 @@
 </template>
 
 <script setup>
-    const dialog = ref(null)
     const isModalOpen = ref(false)
     const products = reactive([])
+    const dialog = ref(null)
+    
+    function fillProducts(){
+        let localProducts = localStorage.getItem('productsQuickImageTable')
+        if (localProducts !== null) {
+            return JSON.parse(localProducts)
+        }
+        return []
+    }
 
     function showDialog(){
         dialog.value.showModal()
         isModalOpen.value = true
     }
-    
+
     function closeDialog(){
         dialog.value.close()
         isModalOpen.value = false
@@ -41,21 +57,9 @@
         }
     }
 
-    function fillProducts(){
-        let localProducts = localStorage.getItem('productsQuickImageTable')
-        if (localProducts !== null) {
-            return JSON.parse(localProducts)
-        }
-        return []
-    }
-
     function reloadProducts() {
         Object.assign(products, fillProducts())
     }
-
-    onMounted(() => {
-        reloadProducts()
-    })
 
     function addProductAndPersist(product){
         products.push(product)
@@ -73,4 +77,31 @@
         products[index][key] = value[key]
         localStorage.setItem('productsQuickImageTable', JSON.stringify(products))
     }
+
+    onMounted(() => {
+        reloadProducts()
+    })
 </script>
+
+<style lang="scss">
+    dialog {
+        border-radius: 25px;
+        border: none;
+        box-shadow: inset #365e5f 2px 2px 20px 1px;
+        padding: 35px 20px;
+        position: relative;
+        .dialog__close-button {
+            height: 20px;
+            aspect-ratio: 1/1;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: darkred;
+            .fa-circle-xmark {
+                height: 100%;
+            }
+        }
+    }
+</style>
