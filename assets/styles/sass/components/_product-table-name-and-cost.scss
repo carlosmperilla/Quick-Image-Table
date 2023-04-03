@@ -1,0 +1,46 @@
+@use '@/assets/styles/sass/abstracts/variables';
+@use '@/assets/styles/sass/abstracts/mixins';
+
+.name-and-cost {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px;
+    header {
+        display: flex;
+        width: fit-content;
+        flex-direction: column;
+        margin: 0 auto;
+        margin-bottom: 7px;
+        h1 {
+            display: flex;
+            width: fit-content;
+            flex-direction: row;
+            margin-bottom: 3px;
+            gap: 7px;
+            background: variables.$h1-color;
+            color: whitesmoke;
+            font-size: 2.5em;
+            padding: 5px;
+            input {
+                border: none;
+                padding: 0;
+                padding-left: 1em;
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: variables.$h1-color;
+            }
+        }
+        .name-subtitle {
+            color: #546d8c;
+            font-size: 1.3em;
+        }
+    }
+    h2 {
+        margin-bottom: 10px;
+        color: variables.$h2-color;
+        font-size: variables.$h2-font-size;
+        .cost-value {
+            color: #6f4230;
+        }
+    }
+}

@@ -2,8 +2,12 @@
     <section class="product-table">
         <div
             v-show="loadingExportFile"
-            class="loading-pdf-bar"
+            class="loading-file-bar"
         ></div>
+        <ProductTableNameAndCost
+            v-model:name-table="nameTable"
+            :total-cost="totalCost"
+        />
         <ProductTableMode
             v-model:current-mode="currentMode"
             :table-modes="tableModes"
@@ -11,10 +15,14 @@
             @pre-removal-products="preRemovalProducts"
             @pre-clean-products="preCleanProducts"
         />
-        <ProductTableNameAndCost
-            v-model:name-table="nameTable"
-            :total-cost="totalCost"
-        />
+        <details v-if="products.length > 0">
+            <summary>Exportar tabla: {{ nameTable }}</summary>
+            <button @click="createPDF">Exportar a PDF</button>
+            <button @click="createZIP">Exportar a ZIP</button>
+        </details>
+        <section id="#principal-action">
+            <button @click="$emit('showDialog')">Ingresar producto</button>
+        </section>
         <ProductTableMainTable 
             ref="mainTable" 
             :table-modes="tableModes"
@@ -24,11 +32,6 @@
             @add-removable-product="(index) => checkedProducts.push(index)"
             @substract-removable-product="(index) => checkedProducts.splice(checkedProducts.indexOf(index), 1)"
         />
-        <details v-if="products.length > 0">
-            <summary>Exportar tabla: {{ nameTable }}</summary>
-            <button @click="createPDF">Exportar a PDF</button>
-            <button @click="createZIP">Exportar a ZIP</button>
-        </details>
     </section>
 </template>
 
@@ -43,7 +46,7 @@
         }
     })
     
-    const emit = defineEmits(['updateProduct', 'reloadProducts', 'removeProducts', 'cleanProducts'])
+    const emit = defineEmits(['updateProduct', 'reloadProducts', 'removeProducts', 'cleanProducts', 'showDialog'])
     
     const defaultNameTable = 'MyQuickTable'
     const tableModes = {
@@ -62,10 +65,9 @@
     
     const mainTable = ref()
 
-    const totalCost = computed(() =>  props.products.reduce(
-        (accumulator, currentValue) => accumulator + currentValue.price*currentValue.quantity,
-        0
-    ))
+    const totalCost = computed(() => props.products.reduce(
+            (accumulator, currentValue) => accumulator + currentValue.price*currentValue.quantity,
+    0))
 
     // Funciones Generales
     function persistName(){
@@ -192,7 +194,7 @@
 <style lang="scss">
     @use '@/assets/styles/sass/abstracts/variables';
 
-    .loading-pdf-bar {
+    .loading-file-bar {
         position: fixed;
         left: 0;
         top: 0;

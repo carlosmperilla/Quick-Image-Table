@@ -6,10 +6,8 @@
             @reload-products="reloadProducts"
             @remove-products="removeProducts"
             @clean-products="clean"
+            @show-dialog="showDialog"
         />
-        <section class="principal-action">
-            <button @click="showDialog">Ingresar producto</button>
-        </section>
         <Teleport to="body">
             <dialog ref="dialog" @click.self="closeDialog">
                 <section class="dialog__inner-box">

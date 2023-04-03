@@ -27,6 +27,15 @@
     font-size: 1.8rem;
 }
 
+@mixin change-mode-color($base-color) {
+    background-color: $base-color;
+    .mode-selection__selection-panel {
+        select {
+            color: $base-color;
+        }
+    }
+}
+
 @mixin default-details {
     details {
         contain: content;

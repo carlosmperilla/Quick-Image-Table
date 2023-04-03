@@ -1,0 +1,47 @@
+@use '@/assets/styles/sass/abstracts/variables';
+@use '@/assets/styles/sass/abstracts/mixins';
+
+.mode-selection {
+    @include mixins.change-mode-color(variables.$default-mode-selection--color);
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    padding: 3px;
+    width: fit-content;
+    font-size: variables.$mode-selection--font-size;
+    font-weight: bold;
+    color: variables.$mode-selection--color;
+    .mode-selection__selection-panel {
+        @include mixins.center-flexbox;
+        gap: 5px;
+        select {
+            background-color: variables.$mode-selection-select--color;
+            font-weight: bold;
+        }
+    }
+    .mode-selection__button-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        margin-top: 7px;
+        .mode-selection__box-buttons--delete,
+        .mode-selection__box-buttons--edit {
+            background-color: variables.$mode-selection-edit-button--bg-color;
+            color: variables.$mode-selection--color;
+            width: 100%;
+            border: none;
+            font-size: variables.$mode-selection-button--font-size;
+            font-weight: bold;
+        }
+        .mode-selection__box-buttons--delete {
+            background-color: variables.$mode-selection-delete-button--bg-color;
+        }
+    }
+}
+.mode-selection--edit {
+    @include mixins.change-mode-color(variables.$edit-mode-selection--color);
+}
+.mode-selection--delete {
+    @include mixins.change-mode-color(variables.$delete-mode-selection--color);
+}
