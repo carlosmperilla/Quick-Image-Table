@@ -44,9 +44,9 @@
 
     const emit = defineEmits(['update:currentMode', 'preRemovalProducts', 'preCleanProducts'])
     
-    const isViewMode = computed(() => currentMode === tableModes.view)
-    const isEditMode = computed(() => currentMode === tableModes.edit)
-    const isDeleteMode = computed(() => currentMode === tableModes.delete)
+    const isViewMode = computed(() => props.currentMode === props.tableModes.view)
+    const isEditMode = computed(() => props.currentMode === props.tableModes.edit)
+    const isDeleteMode = computed(() => props.currentMode === props.tableModes.delete)
 </script>
 
 <style lang="scss" scoped>
