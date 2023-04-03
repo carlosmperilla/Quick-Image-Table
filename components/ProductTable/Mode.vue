@@ -2,8 +2,8 @@
     <section 
         class="mode-selection"
         :class="{
-            'mode-selection--edit': currentMode === tableModes.edit,
-            'mode-selection--delete': currentMode === tableModes.delete,
+            'mode-selection--edit': isEditMode,
+            'mode-selection--delete': isDeleteMode,
         }"
     >
         <section 
@@ -18,10 +18,10 @@
                 <option :value="tableModes.delete">Eliminación</option>
             </select>
         </section>
-        <section class="mode-selection__button-panel" v-show="currentMode !== tableModes.view">
-            <button class="mode-selection__box-buttons--edit" v-if="currentMode === tableModes.edit" @click="$emit('update:currentMode', props.tableModes.view)">Terminar edición</button>
-            <button class="mode-selection__box-buttons--delete" v-if="currentMode === tableModes.delete" @click="$emit('preRemovalProducts')">Eliminar {{ checkedProducts.length }} productos</button>
-            <button class="mode-selection__box-buttons--delete" v-if="currentMode === tableModes.delete" @click="$emit('preCleanProducts')">¡Eliminar Tabla!</button>
+        <section class="mode-selection__button-panel" v-show="!isViewMode">
+            <button class="mode-selection__box-buttons--edit" v-if="isEditMode" @click="$emit('update:currentMode', props.tableModes.view)">Terminar edición</button>
+            <button class="mode-selection__box-buttons--delete" v-if="isDeleteMode" @click="$emit('preRemovalProducts')">Eliminar {{ checkedProducts.length }} productos</button>
+            <button class="mode-selection__box-buttons--delete" v-if="isDeleteMode" @click="$emit('preCleanProducts')">¡Eliminar Tabla!</button>
         </section>
     </section>
 </template>
@@ -40,8 +40,13 @@
             type: Array,
             required: true
         }
-    }) 
+    })
+
     const emit = defineEmits(['update:currentMode', 'preRemovalProducts', 'preCleanProducts'])
+    
+    const isViewMode = computed(() => currentMode === tableModes.view)
+    const isEditMode = computed(() => currentMode === tableModes.edit)
+    const isDeleteMode = computed(() => currentMode === tableModes.delete)
 </script>
 
 <style lang="scss" scoped>
