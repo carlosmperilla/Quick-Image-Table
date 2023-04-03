@@ -65,3 +65,9 @@
         video.value.srcObject.getTracks()[0].stop()
     })    
 </script>
+
+<style lang="scss" scoped>
+    video {
+        display: block;
+    }
+</style>

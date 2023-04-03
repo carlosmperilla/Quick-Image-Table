@@ -162,6 +162,11 @@
     .add-product {
         display: flex;
         flex-direction: column;
+        figure {
+            img {
+                display: block;
+            }
+        }
         .add-product__button-take-photo {
             @include config-text-dialog-button(antiquewhite);
             border-radius: 0 0 25px 25px;
@@ -169,7 +174,6 @@
             background-color: #9e7e2d;
             padding: 10px;
             max-width: 320px;
-            margin-top: -3px;
         }
         .add-product__box-arrow-buttons {
             border-radius: 25px;
