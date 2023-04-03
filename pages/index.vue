@@ -91,6 +91,7 @@
         border: none;
         padding: 0;
         background: none;
+        overflow: hidden;
         .dialog__inner-box {
             border-radius: 25px;
             border: none;
