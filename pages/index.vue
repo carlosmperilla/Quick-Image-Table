@@ -11,17 +11,19 @@
             <button @click="showDialog">Ingresar producto</button>
         </section>
         <Teleport to="body">
-            <dialog ref="dialog">
-                <button 
-                    alt="Botón de 'Cerrar'"
-                    @click="closeDialog" 
-                    class="dialog__close-button"
-                >
-                    <ClientOnly>
-                        <font-awesome-icon :icon="['fas', 'circle-xmark']" />
-                    </ClientOnly>
-                </button>
-                <AddProduct :products="products" :is-started="isModalOpen" @add-product="addProductAndPersist"/>
+            <dialog ref="dialog" @click.self="closeDialog">
+                <section class="dialog__inner-box">
+                    <button 
+                        alt="Botón de 'Cerrar'"
+                        @click="closeDialog" 
+                        class="dialog__close-button"
+                    >
+                        <ClientOnly>
+                            <font-awesome-icon :icon="['fas', 'circle-xmark']" />
+                        </ClientOnly>
+                    </button>
+                    <AddProduct :products="products" :is-started="isModalOpen" @add-product="addProductAndPersist"/>
+                </section>
             </dialog>
         </Teleport>
     </main>
@@ -85,24 +87,34 @@
 
 <style lang="scss">
     dialog {
-        border-radius: 25px;
+        position: inherit;
         border: none;
-        box-shadow: inset #365e5f 2px 2px 10px 1px;
-        padding: 35px 20px;
-        position: relative;
-        overflow: hidden;
-        .dialog__close-button {
-            height: 20px;
-            aspect-ratio: 1/1;
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            background: none;
+        padding: 0;
+        background: none;
+        .dialog__inner-box {
+            border-radius: 25px;
             border: none;
-            color: darkred;
-            .fa-circle-xmark {
-                height: 100%;
+            box-shadow: inset #365e5f 2px 2px 10px 1px;
+            padding: 35px 20px;
+            background-color: whitesmoke;
+            position: relative;
+            overflow: hidden;
+            .dialog__close-button {
+                height: 20px;
+                aspect-ratio: 1/1;
+                position: absolute;
+                top: 10px;
+                right: 20px;
+                background: none;
+                border: none;
+                color: darkred;
+                .fa-circle-xmark {
+                    height: 100%;
+                }
             }
+        }
+        &::backdrop {
+            background: rgba(0, 0, 0, 0.5);
         }
     }
 </style>
