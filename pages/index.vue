@@ -92,7 +92,9 @@
         padding: 0;
         background: none;
         overflow: hidden;
+        border-radius: 25px;
         .dialog__inner-box {
+            max-height: 100%;
             border-radius: 25px;
             border: none;
             box-shadow: inset #365e5f 2px 2px 10px 1px;
