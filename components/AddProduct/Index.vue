@@ -1,7 +1,10 @@
 <template>
     <section class="add-product">
-        <AddProductVideoCamera :hasPicture="hasPicture" v-if="isStarted" @get-image-data="(data) => productImageData = data"/>
-        <button 
+        <figure>
+            <AddProductVideoCamera :hasPicture="hasPicture" v-if="isStarted" @get-image-data="(data) => productImageData = data"/>
+            <img :src="productImageData" width="320" v-show="hasPicture"/>
+        </figure>
+        <button
             @click="photoAction" 
             v-if="step === 0"
             class="add-product__button-take-photo"
@@ -116,6 +119,7 @@
 
 
     watch(step, () => {
+        console.log(step.value)
         if (step.value === 0) {
             nextButtonContent.value = nextButtonDefaultContent
         }
@@ -165,6 +169,7 @@
             background-color: #9e7e2d;
             padding: 10px;
             max-width: 320px;
+            margin-top: -3px;
         }
         .add-product__box-arrow-buttons {
             border-radius: 25px;
