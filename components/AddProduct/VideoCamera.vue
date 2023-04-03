@@ -66,7 +66,7 @@
     })    
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
     video {
         display: block;
     }

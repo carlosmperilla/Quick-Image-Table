@@ -1,0 +1,42 @@
+@use '@/assets/styles/sass/abstracts/variables';
+@use '@/assets/styles/sass/abstracts/mixins';
+
+.add-product__form {
+    @include mixins.center-flexbox;
+    margin-top: 20px;
+    fieldset {
+        display: flex;
+        flex-direction: column;
+        padding: 15px 10px;
+        background-color: variables.$form-fieldset--bg-color;
+        border-radius: 15px;
+        border: none;
+        legend {
+            padding: 5px;
+            background-color: variables.$form-legend--bg-color;
+            color: variables.$form-legend--color;
+            border-radius: 10px;
+            text-align: center;
+            font-size: variables.$form-legend--font-size;
+            font-weight: bold;
+        }
+        label {
+            margin-bottom: 2px;
+            color: variables.$form-label--color;
+            font-size: variables.$form-legend--font-size;
+            font-weight: bold;
+        }
+        input {
+            padding-left: 1em;
+            color: variables.$form-input--color;
+            border-radius: 25px;
+            border: none;
+            &:not(:last-child){
+                margin-bottom: 5px;
+            }
+        }
+        &:focus-within {
+            background-color: variables.$form-fieldset-focus--bg-color;
+        }
+    }
+}

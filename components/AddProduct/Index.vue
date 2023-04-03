@@ -119,7 +119,6 @@
 
 
     watch(step, () => {
-        console.log(step.value)
         if (step.value === 0) {
             nextButtonContent.value = nextButtonDefaultContent
         }
@@ -153,51 +152,5 @@
 </script>
 
 <style lang="scss" scoped>
-
-    @mixin config-text-dialog-button($color) {
-        color: $color;
-        font-weight: bold;
-        font-size: 1.8rem;
-    }
-    .add-product {
-        display: flex;
-        flex-direction: column;
-        figure {
-            img {
-                display: block;
-            }
-        }
-        .add-product__button-take-photo {
-            @include config-text-dialog-button(antiquewhite);
-            border-radius: 0 0 25px 25px;
-            border: none;
-            background-color: #9e7e2d;
-            padding: 10px;
-            max-width: 320px;
-        }
-        .add-product__box-arrow-buttons {
-            border-radius: 25px;
-            display: flex;
-            flex-direction: row;
-            contain: content;
-            min-height: 40px;
-            gap: 5px;
-            margin-top: 20px;
-            button {
-                @include config-text-dialog-button(#e0f2ff);
-                padding: 10px;
-                display: flex;
-                flex-basis: 50%;
-                flex-grow: 1;
-                border: none;
-                background-color: steelblue;
-                text-align: center;
-                justify-content: center;
-                align-items: center;
-            }
-            .add-product__box-arrow-buttons--left {
-                background-color: cadetblue;
-            }
-        }
-    }
+    @use '@/assets/styles/sass/components/add-product';
 </style>

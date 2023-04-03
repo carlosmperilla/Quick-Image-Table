@@ -1,18 +1,20 @@
+@use '@/assets/styles/sass/abstracts/variables';
+
 .page {
     section {
         p {
             a {
-                color: lightseagreen;
+                color: variables.$link--color;
                 &:visited {
-                    color: seagreen;
+                    color: variables.$link-visited--color;
                 }
                 &:active {
-                    color: mediumspringgreen;
+                    color: variables.$link-active--color;
                 }
             }
         }
         .page-email {
-            color: #667918;
+            color: variables.$page-email--color;
             text-align: center;
         }
     }

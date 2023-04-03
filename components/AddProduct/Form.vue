@@ -33,45 +33,5 @@
 </script>
 
 <style lang="scss" scoped>
-    .add-product__form {
-        margin-top: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        fieldset {
-            border-radius: 15px;
-            border: none;
-            background-color: #caa377;
-            display: flex;
-            flex-direction: column;
-            padding: 15px 10px;
-            legend {
-                font-size: 2em;
-                font-weight: bold;
-                text-align: center;
-                background-color: #80742c;
-                color: whitesmoke;
-                border-radius: 10px;
-                padding: 5px;
-            }
-            label {
-                font-size: 1.5em;
-                font-weight: bold;
-                color: white;
-                margin-bottom: 2px;
-            }
-            input {
-                padding-left: 1em;
-                border-radius: 25px;
-                border: none;
-                color: darkslategray;
-                &:not(:last-child){
-                    margin-bottom: 5px;
-                }
-            }
-            &:focus-within {
-            background-color: #a98862;
-            }
-        }
-    }
+    @use '@/assets/styles/sass/components/add-product-form';
 </style>

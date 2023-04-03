@@ -1,0 +1,41 @@
+@use '@/assets/styles/sass/abstracts/variables';
+@use '@/assets/styles/sass/abstracts/mixins';
+
+.add-product {
+    display: flex;
+    flex-direction: column;
+    figure {
+        img {
+            display: block;
+        }
+    }
+    .add-product__button-take-photo {
+        @include mixins.config-text-dialog-button(variables.$button-take-photo--color);
+        max-width: 320px;
+        padding: 10px;
+        background-color: variables.$button-take-photo--bg-color;
+        border-radius: 0 0 25px 25px;
+        border: none;
+    }
+    .add-product__box-arrow-buttons {
+        display: flex;
+        flex-direction: row;
+        min-height: 40px;
+        margin-top: 20px;
+        border-radius: 25px;
+        gap: 5px;
+        contain: content;
+        button {
+            @include mixins.center-flexbox;
+            @include mixins.config-text-dialog-button(variables.$button-arrow--color);
+            flex-basis: 50%;
+            flex-grow: 1;
+            padding: 10px;
+            background-color: variables.$button-arrow--bg-color;
+            border: none;
+        }
+        .add-product__box-arrow-buttons--left {
+            background-color: variables.$button-arrow-left--bg-color;
+        }
+    }
+}

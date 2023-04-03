@@ -1,0 +1,36 @@
+@use '@/assets/styles/sass/abstracts/variables';
+
+dialog {
+    position: inherit;
+    border: none;
+    background: none;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 25px;
+    .dialog__inner-box {
+        max-height: 100%;
+        border-radius: 25px;
+        border: none;
+        box-shadow: variables.$dialog-inner-box--box-shadow;
+        padding: 35px 20px;
+        background-color: variables.$dialog-inner-box--bg-color;
+        position: relative;
+        overflow: hidden;
+        .dialog__close-button {
+            height: 20px;
+            aspect-ratio: 1/1;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: variables.$dialog-close-button--color;
+            .fa-circle-xmark {
+                height: 100%;
+            }
+        }
+    }
+    &::backdrop {
+        background: variables.$dialog-backdrop--bg-color;
+    }
+}

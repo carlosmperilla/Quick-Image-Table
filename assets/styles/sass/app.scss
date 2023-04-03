@@ -5,7 +5,8 @@
 @use "core";
 
 // Components
-@use "components";
+// para mantener la independencia entre componentes.
+// @use "components";
 
 // Layout
 @use "layout";

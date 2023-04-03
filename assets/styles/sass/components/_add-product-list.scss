@@ -1,0 +1,29 @@
+@use '@/assets/styles/sass/abstracts/variables';
+
+.add-product__list {
+    margin: 20px;
+    max-height: 150px;
+    overflow-y: auto;
+    label {
+        font-size: variables.$list-label--font-size;
+        font-weight: bold;
+        background-color: variables.$list-label--bg-color;
+        padding: 0 5px;
+        border-radius: 5px;
+        display: inline-block;
+        margin-bottom: 5px;
+        color: variables.$list-label--color;
+    }
+    ul {
+        font-size: variables.$list-ul--font-size;
+        margin-bottom: 10px;
+        li {
+            overflow-wrap: break-word;
+            margin-left: 5em;
+            color: variables.$list-inner-li--color;
+        }
+    }
+    li {
+        list-style: none;
+    }
+}
