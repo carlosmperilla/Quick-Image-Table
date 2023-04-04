@@ -127,7 +127,9 @@
     }
 
     function createPDF(){
+        let prevTableCard = tableCard.value // Preservamos el estado de visualización de la tabla.
         currentMode.value = tableModes.view // Forzamos el modo: vista.
+        tableCard.value = false // Forzamos a tabla clasica ó principal.
 
         // Cuando se actualice el DOM clonamos y exportamos el PDF
         nextTick(async () => {
@@ -151,6 +153,7 @@
             // https://sidebase.io/nuxt-pdf/getting-started/quick-start
             await exportToPDF(fileName, container, documentOptions, options)
             loadingExportFile.value = false
+            tableCard.value = prevTableCard // Retomamos el estado de visualización previo (ya sea card o principal)
         })
     }
 
