@@ -131,6 +131,7 @@
             gap: 25px;
             align-items: center;
             padding: 30px;
+            padding-top: 0;
             tr {
                 display: flex;
                 flex-direction: column;
