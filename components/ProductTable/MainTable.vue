@@ -141,6 +141,7 @@
                 display: flex;
                 flex-direction: column;
                 width: 95%;
+                max-width: 320px;
                 border: none;
                 border-radius: 25px;
                 contain: content;
