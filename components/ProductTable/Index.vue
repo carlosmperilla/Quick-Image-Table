@@ -27,15 +27,17 @@
             text="Ingresar producto"
             @show-dialog="$emit('showDialog')"
         />
-        <ProductTableMainTable 
-            ref="mainTable" 
-            :table-modes="tableModes"
-            :mode="currentMode" 
-            :products="products" 
-            @update-product="(index, value) => emit('updateProduct', index, value) "
-            @add-removable-product="(index) => checkedProducts.push(index)"
-            @substract-removable-product="(index) => checkedProducts.splice(checkedProducts.indexOf(index), 1)"
-        />
+        <section class="product-table__table-container">
+            <ProductTableMainTable 
+                ref="mainTable" 
+                :table-modes="tableModes"
+                :mode="currentMode" 
+                :products="products" 
+                @update-product="(index, value) => emit('updateProduct', index, value) "
+                @add-removable-product="(index) => checkedProducts.push(index)"
+                @substract-removable-product="(index) => checkedProducts.splice(checkedProducts.indexOf(index), 1)"
+            />
+        </section>
     </section>
 </template>
 
@@ -212,6 +214,10 @@
         .secondary-actions {
             display: flex;
             padding-right: variables.$thumb-space;
+        }
+        .product-table__table-container {
+            width: 100%;
+            overflow: auto;
         }
     }
 </style>
