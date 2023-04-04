@@ -8,21 +8,25 @@
             v-model:name-table="nameTable"
             :total-cost="totalCost"
         />
-        <ProductTableMode
-            v-model:current-mode="currentMode"
-            :table-modes="tableModes"
-            :checked-products="checkedProducts"
-            @pre-removal-products="preRemovalProducts"
-            @pre-clean-products="preCleanProducts"
-        />
-        <details v-if="products.length > 0">
-            <summary>Exportar tabla: {{ nameTable }}</summary>
-            <button @click="createPDF">Exportar a PDF</button>
-            <button @click="createZIP">Exportar a ZIP</button>
-        </details>
-        <section id="#principal-action">
-            <button @click="$emit('showDialog')">Ingresar producto</button>
+        <section class="secondary-actions">
+            <ProductTableMode
+                v-model:current-mode="currentMode"
+                :table-modes="tableModes"
+                :checked-products="checkedProducts"
+                @pre-removal-products="preRemovalProducts"
+                @pre-clean-products="preCleanProducts"
+            />
+            <ProductTableExportPanel
+                :has-products="products.length > 0"
+                :name-table="nameTable"
+                @create-pdf="createPDF"
+                @create-zip="createZIP"
+            />
         </section>
+        <ProductTablePrincipalAction
+            text="Ingresar producto"
+            @show-dialog="$emit('showDialog')"
+        />
         <ProductTableMainTable 
             ref="mainTable" 
             :table-modes="tableModes"
@@ -193,7 +197,7 @@
 
 <style lang="scss">
     @use '@/assets/styles/sass/abstracts/variables';
-
+    
     .loading-file-bar {
         position: fixed;
         left: 0;
@@ -205,8 +209,9 @@
     }
 
     .product-table {
-        // background-color: var(--data-color-primary);
-        // color: variables.$secondary;
-        color: initial;
+        .secondary-actions {
+            display: flex;
+            padding-right: variables.$thumb-space;
+        }
     }
 </style>

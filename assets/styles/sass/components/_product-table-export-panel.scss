@@ -1,0 +1,34 @@
+@use '@/assets/styles/sass/abstracts/variables';
+
+.product-table__export-panel {
+    display: inline-flex;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: fit-content;
+    height: fit-content;
+    background-color: variables.$export-panel--bg-color;
+    padding: 3px 5px;
+    font-size: variables.$export-panel--font-size;
+    font-weight: bold;
+    summary {
+        color: variables.$export-panel-summary--color;
+        line-height: variables.$export-panel-summary--line-height;
+        .product-table__export-panel__name-table {
+            color: variables.$export-panel-summary-name--color;
+            font-style: oblique;
+        }
+    }
+    button {
+        margin-top: 3px;
+        min-width: 100%;
+        background-color: variables.$export-panel-button--bg-color;
+        border: none;
+        color: variables.$export-panel-button--color;
+        font-size: variables.$export-panel-button--font-size;
+        font-weight: bold;
+        &:not(:last-child) {
+            margin-top: 7px;
+            margin-right: 0px;
+        }
+    }
+}

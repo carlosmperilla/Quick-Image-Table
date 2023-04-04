@@ -19,9 +19,33 @@
             </select>
         </section>
         <section class="mode-selection__button-panel" v-show="!isViewMode">
-            <button class="mode-selection__box-buttons--edit" v-if="isEditMode" @click="$emit('update:currentMode', props.tableModes.view)">Terminar edición</button>
-            <button class="mode-selection__box-buttons--delete" v-if="isDeleteMode" @click="$emit('preRemovalProducts')">Eliminar {{ checkedProducts.length }} productos</button>
-            <button class="mode-selection__box-buttons--delete" v-if="isDeleteMode" @click="$emit('preCleanProducts')">¡Eliminar Tabla!</button>
+            <button 
+                class="mode-selection__box-buttons--edit" 
+                v-if="isEditMode" 
+                @click="$emit('update:currentMode', props.tableModes.view)"
+            >
+                <ClientOnly>
+                    <font-awesome-icon :icon="['fas', 'circle-check']" />
+                </ClientOnly>
+                 Terminar edición
+            </button>
+            <button 
+                class="mode-selection__box-buttons--delete" 
+                v-if="isDeleteMode" 
+                @click="$emit('preRemovalProducts')"
+            >
+                Eliminar {{ checkedProducts.length }} productos
+            </button>
+            <button 
+                class="mode-selection__box-buttons--delete" 
+                v-if="isDeleteMode" 
+                @click="$emit('preCleanProducts')"
+            >
+                <ClientOnly>
+                    <font-awesome-icon :icon="['fas', 'dumpster-fire']" />
+                </ClientOnly>
+                 ¡Eliminar Tabla!
+            </button>
         </section>
     </section>
 </template>

@@ -24,6 +24,8 @@ $button-arrow--bg-color: steelblue;
 $button-arrow-left--bg-color: cadetblue;
 $mode-selection-edit-button--bg-color: #23854c;
 $mode-selection-delete-button--bg-color: #853723;
+$export-panel--bg-color: #a07a19;
+$export-panel-button--bg-color: #825f04;
 $h1-color: #2f686b;
 $h2-color: #366580;
 $details-color: #dcf7db;
@@ -49,6 +51,9 @@ $mode-selection-select--color: white;
 $header-color: whitesmoke;
 $header-color--active: white;
 $menu-li-color: #30434f;
+$export-panel-summary--color: white;
+$export-panel-summary-name--color: #5a3020;
+$export-panel-button--color: white;
 
 // Objetive size
 $thumb-space: 35px;
@@ -62,6 +67,7 @@ $p-margin-bottom: 7px;
 $ul-margin-bottom: 5px;
 
 // Relative size
+$export-panel--font-size: 1.5rem;
 $icon-height: 60%;
 $h1-font-size: 3em;
 $h2-font-size: 2em;
@@ -75,3 +81,6 @@ $form-label--font-size: 1.5em;
 $form-legend--font-size: 2em;
 $mode-selection--font-size: 1.5em;
 $mode-selection-button--font-size: 1em;
+$export-panel-button--font-size: 1em;
+$export-panel-summary--line-height: 1.8rem;
+

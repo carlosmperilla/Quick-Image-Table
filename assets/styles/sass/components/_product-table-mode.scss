@@ -3,12 +3,13 @@
 
 .mode-selection {
     @include mixins.change-mode-color(variables.$default-mode-selection--color);
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     margin: 0 auto;
     margin-bottom: 15px;
     padding: 3px;
     width: fit-content;
+    height: fit-content;
     font-size: variables.$mode-selection--font-size;
     font-weight: bold;
     color: variables.$mode-selection--color;
@@ -33,6 +34,10 @@
             border: none;
             font-size: variables.$mode-selection-button--font-size;
             font-weight: bold;
+            .fa-dumpster-fire,
+            .fa-circle-check {
+                height: .8em;
+            }
         }
         .mode-selection__box-buttons--delete {
             background-color: variables.$mode-selection-delete-button--bg-color;

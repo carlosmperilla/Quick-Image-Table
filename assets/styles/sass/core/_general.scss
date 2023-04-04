@@ -1,7 +1,11 @@
 * {
     section {
         button:active {
-            filter: brightness(.9)
+            filter: brightness(.9);
+            transform: scale(.9);
+            transition: all 300ms;
+            user-select: none;
+            cursor: pointer;
         }
     }
 }

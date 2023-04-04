@@ -1,0 +1,29 @@
+@use '@/assets/styles/sass/abstracts/variables';
+@use '@/assets/styles/sass/abstracts/mixins';
+
+#principal-action {
+    @include mixins.center-flexbox;
+    margin-top: 15px;
+    .principal-action--fallback,
+    button {
+        padding: 2px;
+        border: none;
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        background-color: variables.$button-arrow--bg-color;
+        box-shadow: 5px 6px 16px -1px variables.$button-arrow--bg-color;
+        color: variables.$button-arrow--color;
+        font-size: 3.5rem;
+        font-weight: bold;
+    }
+    .principal-action--fallback {
+        border-radius: 15px;
+        padding: 5px 12px;
+        font-size: 2.5rem;
+        aspect-ratio: initial;
+        &:active {
+            transform: none;
+            filter: none;
+        }
+    }
+}
