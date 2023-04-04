@@ -111,6 +111,7 @@
 </script>
 
 <style lang="scss">
+    @use '@/assets/styles/sass/components/mainTable/principal';
     @use '@/assets/styles/sass/components/mainTable/card';
 
     table {
@@ -125,5 +126,4 @@
         text-align: center;
         transition: all 500ms ease-in-out;
     }
-
 </style>

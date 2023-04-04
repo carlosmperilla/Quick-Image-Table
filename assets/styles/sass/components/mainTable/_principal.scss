@@ -1,0 +1,20 @@
+@use '@/assets/styles/sass/abstracts/variables';
+
+table {
+    thead {
+        background-color: variables.$toggle-button--bg-color;
+        color: variables.$toggle-button--color;
+    }
+    tbody {
+        tr {
+            &:nth-child(odd) {
+                background-color: variables.$table-odd-row--bg-color;
+            }
+        }
+        td {
+            &.table--card__name {
+                word-break: break-word;
+            }
+        }
+    }
+}
