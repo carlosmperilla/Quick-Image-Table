@@ -221,6 +221,7 @@
         }
         .product-table__table-container {
             margin-top: 20px;
+            margin-bottom: 50px;
             width: 100%;
             overflow: auto;
         }

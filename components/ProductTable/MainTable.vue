@@ -121,7 +121,7 @@
         border-collapse: collapse;
         padding: 2px 3px;
         text-align: center;
-        transition: all 300ms ease-in-out;
+        transition: all 500ms ease-in-out;
     }
 
     .table--card {
