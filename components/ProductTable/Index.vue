@@ -27,26 +27,19 @@
             text="Ingresar producto"
             @show-dialog="$emit('showDialog')"
         />
+        <button @click="() => tableCard = !tableCard">Cambiar</button>
         <section class="product-table__table-container">
             <ProductTableMainTable 
                 ref="mainTable" 
                 :table-modes="tableModes"
                 :mode="currentMode" 
                 :products="products" 
+                :table-card="tableCard"
                 @update-product="(index, value) => emit('updateProduct', index, value) "
                 @add-removable-product="(index) => checkedProducts.push(index)"
                 @substract-removable-product="(index) => checkedProducts.splice(checkedProducts.indexOf(index), 1)"
             />
         </section>
-        <!-- <ProductTableMainTable 
-                ref="mainTable" 
-                :table-modes="tableModes"
-                :mode="currentMode" 
-                :products="products" 
-                @update-product="(index, value) => emit('updateProduct', index, value) "
-                @add-removable-product="(index) => checkedProducts.push(index)"
-                @substract-removable-product="(index) => checkedProducts.splice(checkedProducts.indexOf(index), 1)"
-            /> -->
     </section>
 </template>
 
@@ -75,6 +68,7 @@
     const currentMode = useState(() => tableModes.view)
     const nameTable = ref('')
     const loadingExportFile = ref(false)
+    const tableCard = ref(false)
     
     const checkedProducts = reactive([])
     
@@ -101,12 +95,8 @@
 
         totalCostContainer.innerText = 'Costo total: $ ' + totalCost.value.toString()
         totalCostContainer.style.textAlign = "left"
-        // aditional
         totalCostContainer.style.marginBottom = "10pt"
         
-        // table.style.marginTop = "10pt"
-        // table.style.borderCollapse = "collapse"
-        // aditional
         container.style.width = "595.28pt"  // Para que ocupe todo el ancho.
         container.append(tableNameContainer, totalCostContainer, table)
 

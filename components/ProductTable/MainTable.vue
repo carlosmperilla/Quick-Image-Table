@@ -1,5 +1,5 @@
 <template>
-    <table ref="table" :class="{'table--card': condi}">
+    <table ref="table" :class="{'table--card': tableCard}">
         <thead>
             <tr>
                 <th v-if="isRemovable">¿Eliminar?</th>
@@ -48,10 +48,13 @@
             type: Object,
             required: true
         },
+        tableCard: {
+            type: Boolean,
+            required: true
+        }
     })
     const emit = defineEmits(['updateProduct', 'addRemovableProduct', 'substractRemovableProduct'])
-    
-    const condi = ref(true)
+
     const table = ref(null)
 
     const isEditable = computed(() => props.mode === props.tableModes.edit)
@@ -118,6 +121,7 @@
         border-collapse: collapse;
         padding: 2px 3px;
         text-align: center;
+        transition: all 300ms ease-in-out;
     }
 
     .table--card {
@@ -132,6 +136,7 @@
             align-items: center;
             padding: 30px;
             padding-top: 0;
+            transition: all 300ms ease-in-out;
             tr {
                 display: flex;
                 flex-direction: column;
