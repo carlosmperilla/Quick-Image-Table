@@ -6,12 +6,13 @@
     margin-top: 15px;
     .principal-action--fallback,
     button {
+        display: flex;
         padding: 2px;
         border: none;
         border-radius: 50%;
         aspect-ratio: 1/1;
         background-color: variables.$button-arrow--bg-color;
-        box-shadow: 5px 6px 16px -1px variables.$button-arrow--bg-color;
+        box-shadow: 5px 6px 7px -4px variables.$button-arrow--bg-color;
         color: variables.$button-arrow--color;
         font-size: 4.5rem;
         font-weight: bold;
