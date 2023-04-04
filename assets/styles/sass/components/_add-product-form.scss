@@ -3,11 +3,12 @@
 
 .add-product__form {
     @include mixins.center-flexbox;
-    margin-top: 20px;
+    margin-top: 10px;
     fieldset {
         display: flex;
         flex-direction: column;
-        padding: 15px 10px;
+        padding: 8px 10px;
+        padding-bottom: 10px;
         background-color: variables.$form-fieldset--bg-color;
         border-radius: 15px;
         border: none;
