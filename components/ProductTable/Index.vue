@@ -38,6 +38,15 @@
                 @substract-removable-product="(index) => checkedProducts.splice(checkedProducts.indexOf(index), 1)"
             />
         </section>
+        <!-- <ProductTableMainTable 
+                ref="mainTable" 
+                :table-modes="tableModes"
+                :mode="currentMode" 
+                :products="products" 
+                @update-product="(index, value) => emit('updateProduct', index, value) "
+                @add-removable-product="(index) => checkedProducts.push(index)"
+                @substract-removable-product="(index) => checkedProducts.splice(checkedProducts.indexOf(index), 1)"
+            /> -->
     </section>
 </template>
 
@@ -92,7 +101,12 @@
 
         totalCostContainer.innerText = 'Costo total: $ ' + totalCost.value.toString()
         totalCostContainer.style.textAlign = "left"
+        // aditional
+        totalCostContainer.style.marginBottom = "10pt"
         
+        // table.style.marginTop = "10pt"
+        // table.style.borderCollapse = "collapse"
+        // aditional
         container.style.width = "595.28pt"  // Para que ocupe todo el ancho.
         container.append(tableNameContainer, totalCostContainer, table)
 
@@ -216,6 +230,7 @@
             padding-right: variables.$thumb-space;
         }
         .product-table__table-container {
+            margin-top: 20px;
             width: 100%;
             overflow: auto;
         }

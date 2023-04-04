@@ -1,5 +1,5 @@
 <template>
-    <table ref="table">
+    <table ref="table" :class="{'table--card': condi}">
         <thead>
             <tr>
                 <th v-if="isRemovable">¿Eliminar?</th>
@@ -51,6 +51,7 @@
     })
     const emit = defineEmits(['updateProduct', 'addRemovableProduct', 'substractRemovableProduct'])
     
+    const condi = ref(true)
     const table = ref(null)
 
     const isEditable = computed(() => props.mode === props.tableModes.edit)
@@ -106,16 +107,66 @@
     })
 </script>
 
-<style scoped>
+<style lang="scss">
     table {
         width: 100%;
-        font: 17px Calibri;
+        font: 20px Calibri;
     }
 
     table, th, td {
-        border: solid 1px #DDD;
+        border: solid 1px darkslategrey;
         border-collapse: collapse;
         padding: 2px 3px;
         text-align: center;
+    }
+
+    .table--card {
+        border: none;
+        thead {
+            display: none;
+        }
+        tbody {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            align-items: center;
+            padding: 30px;
+            tr {
+                display: flex;
+                flex-direction: column;
+                width: 95%;
+                border: none;
+                border-radius: 25px;
+                contain: content;
+                box-shadow: 5px 7px 8px -4px darkgoldenrod;
+                td {
+                    padding: 0;
+                    border: none;
+                    background-color: #f8db9f;
+                    color: darkslategrey;
+                    font-size: 2em;
+                    font-weight: bold;
+                    img {
+                        width: 100%;
+                    }   
+                    &:nth-child(n+2) {
+                        word-break: break-all;
+                        font-weight: normal;
+                        padding: 3px 20px;
+                    }
+                    &:nth-child(n+3) {
+                        font-size: 1.5em;
+                    }
+                    &:nth-child(3) {
+                        background-color: #3196bd;
+                        color: #00139c;
+                    }
+                    &:nth-child(4) {
+                        background-color: seagreen;
+                        color: #ffe1c7;
+                    }
+                }
+            }
+        }
     }
 </style>
