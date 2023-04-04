@@ -43,7 +43,7 @@
 
 <script setup>
     import JSZip from 'jszip' // Para generar el zip de imagenes.
-    import { saveAs } from 'file-saver' // Para guardar el zip de imagenes.
+    import saveAs from 'file-saver' // Para guardar el zip de imagenes.
 
     const props = defineProps({
         products: {
