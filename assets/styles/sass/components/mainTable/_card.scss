@@ -1,0 +1,75 @@
+@use '@/assets/styles/sass/abstracts/variables';
+@use '@/assets/styles/sass/abstracts/mixins';
+
+.table--card {
+    border: none;
+    thead {
+        display: none;
+    }
+    tbody {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        padding: 30px;
+        padding-top: 0;
+        transition: all 300ms ease-in-out;
+        tr {
+            display: flex;
+            flex-direction: column;
+            width: 95%;
+            max-width: variables.$table-card--max-width;
+            border: none;
+            border-radius: 25px;
+            contain: content;
+            box-shadow: variables.$table-card--box-shadow;
+            position: relative;
+            td {
+                padding: 0;
+                border: none;
+                background-color: #f8db9f;
+                color: darkslategrey;
+                font-size: 2em;
+                font-weight: bold;
+                @include mixins.center-flexbox;
+                img {
+                    width: 100%;
+                }
+                input {
+                    border: none;
+                    padding-left: .5em;
+                    font-size: .8em;
+                    width: 100%;
+                }
+                &.table--card__name,
+                &.table--card__price,
+                &.table--card__quantity {
+                    word-break: break-all;
+                    font-weight: normal;
+                    padding: 3px 20px;
+                }
+                &.table--card__price,
+                &.table--card__quantity {
+                    font-size: 1.5em;
+                }
+                &.table--card__price {
+                    background-color: variables.$table-card-price-bg-color;
+                    color: variables.$table-card-price--color;
+                }
+                &.table--card__quantity {
+                    background-color: variables.$table-card-quantity-bg-color;
+                    color: variables.$table-card-quantity--color;
+                }
+                &.table--card__checkbox-delete {
+                    position: absolute;
+                    top: 20px;
+                    left: 20px;
+                    width: 22px;
+                    aspect-ratio: 1/1;
+                    border-radius: 5px;
+                    background-color: variables.$table-card-check-delete--bg-color;
+                }
+            }
+        }
+    }
+}

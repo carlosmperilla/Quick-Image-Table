@@ -1,0 +1,28 @@
+@use '@/assets/styles/sass/abstracts/variables';
+
+.product-table__toggle-table-style {
+    display: flex;
+    gap: 3px;
+    margin-left: 17px;
+    border: none;
+    border: 3px solid variables.$toggle-button--bg-color;
+    border-radius: 17px;
+    background: variables.$toggle-button--bg-color;
+    font-size: 2rem;
+    div {               
+        display: flex;
+        padding: 5px 8px;
+        background-color: variables.$toggle-button--bg-color;
+        color: variables.$toggle-button--color;
+        &:first-child {
+            border-radius: 15px 0 0 15px;
+        }
+        &:last-child {
+            border-radius: 0 15px 15px 0;
+        }
+        &.product-table__toggle-table-style--selected {
+            background-color: variables.$toggle-button--color;
+            color: variables.$toggle-button--bg-color;
+        }
+    }
+}

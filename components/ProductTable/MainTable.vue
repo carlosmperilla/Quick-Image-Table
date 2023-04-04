@@ -111,6 +111,8 @@
 </script>
 
 <style lang="scss">
+    @use '@/assets/styles/sass/components/mainTable/card';
+
     table {
         width: 100%;
         font: 20px Calibri;
@@ -124,78 +126,4 @@
         transition: all 500ms ease-in-out;
     }
 
-    .table--card {
-        border: none;
-        thead {
-            display: none;
-        }
-        tbody {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            align-items: center;
-            padding: 30px;
-            padding-top: 0;
-            transition: all 300ms ease-in-out;
-            tr {
-                display: flex;
-                flex-direction: column;
-                width: 95%;
-                max-width: 320px;
-                border: none;
-                border-radius: 25px;
-                contain: content;
-                box-shadow: 5px 7px 8px -4px darkgoldenrod;
-                position: relative;
-                td {
-                    padding: 0;
-                    border: none;
-                    background-color: #f8db9f;
-                    color: darkslategrey;
-                    font-size: 2em;
-                    font-weight: bold;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    img {
-                        width: 100%;
-                    }
-                    input {
-                        border: none;
-                        padding-left: .5em;
-                        font-size: .8em;
-                        width: 100%;
-                    }
-                    &.table--card__name,
-                    &.table--card__price,
-                    &.table--card__quantity {
-                        word-break: break-all;
-                        font-weight: normal;
-                        padding: 3px 20px;
-                    }
-                    &.table--card__price,
-                    &.table--card__quantity {
-                        font-size: 1.5em;
-                    }
-                    &.table--card__price {
-                        background-color: #3196bd;
-                        color: #00139c;
-                    }
-                    &.table--card__quantity {
-                        background-color: seagreen;
-                        color: #ffe1c7;
-                    }
-                    &.table--card__checkbox-delete {
-                        position: absolute;
-                        top: 20px;
-                        left: 20px;
-                        width: 22px;
-                        aspect-ratio: 1/1;
-                        border-radius: 5px;
-                        background-color: mediumvioletred;
-                    }
-                }
-            }
-        }
-    }
 </style>

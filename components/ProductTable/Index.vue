@@ -27,16 +27,10 @@
             text="Ingresar producto"
             @show-dialog="$emit('showDialog')"
         />
-        <ClientOnly>
-            <button class="product-table__toggle-table-style" @click="() => tableCard = !tableCard">
-                <div :class="{'product-table__toggle-table-style--selected': !tableCard}">
-                    <font-awesome-icon :icon="['fas', 'table-cells']" />
-                </div>
-                <div :class="{'product-table__toggle-table-style--selected': tableCard}">
-                    <font-awesome-icon :icon="['fas', 'panorama']" />
-                </div>
-            </button>
-        </ClientOnly>
+        <ProductTableToggleTableStyle 
+            :table-card="tableCard"
+            @toggle-table-card="() => tableCard = !tableCard"
+        />
         <section class="product-table__table-container">
             <ProductTableMainTable 
                 ref="mainTable" 
@@ -229,32 +223,6 @@
             padding-right: variables.$thumb-space;
         }
 
-        .product-table__toggle-table-style {
-            display: flex;
-            gap: 3px;
-            margin-left: 17px;
-            border: none;
-            border: 3px solid steelblue;
-            border-radius: 17px;
-            background: steelblue;
-            font-size: 2rem;
-            div {               
-                display: flex;
-                padding: 5px 8px;
-                background-color: steelblue;
-                color: whitesmoke;
-                &:first-child {
-                    border-radius: 15px 0 0 15px;
-                }
-                &:last-child {
-                    border-radius: 0 15px 15px 0;
-                }
-                &.product-table__toggle-table-style--selected {
-                    background-color: whitesmoke;
-                    color: steelblue;
-                }
-            }
-        }
         .product-table__table-container {
             margin-top: 20px;
             margin-bottom: 50px;
