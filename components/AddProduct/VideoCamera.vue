@@ -1,5 +1,9 @@
 <template>
-    <div class="decoration" v-show="loadingVideo" :style="{'background-color': 'grey', width: width + 'px', height: width+'px' }"></div>
+    <ClientOnly>
+        <div class="decoration" v-show="loadingVideo" :style="{ width: width + 'px', height: width+'px' }">
+            <font-awesome-icon :icon="['fas', 'spinner']" spin-pulse />
+        </div>
+    </ClientOnly>
     <video id="video" ref="video" @canplay="resizingDefaultVideo" :width="width" :height="height" v-show="!hasPicture"></video>
 </template>
 
@@ -44,7 +48,6 @@
                                navigator.webkitGetUserMedia ||
                                navigator.mozGetUserMedia )
 
-        loadingVideo.value = true
         // Open and record video
         navigator.getMedia(
             {
@@ -54,16 +57,15 @@
               audio: false
             },
             (stream) => {
+              loadingVideo.value = false
               video.value.srcObject=stream;
               video.value.play();
-              console.log('hola')
-              loadingVideo.value = false
             },
             (err) => {
               console.log("An error occured! " + err);
             }
           )
-          console.log('chao')
+          loadingVideo.value = true
     })
     
     onBeforeUnmount(() => {
@@ -75,5 +77,14 @@
 <style scoped>
     video {
         display: block;
+    }
+
+    .decoration {
+        background-color: lightgrey;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 6rem;
     }
 </style>
