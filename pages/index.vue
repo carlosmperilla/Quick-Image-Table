@@ -35,6 +35,9 @@
 </template>
 
 <script setup>
+    import { useNotification } from "@kyvg/vue3-notification";
+    const { notify}  = useNotification()
+
     const isModalOpen = ref(false)
     const products = reactive([])
     const dialog = ref(null)
@@ -72,6 +75,12 @@
         products.push(product)
         localStorage.setItem('productsQuickImageTable', JSON.stringify(products))
         closeDialog()
+        notify({
+            title: "Producto añadido correctamente",
+            text: `${product.name} - ${product.price} - ${product.quantity}`,
+            type: "warn",
+            duration: 1000
+        })
     }
 
     function clean(){

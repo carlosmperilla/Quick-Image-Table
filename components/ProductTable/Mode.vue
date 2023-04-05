@@ -22,7 +22,7 @@
             <button 
                 class="mode-selection__box-buttons--edit" 
                 v-if="isEditMode" 
-                @click="$emit('update:currentMode', props.tableModes.view)"
+                @click="finishEditMode"
             >
                 <ClientOnly>
                     <font-awesome-icon :icon="['fas', 'circle-check']" />
@@ -32,14 +32,14 @@
             <button 
                 class="mode-selection__box-buttons--delete" 
                 v-if="isDeleteMode" 
-                @click="$emit('preRemovalProducts')"
+                @click="removeSomeProducts"
             >
                 Eliminar {{ checkedProducts.length }} productos
             </button>
             <button 
                 class="mode-selection__box-buttons--delete" 
                 v-if="isDeleteMode" 
-                @click="$emit('preCleanProducts')"
+                @click="removeAllProducts"
             >
                 <ClientOnly>
                     <font-awesome-icon :icon="['fas', 'dumpster-fire']" />
@@ -51,6 +51,9 @@
 </template>
 
 <script setup>
+    import { useNotification } from "@kyvg/vue3-notification";
+    const { notify}  = useNotification()
+
     const props = defineProps({
         currentMode: {
             type: String,
@@ -71,6 +74,45 @@
     const isViewMode = computed(() => props.currentMode === props.tableModes.view)
     const isEditMode = computed(() => props.currentMode === props.tableModes.edit)
     const isDeleteMode = computed(() => props.currentMode === props.tableModes.delete)
+
+    function finishEditMode(){
+        try {
+            emit('update:currentMode', props.tableModes.view)
+            notify({
+                type: "success",
+                text: "¡Edición realizada correctamente!",
+                duration: 500,
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    function removeSomeProducts() {
+        try {
+            emit('preRemovalProducts')
+            notify({
+                type: "error",
+                text: "¡Productos eliminados correctamente!",
+                duration: 500,
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    function removeAllProducts() {
+        try {
+            emit('preCleanProducts')
+            notify({
+                type: "error",
+                text: "¡Tabla eliminada correctamente!",
+                duration: 500,
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
 </script>
 
 <style lang="scss" scoped>

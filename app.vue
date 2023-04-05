@@ -1,9 +1,18 @@
 <template>
-    <NuxtLayout>
-        <NuxtLoadingIndicator :throttle="0"/>
-        <NuxtPage />
-    </NuxtLayout>
+  <div>
+      <ClientOnly>
+        <notifications position="top middle"/>
+      </ClientOnly>
+      <NuxtLayout>
+          <NuxtLoadingIndicator :throttle="0"/>
+          <NuxtPage />
+      </NuxtLayout>
+    </div>
 </template>
+
+<script setup>
+
+</script>
 
 <style>
   .page-enter-active,

@@ -1,10 +1,12 @@
 <template>
-    <ClientOnly>
-        <div class="video--fallback" v-show="loadingVideo" :style="{ width: width + 'px' }">
-            <font-awesome-icon :icon="['fas', 'spinner']" spin-pulse />
-        </div>
-    </ClientOnly>
-    <video id="video" ref="video" @canplay="resizingDefaultVideo" :width="width" :height="height" v-show="!hasPicture"></video>
+    <div>
+        <ClientOnly>
+            <div class="video--fallback" v-show="loadingVideo" :style="{ width: width + 'px' }">
+                <font-awesome-icon :icon="['fas', 'spinner']" spin-pulse />
+            </div>
+        </ClientOnly>
+        <video id="video" ref="video" @canplay="resizingDefaultVideo" :width="width" :height="height" v-show="!hasPicture"></video>
+    </div>
 </template>
 
 <script setup>
@@ -57,7 +59,7 @@
               audio: false
             },
             (stream) => {
-              loadingVideo.value = false
+              loadingVideo.value = false // En la capa de software.
               video.value.srcObject=stream;
               video.value.play();
             },
@@ -65,7 +67,7 @@
               console.log("An error occured! " + err);
             }
           )
-          loadingVideo.value = true
+          loadingVideo.value = true // Recordar que la petición se realiza y tarda un tiempo en llegar a la capa de software.
     })
     
     onBeforeUnmount(() => {
