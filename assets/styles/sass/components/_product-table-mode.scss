@@ -16,9 +16,11 @@
     .mode-selection__selection-panel {
         @include mixins.center-flexbox;
         gap: 5px;
+        user-select: none;
         select {
             background-color: variables.$mode-selection-select--color;
             font-weight: bold;
+            cursor: pointer;
         }
     }
     .mode-selection__button-panel {
@@ -34,6 +36,8 @@
             border: none;
             font-size: variables.$mode-selection-button--font-size;
             font-weight: bold;
+            user-select: none;
+            cursor: pointer;
             .fa-dumpster-fire,
             .fa-circle-check {
                 height: .8em;

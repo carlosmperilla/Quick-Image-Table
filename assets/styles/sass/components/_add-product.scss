@@ -9,6 +9,10 @@
             display: block;
         }
     }
+    button {
+        user-select: none;
+        cursor: pointer;
+    }
     .add-product__button-take-photo {
         @include mixins.config-text-dialog-button(variables.$button-take-photo--color);
         max-width: 320px;

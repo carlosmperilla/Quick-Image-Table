@@ -5,7 +5,10 @@ nav {
     @include mixins.center-flexbox;
     justify-content: space-between;
     height: variables.$nav-height;
-    
+
+    img {
+        cursor: pointer;
+    } 
     .principal-nav__burger-menu-container {
         @include mixins.center-flexbox;
         @include mixins.expand-box-max;
@@ -59,6 +62,7 @@ nav {
                 padding: 5px 10px;
                 text-decoration: none;
                 color: variables.$menu-li-color;
+                user-select: none;
             }
         }
     }

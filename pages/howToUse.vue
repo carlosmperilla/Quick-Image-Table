@@ -8,7 +8,8 @@
                 <summary>¿Cómo empezar?</summary>
                 <ul>
                     <li>
-                        Da clic en <strong>Ingresar producto</strong>.
+                        Da clic en <ClientOnly><font-awesome-icon :icon="['fas', 'circle-plus']" /></ClientOnly>
+                        para <strong>Añadir producto</strong>.
                     </li>
                     <li>
                         Permite el acceso a la cámara, para poder tomar fotos de los productos desde la página web.
@@ -77,6 +78,23 @@
                     </li>
                     <li>
                         El <strong>Costo total</strong> no se conserva en el formato ZIP, sí lo hace en el PDF.
+                    </li>
+                </ul>
+            </details>
+            <details>
+                <summary>Otras funciones</summary>
+                <ul>
+                    <li>
+                        <ClientOnly><font-awesome-icon :icon="['fas', 'hand-point-up']" /></ClientOnly>
+                         al darle clic subes al tope de la página.
+                    </li>
+                    <li>
+                        <ClientOnly><font-awesome-icon :icon="['fas', 'table-cells']" /></ClientOnly>
+                        <strong> Modo normal</strong> de tabla.
+                    </li>
+                    <li>
+                        <ClientOnly><font-awesome-icon :icon="['fas', 'panorama']" /></ClientOnly>
+                        <strong> Modo tarjetas</strong> de tabla. De arriba a abajo la información corresponde a <em>Image, Nombre, Precio y Cantidad.</em>
                     </li>
                 </ul>
             </details>

@@ -16,12 +16,14 @@
         color: variables.$button-arrow--color;
         font-size: 4.5rem;
         font-weight: bold;
+        cursor: pointer;
     }
     .principal-action--fallback {
         border-radius: 15px;
         padding: 5px 12px;
         font-size: 2.5rem;
         aspect-ratio: initial;
+        cursor: default;
         &:active {
             transform: none;
             filter: none;

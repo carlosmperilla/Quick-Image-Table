@@ -20,12 +20,14 @@
             text-align: center;
             font-size: variables.$form-legend--font-size;
             font-weight: bold;
+            user-select: none;
         }
         label {
             margin-bottom: 2px;
             color: variables.$form-label--color;
             font-size: variables.$form-legend--font-size;
             font-weight: bold;
+            user-select: none;
         }
         input {
             padding-left: 1em;

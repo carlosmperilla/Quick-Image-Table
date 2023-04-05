@@ -1,6 +1,11 @@
 <template>
     <ClientOnly>
-        <button class="product-table__toggle-table-style" @click="$emit('toggleTableCard')">
+        <button 
+            alt="Cambiar visualización de tabla" 
+            title="Cambiar visualización de tabla" 
+            class="product-table__toggle-table-style" 
+            @click="$emit('toggleTableCard')"
+        >
             <div :class="{'product-table__toggle-table-style--selected': !tableCard}">
                 <font-awesome-icon :icon="['fas', 'table-cells']" />
             </div>

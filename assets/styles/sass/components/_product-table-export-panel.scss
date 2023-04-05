@@ -10,9 +10,11 @@
     padding: 3px 5px;
     font-size: variables.$export-panel--font-size;
     font-weight: bold;
+    user-select: none;
     summary {
         color: variables.$export-panel-summary--color;
         line-height: variables.$export-panel-summary--line-height;
+        cursor: pointer;
         .product-table__export-panel__name-table {
             color: variables.$export-panel-summary-name--color;
             font-style: oblique;
@@ -26,6 +28,7 @@
         color: variables.$export-panel-button--color;
         font-size: variables.$export-panel-button--font-size;
         font-weight: bold;
+        cursor: pointer;
         &:not(:last-child) {
             margin-top: 7px;
             margin-right: 0px;
