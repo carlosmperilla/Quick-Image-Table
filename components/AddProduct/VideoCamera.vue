@@ -1,6 +1,6 @@
 <template>
     <ClientOnly>
-        <div class="decoration" v-show="loadingVideo" :style="{ width: width + 'px', height: width+'px' }">
+        <div class="decoration" v-show="loadingVideo" :style="{ width: width + 'px' }">
             <font-awesome-icon :icon="['fas', 'spinner']" spin-pulse />
         </div>
     </ClientOnly>
@@ -80,11 +80,12 @@
     }
 
     .decoration {
-        background-color: lightgrey;
-        color: white;
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: lightgrey;
+        aspect-ratio: 1/1;
+        color: white;
         font-size: 6rem;
     }
 </style>
