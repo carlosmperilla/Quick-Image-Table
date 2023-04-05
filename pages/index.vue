@@ -61,9 +61,18 @@
     }
 
     function removeProducts(indexList) {
-        for (let index of indexList.sort((a, b) => b - a)) {
-            products.splice(index, 1)
-            localStorage.setItem('productsQuickImageTable', JSON.stringify(products))
+        try {            
+            for (let index of indexList.sort((a, b) => b - a)) {
+                products.splice(index, 1)
+                localStorage.setItem('productsQuickImageTable', JSON.stringify(products))
+            }
+            notify({
+                type: "error",
+                text: "¡Productos eliminados correctamente!",
+                duration: 500,
+            });
+        } catch (error) {
+            console.error(error)
         }
     }
 
@@ -84,8 +93,17 @@
     }
 
     function clean(){
-        localStorage.setItem('productsQuickImageTable', '[]')
-        products.length = 0
+        try {
+            localStorage.setItem('productsQuickImageTable', '[]')
+            products.length = 0
+            notify({
+                type: "error",
+                text: "¡Tabla eliminada correctamente!",
+                duration: 500,
+            })
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     function updateProduct(index, value){

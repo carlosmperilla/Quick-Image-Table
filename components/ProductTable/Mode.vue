@@ -32,14 +32,14 @@
             <button 
                 class="mode-selection__box-buttons--delete" 
                 v-if="isDeleteMode" 
-                @click="removeSomeProducts"
+                @click="$emit('preRemovalProducts')"
             >
                 Eliminar {{ checkedProducts.length }} productos
             </button>
             <button 
                 class="mode-selection__box-buttons--delete" 
                 v-if="isDeleteMode" 
-                @click="removeAllProducts"
+                @click="$emit('preCleanProducts')"
             >
                 <ClientOnly>
                     <font-awesome-icon :icon="['fas', 'dumpster-fire']" />
@@ -84,33 +84,7 @@
                 duration: 500,
             });
         } catch (error) {
-            console.log(error)
-        }
-    }
-
-    function removeSomeProducts() {
-        try {
-            emit('preRemovalProducts')
-            notify({
-                type: "error",
-                text: "¡Productos eliminados correctamente!",
-                duration: 500,
-            });
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    function removeAllProducts() {
-        try {
-            emit('preCleanProducts')
-            notify({
-                type: "error",
-                text: "¡Tabla eliminada correctamente!",
-                duration: 500,
-            });
-        } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 </script>
