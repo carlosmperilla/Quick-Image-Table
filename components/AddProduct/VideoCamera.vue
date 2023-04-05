@@ -1,4 +1,5 @@
 <template>
+    <div class="decoration" v-show="loadingVideo" :style="{'background-color': 'grey', width: width + 'px', height: width+'px' }"></div>
     <video id="video" ref="video" @canplay="resizingDefaultVideo" :width="width" :height="height" v-show="!hasPicture"></video>
 </template>
 
@@ -11,6 +12,7 @@
     const streaming = ref(false)
     const width = ref(320)
     const height = ref(0)
+    const loadingVideo = ref(false)
     
     const video = ref(null)
     
@@ -37,11 +39,12 @@
         }
     })
 
-    onMounted(() => {
+    onMounted(async () => {
         navigator.getMedia = ( navigator.getUserMedia ||
                                navigator.webkitGetUserMedia ||
                                navigator.mozGetUserMedia )
 
+        loadingVideo.value = true
         // Open and record video
         navigator.getMedia(
             {
@@ -53,11 +56,14 @@
             (stream) => {
               video.value.srcObject=stream;
               video.value.play();
+              console.log('hola')
+              loadingVideo.value = false
             },
             (err) => {
               console.log("An error occured! " + err);
             }
           )
+          console.log('chao')
     })
     
     onBeforeUnmount(() => {
