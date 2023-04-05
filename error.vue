@@ -39,7 +39,7 @@
         justify-content: center;
         align-items: center;
         gap: 30px;
-        font-size: 4.3rem;
+        font-size: 3.8rem;
         .error-icon {
             font-size: 2em;
             color: steelblue;
