@@ -8,6 +8,10 @@
             cursor: pointer;
         }
     }
+    &::selection {
+        color: whitesmoke;
+        background-color: #2ca981;
+    }
 }
 
 body {
