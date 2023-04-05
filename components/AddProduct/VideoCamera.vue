@@ -1,6 +1,6 @@
 <template>
     <ClientOnly>
-        <div class="decoration" v-show="loadingVideo" :style="{ width: width + 'px' }">
+        <div class="video--fallback" v-show="loadingVideo" :style="{ width: width + 'px' }">
             <font-awesome-icon :icon="['fas', 'spinner']" spin-pulse />
         </div>
     </ClientOnly>
@@ -79,7 +79,7 @@
         display: block;
     }
 
-    .decoration {
+    .video--fallback {
         display: flex;
         justify-content: center;
         align-items: center;
