@@ -8,6 +8,13 @@
             @clean-products="clean"
             @show-dialog="showDialog"
         />
+        <p class="no-products--message" v-if="products.length === 0">
+            <ClientOnly>
+                <font-awesome-icon :icon="['fas', 'face-meh']"/>
+                 No hay productos por el momento. <br>Añada clickeando en 
+                <font-awesome-icon :icon="['fas', 'circle-plus']"/>
+            </ClientOnly>
+        </p>
         <Teleport to="body">
             <dialog ref="dialog" @click.self="closeDialog">
                 <section class="dialog__inner-box">
@@ -82,3 +89,11 @@
         reloadProducts()
     })
 </script>
+
+<style>
+    .no-products--message {
+        text-align: center;
+        font-size: 3em;
+        color: steelblue;
+    }
+</style>
