@@ -15,7 +15,7 @@
                     <input type="checkbox" @change="(e) => updateRemovableProducts(index, e)">
                 </td>
                 <td class="table--card__img">
-                    <img :src="product.imageData" alt="" width="90">
+                    <img :src="product.imageData" :alt="product.name" :title="product.name" lazy="loading" width="90">
                 </td>
                 <td class="table--card__name">
                     {{ !isEditable ? product.name : '' }}

@@ -20,7 +20,8 @@ import {
         faFilePdf,
         faHandPointUp,
         faCircleXmark,
-        faFaceMeh
+        faFaceMeh,
+        faRobot
       } from '@fortawesome/free-solid-svg-icons'
 import { faReadme } from '@fortawesome/free-brands-svg-icons'
 
@@ -50,7 +51,8 @@ library.add(
   faHandPointUp,
   faCircleXmark,
   faReadme,
-  faFaceMeh
+  faFaceMeh,
+  faRobot
 )
 
 export default defineNuxtPlugin((nuxtApp) => {
