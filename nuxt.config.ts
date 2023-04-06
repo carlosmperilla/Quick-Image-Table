@@ -34,10 +34,10 @@ export default defineNuxtConfig({
         }
       }
     },
-    routeRules: {
-      '/howtouse' : { ssr: false, static: true, prerender: true },
-      '/about' : { static: true },
-      '/contact' : { static: true },
-      '/' : { ssr: false, static: true, prerender: true },
-    }
+    // routeRules: {
+    //   '/howtouse' : { ssr: false, static: true, prerender: true },
+    //   '/about' : { static: true },
+    //   '/contact' : { static: true },
+    //   '/' : { ssr: false, static: true, prerender: true },
+    // }
 })
