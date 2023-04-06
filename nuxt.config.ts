@@ -35,9 +35,9 @@ export default defineNuxtConfig({
       }
     },
     routeRules: {
-      '/howtouse' : { static: true },
+      '/howtouse' : { ssr: false, static: true },
       '/about' : { static: true },
       '/contact' : { static: true },
-      '/' : { static: true },
+      '/' : { ssr: false, static: true },
     }
 })
