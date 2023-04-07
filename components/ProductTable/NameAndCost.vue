@@ -2,8 +2,9 @@
     <section class="name-and-cost">
         <header>
             <h1>
-                <span>Nombre:</span> 
-                <input 
+                <label for="name-and-cost__input__name">Nombre:</label>
+                <input
+                    id="name-and-cost__input__name"
                     type="text"
                     maxlength="20" 
                     :value="nameTable"
