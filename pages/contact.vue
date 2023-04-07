@@ -6,13 +6,13 @@
         <section>
             <h2>Puedes ver mis proyectos en desarrollo aquí:</h2>
             <p>
-                <a href="https://github.com/carlosmperilla" target="_blank">https://github.com/carlosmperilla</a>
+                <a href="https://github.com/carlosmperilla" target="_blank" rel="noopener">https://github.com/carlosmperilla</a>
             </p>
         </section>
         <section>
             <h2>Repositorio de este proyecto:</h2>
             <p>
-                <a href="https://github.com/carlosmperilla/Quick-Image-Table" target="_blank">https://github.com/carlosmperilla/Quick-Image-Table</a>
+                <a href="https://github.com/carlosmperilla/Quick-Image-Table" target="_blank" rel="noopener">https://github.com/carlosmperilla/Quick-Image-Table</a>
             </p>
         </section>
         <section>
