@@ -30,17 +30,17 @@
         },
         {
             text: '¿Cómo usar?',
-            route: '/howtouse',
+            route: '/howtouse/',
             icon: ['fab', 'readme']
         },
         {
             text: 'Acerca de QuickImageTable',
-            route: '/about',
+            route: '/about/',
             icon: ['fas', 'info-circle']
         },
         {
             text: 'Mi contacto',
-            route: '/contact',
+            route: '/contact/',
             icon: ['fas', 'comments']
         },
     ])
