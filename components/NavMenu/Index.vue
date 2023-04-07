@@ -1,5 +1,5 @@
 <template>
-    <nav class="principal-nav">
+    <nav class="principal-nav" height="43px">
         <img src="~/assets/img/QuickImageTable_logo_min.jpg" alt="QuickImageTable Logo" @click="toHome"/>
         <div class="principal-nav__burger-menu-container">
             <button alt="Mostrar menu" title="Mostrar menu" class="principal-nav__burger-menu-container--button" @click="toggleMenu">
