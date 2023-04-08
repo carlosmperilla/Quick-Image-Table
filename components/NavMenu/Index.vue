@@ -1,5 +1,5 @@
 <template>
-    <nav class="principal-nav" :class="{'block-header': isMenuOpen}">
+    <nav class="principal-nav" :class="{'block-nav': isMenuOpen}">
         <img src="~/assets/img/QuickImageTable_logo_min.jpg" alt="QuickImageTable Logo" @click="toHome" height="43px" width="194px"/>
         <div class="principal-nav__burger-menu-container">
             <button alt="Mostrar menu" title="Mostrar menu" class="principal-nav__burger-menu-container--button" @click="toggleMenu">
@@ -66,7 +66,7 @@
 
 <style lang="scss" scoped>
     @use '@/assets/styles/sass/layout/navigation';
-    .block-header {
+    .block-nav {
         position: fixed;
         width: 100%;
         z-index: 1;
