@@ -239,4 +239,11 @@
             font-size: 1.15em;
         }
     }
+
+    @media screen and (min-width: 1000px){
+        .product-table {
+            font-size: 1.35em;
+            
+        }
+    }
 </style>

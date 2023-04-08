@@ -11,7 +11,7 @@
         <menu class="principal-nav__menu" :class="{ 'principal-nav__menu--active': isMenuOpen  }">
             <li v-for="(menuLink, index) in menuLinkList" :key="index" @click="() => isMenuOpen && toggleMenu()">
                 <NuxtLink :to="menuLink.route">
-                    <ClientOnly><font-awesome-icon :icon="menuLink.icon"/></ClientOnly> {{ menuLink.text }}
+                    <ClientOnly><font-awesome-icon :icon="menuLink.icon" beat /></ClientOnly> {{ menuLink.text }}
                 </NuxtLink>
             </li>
         </menu>

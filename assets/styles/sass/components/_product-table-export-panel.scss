@@ -44,3 +44,12 @@
         }
     }
 }
+
+@media screen and (min-width: 1000px) {
+    .product-table__export-panel {
+        font-size: variables.$export-panel--font-size*1.3;
+        summary {
+            line-height: variables.$export-panel-summary--line-height*1.3;
+        }
+    }
+}

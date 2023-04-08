@@ -11,11 +11,29 @@
                 &:active {
                     color: variables.$link-active--color;
                 }
+                &:focus-visible {
+                    outline: variables.$outline-focus;
+                }
             }
         }
         .page-email {
             color: variables.$page-email--color;
             text-align: center;
+            &:focus-visible {
+                outline: variables.$outline-focus;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .page {
+        section {
+            .page-email {
+                display: flex;
+                margin-left: 10em;
+                width: fit-content;
+            }
         }
     }
 }

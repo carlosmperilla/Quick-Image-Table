@@ -52,8 +52,14 @@
             padding-left: 1em;
             padding-top: 10px;
             padding-bottom: 8px;
+            border-radius: 25px 0px;
             user-select: none;
             cursor: pointer;
+            &:focus-visible {
+                outline: none;
+                border: variables.$outline-focus;
+                border-width: 4px;
+            }
         }
         ul, p {
             margin: 10px 2em;

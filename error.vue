@@ -68,4 +68,10 @@
             font-size: 4rem;
         }
     }
+
+    @media screen and (min-width: 1000px) {
+        section {
+            font-size: 4.5rem;
+        }
+    }
 </style>

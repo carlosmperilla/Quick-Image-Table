@@ -1,9 +1,14 @@
 <template>
     <div class="layout-default" ref="defaultLayout" :class="{'block-layout': isMenuOpen}">
+        <a class="skip-to-content-link" href="#main">
+            ¡Saltar al contenido!
+        </a>
         <header ref="headerNav">
             <NavMenu />
         </header>
-        <slot/>
+        <main id="main">
+            <slot/>
+        </main>
         <button 
             alt="Botón de 'Subir hacia arriba de la página'"
             title="Subir al inicio de la página"

@@ -17,7 +17,7 @@
         </section>
         <section>
             <h2>Correo de contacto:</h2>
-            <p class="page-email">
+            <p class="page-email" tabindex="0" title="e-mail de contacto" alt="e-mail de contacto">
                 carlosperillaprogramacion@gmail.com
             </p>
         </section>

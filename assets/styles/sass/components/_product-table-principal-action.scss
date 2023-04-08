@@ -17,6 +17,11 @@
         font-size: 4.5rem;
         font-weight: bold;
         cursor: pointer;
+        &:not(:hover) {
+            .fa-shake {
+                animation: none;
+            }
+        }
     }
     .principal-action--fallback {
         border-radius: 15px;
@@ -38,6 +43,17 @@
         }
         .principal-action--fallback {
             font-size: 2.9rem;
+        }
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #principal-action {
+        button {
+            font-size: 5.9rem;
+        }
+        .principal-action--fallback {
+            font-size: 3.3rem;
         }
     }
 }

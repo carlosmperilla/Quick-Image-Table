@@ -2,7 +2,7 @@
     <section id="principal-action">
         <ClientOnly>
             <button @click="$emit('showDialog')" :alt="text" :title="text">
-                <font-awesome-icon :icon="['fas', 'circle-plus']" />
+                <font-awesome-icon :icon="['fas', 'circle-plus']" shake />
             </button>
             <template #fallback>
                 <p class="principal-action--fallback">

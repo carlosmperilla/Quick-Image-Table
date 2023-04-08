@@ -7,10 +7,10 @@
             @click="$emit('toggleTableCard')"
         >
             <div :class="{'product-table__toggle-table-style--selected': !tableCard}">
-                <font-awesome-icon :icon="['fas', 'table-cells']" />
+                <font-awesome-icon :icon="['fas', 'table-cells']" beat />
             </div>
             <div :class="{'product-table__toggle-table-style--selected': tableCard}">
-                <font-awesome-icon :icon="['fas', 'panorama']" />
+                <font-awesome-icon :icon="['fas', 'panorama']" beat />
             </div>
         </button>
     </ClientOnly>

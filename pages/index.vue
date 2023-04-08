@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <section>
         <ProductTable 
             :products="products" 
             @update-product="updateProduct" 
@@ -18,7 +18,8 @@
         <Teleport to="body">
             <dialog ref="dialog" @click.self="closeDialog">
                 <section class="dialog__inner-box">
-                    <button 
+                    <button
+                        ref="closeButton"
                         alt="Botón de 'Cerrar'"
                         @click="closeDialog" 
                         class="dialog__close-button"
@@ -27,11 +28,16 @@
                             <font-awesome-icon :icon="['fas', 'circle-xmark']" />
                         </ClientOnly>
                     </button>
-                    <AddProduct :products="products" :is-started="isModalOpen" @add-product="addProductAndPersist"/>
+                    <AddProduct 
+                        :products="products" 
+                        :is-started="isModalOpen"
+                        @add-product="addProductAndPersist" 
+                        @focus-close-button="focuscloseButton"
+                    />
                 </section>
             </dialog>
         </Teleport>
-    </main>
+    </section>
 </template>
 
 <script setup>
@@ -41,6 +47,7 @@
     const isModalOpen = ref(false)
     const products = reactive([])
     const dialog = ref(null)
+    const closeButton = ref(null)
     
     function fillProducts(){
         let localProducts = localStorage.getItem('productsQuickImageTable')
@@ -110,6 +117,10 @@
         let key = Object.keys(value)
         products[index][key] = value[key]
         localStorage.setItem('productsQuickImageTable', JSON.stringify(products))
+    }
+
+    function focuscloseButton() {
+        closeButton.value.focus()
     }
 
     onMounted(() => {

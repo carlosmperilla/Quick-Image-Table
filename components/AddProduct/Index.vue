@@ -13,14 +13,19 @@
             <font-awesome-icon :icon="['fas', takePhotoIcon]" />
         </ClientOnly>
          {{ CameraControlButtonContent }}</button>
-        <section v-if="hasPicture" class="add-product__box-arrow-buttons">
-            <button v-if="step > 0" @click="prevStep" class="add-product__box-arrow-buttons--left">
+        <section v-show="hasPicture" class="add-product__box-arrow-buttons">
+            <button 
+                ref="prevButton" 
+                v-show="step > 0" 
+                @click="prevStep" 
+                class="add-product__box-arrow-buttons--left"
+            >
                 <ClientOnly>
                     <font-awesome-icon :icon="['fas', 'arrow-left']" />
                 </ClientOnly>
                  {{ prevButtonContent }}
             </button>
-            <button @click="nextStep">
+            <button ref="nextButton" @click="nextStep" @keydown.tab="goNextTab">
                 {{ nextButtonContent }}&nbsp;
                 <ClientOnly>
                     <font-awesome-icon :icon="['fas', 'arrow-right']" />
@@ -31,6 +36,7 @@
             v-show="step === 1"
             ref="addProductForm"
             @press-next-button="nextStep"
+            @focus-next-button="goNextButton"
         />
         <AddProductList
             v-show="isFormValid && step === 2"
@@ -50,7 +56,7 @@
         }
     })
     
-    const emit = defineEmits(['addProduct'])
+    const emit = defineEmits(['addProduct', 'focusCloseButton'])
 
     // Constantes no reactivas.
     const prevButtonDefaultContent = 'Retroceder a "Tomar Foto"' 
@@ -72,7 +78,9 @@
     })
     
     const addProductForm = ref()
-    
+    const nextButton = ref(null)
+    const prevButton = ref(null)
+
     provide('productInfo', productInfo)
     
     const takePhotoIcon = computed(() => !hasPicture.value ? 'camera' : 'camera-rotate')
@@ -102,6 +110,17 @@
     const prevStep = () => step.value > 0 ? step.value-- : step.value
     const nextStep = () => step.value < 3 ? step.value++ : step.value
 
+    function goNextButton(){
+        nextButton.value.focus()
+    }
+
+    function goNextTab(e){
+        if (step.value === 1) {
+            e.preventDefault()
+            prevButton.value.focus()
+        }
+    }
+
     function photoAction() {
 
         let takePictureAgainText = 'Volver a tomar foto'
@@ -127,6 +146,7 @@
             isFormValid.value = false
             prevButtonContent.value = prevButtonDefaultContent
             nextButtonContent.value = 'Vista previa'
+            addProductForm.value.focus()
         }
 
         if (step.value === 2) {
