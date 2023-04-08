@@ -24,3 +24,9 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+@media screen and (min-width: 750px) {
+    .page {
+        font-size: 1.15em;
+    }
+}

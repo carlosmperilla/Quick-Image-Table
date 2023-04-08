@@ -8,8 +8,8 @@
                 </ClientOnly>
             </button>
         </div>
-        <menu :class="{ 'principal-nav__menu--active': isMenuOpen  }">
-            <li v-for="(menuLink, index) in menuLinkList" :key="index" @click="toggleMenu">
+        <menu class="principal-nav__menu" :class="{ 'principal-nav__menu--active': isMenuOpen  }">
+            <li v-for="(menuLink, index) in menuLinkList" :key="index" @click="() => isMenuOpen && toggleMenu()">
                 <NuxtLink :to="menuLink.route">
                     <ClientOnly><font-awesome-icon :icon="menuLink.icon"/></ClientOnly> {{ menuLink.text }}
                 </NuxtLink>
@@ -56,12 +56,6 @@
         isMenuOpen.value = false
         router.push('/')
     }
-
-    // watch(isMenuOpen, () => {
-    //     useHead({
-    //         bodyAttrs: {style: isMenuOpen.value ? 'overflow: hidden;' : ''}
-    //     })
-    // })
 </script>
 
 <style lang="scss" scoped>

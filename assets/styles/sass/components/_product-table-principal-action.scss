@@ -30,3 +30,14 @@
         }
     }
 }
+
+@media screen and (min-width: 750px) {
+    #principal-action {
+        button {
+            font-size: 5.2rem;
+        }
+        .principal-action--fallback {
+            font-size: 2.9rem;
+        }
+    }
+}

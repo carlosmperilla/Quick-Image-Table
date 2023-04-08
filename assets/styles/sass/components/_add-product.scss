@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: column;
     figure {
+        margin: 0 auto;
         img {
             display: block;
         }
@@ -41,6 +42,66 @@
         }
         .add-product__box-arrow-buttons--left {
             background-color: variables.$button-arrow-left--bg-color;
+        }
+    }
+}
+
+@media screen and (min-width: 750px) {
+    .add-product {
+        .add-product__button-take-photo {
+            font-size: 2.1rem;
+        }
+        .add-product__box-arrow-buttons {
+            button {
+                font-size: 2.1rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .add-product {
+        display: grid;
+        grid-gap: 1rem;
+        grid-template-columns: 320px 1fr;
+        grid-template-rows: repeat(auto-fit, minmax(180px, 1fr));;
+        grid-template-areas:
+            "media principal-focus"
+            "media buttons";
+
+        figure,
+        div:first-child {
+            grid-area: media;
+        }
+
+        figure {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: fit-content;
+        }
+
+        button {
+            height: fit-content;
+        }
+
+        .add-product__button-take-photo {
+            grid-area: principal-focus;
+            align-self: center;
+            border-radius: 25px;
+        }
+        .add-product__box-arrow-buttons {
+            grid-area: buttons;
+            align-self: center;
+            align-items: center;
+            margin-top: 0;
+            overflow: scroll;
+        }
+
+        .add-product__list,
+        .add-product__form {
+            grid-area: principal-focus;
+            margin: 0;
         }
     }
 }

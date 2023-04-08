@@ -233,4 +233,10 @@
             overflow: auto;
         }
     }
+
+    @media screen and (min-width: 750px){
+        .product-table {
+            font-size: 1.15em;
+        }
+    }
 </style>

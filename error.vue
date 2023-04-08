@@ -62,4 +62,10 @@
             padding: 4px 12px;
         }
     }
+
+    @media screen and (min-width: 750px) {
+        section {
+            font-size: 4rem;
+        }
+    }
 </style>

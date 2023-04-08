@@ -1,7 +1,7 @@
 <template>
     <div>
         <ClientOnly>
-            <div class="video--fallback" v-show="loadingVideo" :style="{ width: width + 'px' }">
+            <div class="video--fallback" v-show="!streaming && !hasPicture" :style="{ width: width + 'px' }">
                 <font-awesome-icon :icon="['fas', 'spinner']" spin-pulse />
             </div>
         </ClientOnly>
