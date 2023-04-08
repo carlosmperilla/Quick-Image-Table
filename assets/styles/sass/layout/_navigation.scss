@@ -8,6 +8,8 @@ nav {
 
     img {
         cursor: pointer;
+        min-width: 194px;
+        min-height: 43px;
     } 
     .principal-nav__burger-menu-container {
         @include mixins.center-flexbox;
