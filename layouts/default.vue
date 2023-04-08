@@ -1,5 +1,5 @@
 <template>
-    <div class="layout-default">
+    <div class="layout-default" ref="defaultLayout" :class="{'block-layout': isMenuOpen}">
         <header ref="headerNav">
             <NavMenu />
         </header>
@@ -21,8 +21,11 @@
 </template>
 
 <script setup>
+    const isMenuOpen = useState('isMenuOpen')
+
     const buttonToUpIsVisible = ref(false)
     const headerNav = ref(null)
+    const defaultLayout = ref(null)
 
     function callbackIntersection(entries, observer) {
         entries.forEach((entry) => {
@@ -51,4 +54,9 @@
 <style lang="scss">
     @use '@/assets/styles/sass/core/reset';
     @use '@/assets/styles/sass/layout';
+
+    .block-layout {
+        height: 100vh;
+        overflow: hidden;
+    }
 </style>

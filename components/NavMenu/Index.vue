@@ -21,7 +21,8 @@
 <script setup>
     const router = useRouter()
 
-    const isMenuOpen = ref(false)
+    const isMenuOpen = useState('isMenuOpen', () => false)
+
     const menuLinkList = reactive([
         {
             text: 'Inicio',
@@ -55,6 +56,12 @@
         isMenuOpen.value = false
         router.push('/')
     }
+
+    // watch(isMenuOpen, () => {
+    //     useHead({
+    //         bodyAttrs: {style: isMenuOpen.value ? 'overflow: hidden;' : ''}
+    //     })
+    // })
 </script>
 
 <style lang="scss" scoped>
