@@ -67,8 +67,9 @@
 <style lang="scss" scoped>
     @use '@/assets/styles/sass/layout/navigation';
     .block-nav {
-        position: fixed;
-        width: 100%;
-        z-index: 1;
+        // position: fixed;
+        // width: 100%;
+        // z-index: 1;
+        color: red;
     }
 </style>
