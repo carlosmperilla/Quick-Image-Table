@@ -59,5 +59,6 @@
         // height: 100vh;
         height: 50vh;
         overflow: hidden;
+        user-select: none;
     }
 </style>
