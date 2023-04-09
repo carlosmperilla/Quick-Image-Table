@@ -70,9 +70,17 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 * Obtención de tablas e imágenes de productos nuevos en tiempos mínimos.
 * Creación de tablas de productos con nombres únicos (si se repite un nombre, automáticamente lo readapta en su ingreso).
 
+### ¿Para qué NO es útil QuickImageTable?
+La mayoría de estas características no están incluidas porque reducen la velocidad de creación de la tabla.
+* Generar tablas a partir de un archivo (PDF, CSV, Excel, etcétera).
+* Varias imágenes por producto.
+* Edición avanzada para múltiples productos.
+* Filtrado de productos.
+* Tablas complejas con campos diferentes a los que se encuentran por defecto. Lo mejor sería exportar a PDF la tabla e importarla a otra aplicación web.
+
 ## ¿How To Use?
 ### ¿Cómo empezar?
-* Da clic en [Icono Circle-Plus](https://fontawesome.com/icons/circle-plus?f=classic&s=regular) para **Añadir producto**.
+* Da clic en <a href="https://fontawesome.com/icons/circle-plus?f=classic&s=regular" target="_blank">Icono Circle-Plus</a> para **Añadir producto**.
 * Permite el acceso a la cámara, para poder tomar fotos de los productos desde la página web.
 * A continuación, sigue los pasos para ingresar el producto. Puedes modificar los datos, incluyendo la fotografía, en caso de ser necesario. Recuerda que el nombre tiene un _límite de 50 caracteres_ como máximo.
 * Asegúrate de tomar la foto correcta, después de **Añadir producto**, no podrás volver a editar la imagen.
