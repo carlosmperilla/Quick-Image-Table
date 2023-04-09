@@ -80,7 +80,7 @@ La mayoría de estas características no están incluidas porque reducen la velo
 
 ## ¿How To Use?
 ### ¿Cómo empezar?
-* Da clic en <a href="https://fontawesome.com/icons/circle-plus?f=classic&s=regular" target="_blank">Icono Circle-Plus</a> para **Añadir producto**.
+* Da clic en [Icono Circle-Plus](https://fontawesome.com/icons/circle-plus?f=classic&s=regular) para **Añadir producto**.
 * Permite el acceso a la cámara, para poder tomar fotos de los productos desde la página web.
 * A continuación, sigue los pasos para ingresar el producto. Puedes modificar los datos, incluyendo la fotografía, en caso de ser necesario. Recuerda que el nombre tiene un _límite de 50 caracteres_ como máximo.
 * Asegúrate de tomar la foto correcta, después de **Añadir producto**, no podrás volver a editar la imagen.
