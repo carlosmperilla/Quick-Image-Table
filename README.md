@@ -112,4 +112,11 @@ El nombre por defecto es _MyQuickTable_, si haces clic en él, puedes modificarl
 * [Icono Table-Cells](https://fontawesome.com/icons/table-cells?f=classic&s=regular) **Modo normal** de tabla.
 * [Icono Panorama](https://fontawesome.com/icons/panorama?f=classic&s=solid) **Modo tarjetas** de tabla. De arriba a abajo la información corresponde a _Image, Nombre, Precio y Cantidad._
 
+## Limitations
+* Cada tabla puede tener como **máximo alrededor de 90-100 productos**. QuickImageTable prioriza su uso, sin necesidad de internet para tablas pequeñas. Esto se debe a que el almacenamiento de productos se da localmente (por limitaciones del localStorage), no en un servidor.
+* El nombre de cada producto está **limitado a 50 caracteres**.
+* El nombre de la tabla está **limitado a 20 caracteres**.
+* La calidad de la imagen por producto es estándar. Se prioriza la información y la rapidez, sobre la "Estética" y el contenido "Especifico".
+* No se puede adaptar el diseño de PDF exportado, ni de los datos por imágenes en el ZIP.
+
 ## Example Images
