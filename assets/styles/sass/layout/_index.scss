@@ -35,11 +35,17 @@
     &:focus-visible {
         outline: variables.$outline-focus;
     }
+    &:not(:hover) {
+        .fa-hand-point-up {
+            animation: none;
+        }
+    }
     
     .fa-hand-point-up {
         color: variables.$button-scroll-to-up--color;
         height: variables.$icon-height;
     }
+
 }
 
 .button--scroll-to-up--active {

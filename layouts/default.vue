@@ -19,7 +19,7 @@
                     }"
         >
             <ClientOnly>
-                <font-awesome-icon :icon="['fas', 'hand-point-up']" />
+                <font-awesome-icon :icon="['fas', 'hand-point-up']" bounce />
             </ClientOnly>
         </button>
     </div>
