@@ -21,6 +21,7 @@
                     <button
                         ref="closeButton"
                         alt="Botón de 'Cerrar'"
+                        title="Botón de 'Cerrar'"
                         @click="closeDialog" 
                         class="dialog__close-button"
                     >

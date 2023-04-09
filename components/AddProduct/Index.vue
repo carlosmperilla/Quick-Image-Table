@@ -2,7 +2,7 @@
     <section class="add-product">
         <figure>
             <AddProductVideoCamera :hasPicture="hasPicture" v-if="isStarted" @get-image-data="(data) => productImageData = data"/>
-            <img :src="productImageData" width="320" v-show="hasPicture"/>
+            <img :src="productImageData" width="320" v-show="hasPicture" alt="Imagen de producto" title="Imagen de producto"/>
         </figure>
         <button
             @click="photoAction" 

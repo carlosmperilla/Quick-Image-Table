@@ -9,7 +9,9 @@
         <section 
             class="mode-selection__selection-panel">
             <span>Modo: </span>
-            <select 
+            <select
+                name="mode-selection"
+                title="Selección de Modo"
                 :value="currentMode"
                 @input="$emit('update:currentMode', $event.target.value)"
             >
