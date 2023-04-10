@@ -92,15 +92,15 @@
     }
 
     @media screen and (max-width: 600px) and (orientation: landscape) {
-        .add-product img, 
+        /* .add-product img, 
         video {
             -moz-transform: rotate(-90%);
             -moz-transform-origin: bottom left;
-        }
+        } */
 
         video {
             -moz-transform: rotate(-90%);
-            -moz-transform-origin: bottom left;
+            /* -moz-transform-origin: bottom left; */
         }
     }
 </style>
