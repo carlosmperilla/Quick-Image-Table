@@ -47,7 +47,9 @@
     onMounted(async () => {
         if (/(Firefox.*Android)|(Android.*Firefox)/.test(navigator.userAgent)){
             // alert(navigator.userAgent)
-            alert(screen.orientation)
+            alert(screen.orientation.type)
+            alert(screen.orientation.angle)
+            // alert(screen.orientation)
         }
         navigator.getMedia = ( navigator.getUserMedia ||
                                navigator.webkitGetUserMedia ||
