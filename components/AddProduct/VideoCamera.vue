@@ -5,7 +5,7 @@
                 <font-awesome-icon :icon="['fas', 'spinner']" spin-pulse />
             </div>
         </ClientOnly>
-        <video id="video" ref="video" @canplay="resizingDefaultVideo" :width="width" :height="height" v-show="!hasPicture"></video>
+        <video preload="metadata" id="video" ref="video" @canplay="resizingDefaultVideo" :width="width" :height="height" v-show="!hasPicture"></video>
     </div>
 </template>
 
