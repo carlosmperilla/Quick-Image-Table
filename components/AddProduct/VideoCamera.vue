@@ -49,6 +49,11 @@
             // alert(navigator.userAgent)
             alert(screen.orientation.type)
             alert(screen.orientation.angle)
+            if (screen.orientation.angle === 90){
+                video.value.style.transform = "rotate(-90)"
+            } else if (screen.orientation.angle === 270){
+                video.value.style.transform = "rotate(-2700)"
+            }
             // alert(screen.orientation)
         }
         navigator.getMedia = ( navigator.getUserMedia ||
