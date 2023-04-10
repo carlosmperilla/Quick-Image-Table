@@ -45,6 +45,9 @@
     })
 
     onMounted(async () => {
+        if (/(Firefox.*Android)|(Android.*Firefox)/.test(navigator.userAgent)){
+            alert(navigator.userAgent)
+        }
         navigator.getMedia = ( navigator.getUserMedia ||
                                navigator.webkitGetUserMedia ||
                                navigator.mozGetUserMedia )
@@ -58,8 +61,6 @@
               audio: false
             },
             (stream) => {
-              alert(navigator.userAgent)
-              alert(navigator.userAgentData)
               video.value.srcObject=stream;
               video.value.play();
             },
