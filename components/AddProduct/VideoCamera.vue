@@ -47,21 +47,39 @@
     onMounted(async () => {
         if (/(Firefox.*Android)|(Android.*Firefox)/.test(navigator.userAgent)){
             // alert(navigator.userAgent)
-            alert(screen.orientation.type)
-            alert(screen.orientation.angle)
-            if (screen.orientation.angle === 90){
-                // video.value.style.transform = "rotate(-90)"
-                video.value.classList.remove('video-giro-segundo')
-                video.value.classList.add('video-giro-noventa')
-            } else if (screen.orientation.angle === 270){
-                // video.value.style.transform = "rotate(-2700)"
-                video.value.classList.remove('video-giro-noventa')
-                video.value.classList.add('video-giro-segundo')
-            } else {
-                video.value.classList.remove('video-giro-noventa')
-                video.value.classList.remove('video-giro-segundo')
-            }
+            // alert(screen.orientation.type)
+            // alert(screen.orientation.angle)
+            // if (screen.orientation.angle === 90){
+            //     // video.value.style.transform = "rotate(-90)"
+            //     video.value.classList.remove('video-giro-segundo')
+            //     video.value.classList.add('video-giro-noventa')
+            // } else if (screen.orientation.angle === 270){
+            //     // video.value.style.transform = "rotate(-2700)"
+            //     video.value.classList.remove('video-giro-noventa')
+            //     video.value.classList.add('video-giro-segundo')
+            // } else {
+            //     video.value.classList.remove('video-giro-noventa')
+            //     video.value.classList.remove('video-giro-segundo')
+            // }
             // alert(screen.orientation)
+
+            if (screen.orientation.onchange?.name !== 'firefoxMobileRotate'){
+                screen.orientation.onchange = function firefoxMobileRotate() {
+                    if (screen.orientation.angle === 90){
+                        // video.value.style.transform = "rotate(-90)"
+                        video.value.classList.remove('video-giro-segundo')
+                        video.value.classList.add('video-giro-noventa')
+                    } else if (screen.orientation.angle === 270){
+                        // video.value.style.transform = "rotate(-2700)"
+                        video.value.classList.remove('video-giro-noventa')
+                        video.value.classList.add('video-giro-segundo')
+                    } else {
+                        video.value.classList.remove('video-giro-noventa')
+                        video.value.classList.remove('video-giro-segundo')
+                    }  
+                }
+            }
+
         }
         navigator.getMedia = ( navigator.getUserMedia ||
                                navigator.webkitGetUserMedia ||
@@ -108,12 +126,12 @@
 
     .video-giro-noventa {
         -moz-transform-origin: center;
-        -moz-transform: rotate(-90deg) scale(.3);
+        -moz-transform: rotate(-90deg) scale(.5);
     }
 
     .video-giro-segundo {
         -moz-transform-origin: center;
-        -moz-transform: rotate(-270deg) scale(.3);
+        -moz-transform: rotate(-270deg) scale(.5);
     }
 
     @media screen and (max-width: 600px) and (orientation: landscape) {
