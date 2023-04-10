@@ -76,7 +76,7 @@
 <style scoped>
     video {
         display: block;
-        transform: none !important;
+        transform: rotate(0deg) !important;
     }
 
     .video--fallback {
