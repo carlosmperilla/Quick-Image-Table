@@ -6,10 +6,11 @@ dialog {
     background: none;
     padding: 0;
     overflow: hidden;
-    // overflow-y: auto;
+    overflow-y: auto;
     border-radius: 25px;
     .dialog__inner-box {
         max-height: 100%;
+        max-height: 90%;
         border-radius: 25px;
         border: none;
         box-shadow: variables.$dialog-inner-box--box-shadow;
@@ -17,9 +18,9 @@ dialog {
         background-color: variables.$dialog-inner-box--bg-color;
         position: relative;
         overflow: hidden;
-        height: 95vh;
-        overflow: auto;
-        // overflow-x: auto;
+        // height: 95vh;
+        // overflow: auto;
+        overflow-x: auto;
         .dialog__close-button {
             height: 20px;
             aspect-ratio: 1/1;
