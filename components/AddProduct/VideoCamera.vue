@@ -98,9 +98,9 @@
             -moz-transform-origin: bottom left;
         } */
 
-        video {
+        /* video {
             -moz-transform: rotate(-90%);
-            /* -moz-transform-origin: bottom left; */
-        }
+            -moz-transform-origin: bottom left;
+        } */
     }
 </style>
