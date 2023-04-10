@@ -20,6 +20,7 @@
     const height = ref(0)
     
     const video = ref(null)
+    const isFirefoxMobile = ref(false)
     
     function resizingDefaultVideo() {
         if (!streaming.value) {
@@ -36,13 +37,30 @@
             canvas.setAttribute('width', width.value);
             
             video.value.pause()
-            canvas.getContext('2d').drawImage(video.value, 0, 0, width.value, height.value);
+            if (isFirefoxMobile.value) {
+                canvas.getContext('2d').rotate((Math.PI / 180) * -screen.orientation.angle).drawImage(video.value, 0, 0, width.value, height.value);
+            } else {
+                canvas.getContext('2d').drawImage(video.value, 0, 0, width.value, height.value);
+            }
             let data = canvas.toDataURL('image/jpeg');
             emit('getImageData', data)
         } else if (streaming.value) {
             video.value.play()
         }
     })
+
+    function OrientPlayback(){
+        if (screen.orientation.angle === 90){
+            video.value.classList.remove('video-giro-segundo')
+            video.value.classList.add('video-giro-noventa')
+        } else if (screen.orientation.angle === 270){
+            video.value.classList.remove('video-giro-noventa')
+            video.value.classList.add('video-giro-segundo')
+        } else {
+            video.value.classList.remove('video-giro-noventa')
+            video.value.classList.remove('video-giro-segundo')
+        }  
+    }
 
     onMounted(async () => {
         if (/(Firefox.*Android)|(Android.*Firefox)/.test(navigator.userAgent)){
@@ -62,21 +80,11 @@
             //     video.value.classList.remove('video-giro-segundo')
             // }
             // alert(screen.orientation)
-
+            isFirefoxMobile.value = true
+            OrientPlayback()
             if (screen.orientation.onchange?.name !== 'firefoxMobileRotate'){
                 screen.orientation.onchange = function firefoxMobileRotate() {
-                    if (screen.orientation.angle === 90){
-                        // video.value.style.transform = "rotate(-90)"
-                        video.value.classList.remove('video-giro-segundo')
-                        video.value.classList.add('video-giro-noventa')
-                    } else if (screen.orientation.angle === 270){
-                        // video.value.style.transform = "rotate(-2700)"
-                        video.value.classList.remove('video-giro-noventa')
-                        video.value.classList.add('video-giro-segundo')
-                    } else {
-                        video.value.classList.remove('video-giro-noventa')
-                        video.value.classList.remove('video-giro-segundo')
-                    }  
+                    OrientPlayback()
                 }
             }
 
