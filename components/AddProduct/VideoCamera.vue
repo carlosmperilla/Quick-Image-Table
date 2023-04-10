@@ -5,7 +5,7 @@
                 <font-awesome-icon :icon="['fas', 'spinner']" spin-pulse />
             </div>
         </ClientOnly>
-        <video playsinline="true" id="video" ref="video" @canplay="resizingDefaultVideo" :width="width" :height="height" v-show="!hasPicture"></video>
+        <video id="video" ref="video" @canplay="resizingDefaultVideo" :width="width" :height="height" v-show="!hasPicture"></video>
     </div>
 </template>
 
@@ -18,7 +18,6 @@
     const streaming = ref(false)
     const width = ref(320)
     const height = ref(0)
-    const loadingVideo = ref(false)
     
     const video = ref(null)
     
@@ -59,16 +58,13 @@
               audio: false
             },
             (stream) => {
-              loadingVideo.value = false // En la capa de software.
               video.value.srcObject=stream;
-              console.log(stream)
               video.value.play();
             },
             (err) => {
               console.log("An error occured! " + err);
             }
           )
-          loadingVideo.value = true // Recordar que la petición se realiza y tarda un tiempo en llegar a la capa de software.
     })
     
     onBeforeUnmount(() => {
@@ -80,6 +76,7 @@
 <style scoped>
     video {
         display: block;
+        transform: none !important;
     }
 
     .video--fallback {
