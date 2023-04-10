@@ -58,6 +58,8 @@
               audio: false
             },
             (stream) => {
+              alert(navigator.userAgent)
+              alert(navigator.userAgentData)
               video.value.srcObject=stream;
               video.value.play();
             },
@@ -76,8 +78,6 @@
 <style scoped>
     video {
         display: block;
-        /* transform: rotate(0deg) !important; */
-        /* -moz-transform: rotate(0deg) !important; */
     }
 
     .video--fallback {
