@@ -5,7 +5,7 @@
                 <font-awesome-icon :icon="['fas', 'spinner']" spin-pulse />
             </div>
         </ClientOnly>
-        <video preload="metadata" id="video" ref="video" @canplay="resizingDefaultVideo" :width="width" :height="height" v-show="!hasPicture"></video>
+        <video playsinline="true" id="video" ref="video" @canplay="resizingDefaultVideo" :width="width" :height="height" v-show="!hasPicture"></video>
     </div>
 </template>
 
@@ -61,6 +61,7 @@
             (stream) => {
               loadingVideo.value = false // En la capa de software.
               video.value.srcObject=stream;
+              console.log(stream)
               video.value.play();
             },
             (err) => {
