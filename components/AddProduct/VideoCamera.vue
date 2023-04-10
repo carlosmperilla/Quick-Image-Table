@@ -79,7 +79,12 @@
 <style scoped>
     video {
         display: block;
-        -moz-transform: rotate(90deg);
+    }
+    
+    @media screen and (orientation: landscape) {
+        video {
+            -moz-transform: rotate(-90deg);
+        }
     }
 
     .video--fallback {
