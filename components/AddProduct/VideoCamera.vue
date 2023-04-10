@@ -29,6 +29,43 @@
         }
     }
 
+    // Compatibilidad con Firefox Mobile - Inicio
+    function OrientPlayback(){
+        if (screen.orientation.angle === 90){
+            video.value.classList.remove('rotate-ninety-plus')
+            video.value.classList.add('rotate-ninety-minus')
+        } else if (screen.orientation.angle === 270){
+            video.value.classList.remove('rotate-ninety-minus')
+            video.value.classList.add('rotate-ninety-plus')
+        } else {
+            video.value.classList.remove('rotate-ninety-minus')
+            video.value.classList.remove('rotate-ninety-plus')
+        }  
+    }
+
+    function addStyleForFirefoxMobile(){
+        if (/(Firefox.*Android)|(Android.*Firefox)/.test(navigator.userAgent)){
+            isFirefoxMobile.value = true
+            OrientPlayback()
+            if (screen.orientation.onchange?.name !== 'firefoxMobileRotate'){
+                screen.orientation.onchange = function firefoxMobileRotate() {
+                    OrientPlayback()
+                }
+            }
+        }
+    }
+
+    function rotateForLandscapeAngle(canvas, context){
+        canvas.width = height.value
+        canvas.height = width.value
+        context.translate (
+            screen.orientation.angle === 270 ? height.value : 0, 
+            screen.orientation.angle === 90 ? width.value : 0
+        )
+        context.rotate((Math.PI / 180) * -screen.orientation.angle)
+    }
+    // Compatibilidad con Firefox Mobile - Final
+
     watch(() => props.hasPicture, (value, prevValue) => {
         if (value){
             let canvas = document.createElement('canvas')
@@ -37,19 +74,13 @@
             canvas.setAttribute('width', width.value);
             
             video.value.pause()
+            
+            let context = canvas.getContext('2d')
             if (isFirefoxMobile.value && screen.orientation.angle !== 0) {
-                let context = canvas.getContext('2d')
-                canvas.width = height.value
-                canvas.height = width.value
-                context.translate (
-                    screen.orientation.angle === 270 ? height.value : 0, 
-                    screen.orientation.angle === 90 ? width.value : 0
-                )
-                context.rotate((Math.PI / 180) * -screen.orientation.angle)
-                context.drawImage(video.value, 0, 0, width.value, height.value);
-            } else {
-                canvas.getContext('2d').drawImage(video.value, 0, 0, width.value, height.value);
+                rotateForLandscapeAngle(canvas, context)
             }
+            context.drawImage(video.value, 0, 0, width.value, height.value)
+            
             let data = canvas.toDataURL('image/jpeg');
             emit('getImageData', data)
         } else if (streaming.value) {
@@ -57,46 +88,11 @@
         }
     })
 
-    function OrientPlayback(){
-        if (screen.orientation.angle === 90){
-            video.value.classList.remove('video-giro-segundo')
-            video.value.classList.add('video-giro-noventa')
-        } else if (screen.orientation.angle === 270){
-            video.value.classList.remove('video-giro-noventa')
-            video.value.classList.add('video-giro-segundo')
-        } else {
-            video.value.classList.remove('video-giro-noventa')
-            video.value.classList.remove('video-giro-segundo')
-        }  
-    }
-
     onMounted(async () => {
-        if (/(Firefox.*Android)|(Android.*Firefox)/.test(navigator.userAgent)){
-            // alert(navigator.userAgent)
-            // alert(screen.orientation.type)
-            // alert(screen.orientation.angle)
-            // if (screen.orientation.angle === 90){
-            //     // video.value.style.transform = "rotate(-90)"
-            //     video.value.classList.remove('video-giro-segundo')
-            //     video.value.classList.add('video-giro-noventa')
-            // } else if (screen.orientation.angle === 270){
-            //     // video.value.style.transform = "rotate(-2700)"
-            //     video.value.classList.remove('video-giro-noventa')
-            //     video.value.classList.add('video-giro-segundo')
-            // } else {
-            //     video.value.classList.remove('video-giro-noventa')
-            //     video.value.classList.remove('video-giro-segundo')
-            // }
-            // alert(screen.orientation)
-            isFirefoxMobile.value = true
-            OrientPlayback()
-            if (screen.orientation.onchange?.name !== 'firefoxMobileRotate'){
-                screen.orientation.onchange = function firefoxMobileRotate() {
-                    OrientPlayback()
-                }
-            }
+        // Compatiblidad con Firefox Mobile
+        addStyleForFirefoxMobile()
 
-        }
+        // Compatiblidad con Firefox Mobile
         navigator.getMedia = ( navigator.getUserMedia ||
                                navigator.webkitGetUserMedia ||
                                navigator.mozGetUserMedia )
@@ -125,9 +121,19 @@
     })    
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     video {
         display: block;
+
+        // Compatilidad con Firefox Mobile.
+        &.rotate-ninety-minus {
+            -moz-transform-origin: center;
+            -moz-transform: rotate(-90deg) scale(.5);
+        }
+        &.rotate-ninety-plus {
+            -moz-transform-origin: center;
+            -moz-transform: rotate(90deg) scale(.5);
+        }
     }
 
     .video--fallback {
@@ -140,26 +146,4 @@
         font-size: 6rem;
     }
 
-    .video-giro-noventa {
-        -moz-transform-origin: center;
-        -moz-transform: rotate(-90deg) scale(.5);
-    }
-
-    .video-giro-segundo {
-        -moz-transform-origin: center;
-        -moz-transform: rotate(-270deg) scale(.5);
-    }
-
-    @media screen and (max-width: 600px) and (orientation: landscape) {
-        /* .add-product img, 
-        video {
-            -moz-transform: rotate(-90%);
-            -moz-transform-origin: bottom left;
-        } */
-
-        /* video {
-            -moz-transform: rotate(-90%);
-            -moz-transform-origin: bottom left;
-        } */
-    }
 </style>
