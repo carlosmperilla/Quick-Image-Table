@@ -108,12 +108,12 @@
 
     .video-giro-noventa {
         -moz-transform-origin: center;
-        -moz-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg) scale(.3);
     }
 
     .video-giro-segundo {
         -moz-transform-origin: center;
-        -moz-transform: rotate(-270deg);
+        -moz-transform: rotate(-270deg) scale(.3);
     }
 
     @media screen and (max-width: 600px) and (orientation: landscape) {
