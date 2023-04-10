@@ -76,8 +76,8 @@
 <style scoped>
     video {
         display: block;
-        transform: rotate(0deg) !important;
-        -moz-transform: rotate(0deg) !important;
+        /* transform: rotate(0deg) !important; */
+        /* -moz-transform: rotate(0deg) !important; */
     }
 
     .video--fallback {
