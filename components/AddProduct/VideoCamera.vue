@@ -39,17 +39,20 @@
             video.value.pause()
             if (isFirefoxMobile.value) {
                 let context = canvas.getContext('2d')
-                context.translate (0, height.value);
+                canvas.width = height.value
+                canvas.height = width.value
+                context.translate (0, width.value);
                 context.rotate((Math.PI / 180) * -screen.orientation.angle)
                 context.drawImage(video.value, 0, 0, width.value, height.value);
             } else {
                 let context = canvas.getContext('2d')
                 // canvas.width = height.value
                 // canvas.height = width.value
-                context.translate (0, height.value);
-                context.rotate((Math.PI / 180) * -90)
-                context.drawImage(video.value, 0, 0, width.value, height.value);
-                // canvas.getContext('2d').drawImage(video.value, 0, 0, width.value, height.value);
+                // context.translate (0, width.value);
+                // context.rotate((Math.PI / 180) * -90)
+                // // context.drawImage(video.value, 0, 0, width.value, height.value);
+                // context.drawImage(video.value, 0, 0, width.value, height.value);
+                canvas.getContext('2d').drawImage(video.value, 0, 0, width.value, height.value);
             }
             let data = canvas.toDataURL('image/jpeg');
             emit('getImageData', data)
