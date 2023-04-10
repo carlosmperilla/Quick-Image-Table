@@ -15,7 +15,7 @@ dialog {
         border: none;
         box-shadow: variables.$dialog-inner-box--box-shadow;
         padding: 20px 20px;
-        padding-top: 30px;
+        // padding-top: 30px;
         background-color: variables.$dialog-inner-box--bg-color;
         position: relative;
         overflow: hidden;
@@ -30,6 +30,7 @@ dialog {
             right: 20px;
             background: none;
             background-color: white;
+            border-radius: 50%;
             border: none;
             color: variables.$dialog-close-button--color;
             .fa-circle-xmark {
