@@ -79,6 +79,7 @@
 <style scoped>
     video {
         display: block;
+        -moz-transform: rotate(90deg);
     }
 
     .video--fallback {
