@@ -80,12 +80,6 @@
     video {
         display: block;
     }
-    
-    @media screen and (orientation: landscape) {
-        video {
-            -moz-transform: rotate(-90deg);
-        }
-    }
 
     .video--fallback {
         display: flex;
