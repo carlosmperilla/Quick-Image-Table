@@ -90,4 +90,12 @@
         color: white;
         font-size: 6rem;
     }
+
+    @media screen and (max-width: 600px) and (orientation:landscape) {
+        .add-product img, 
+        #video {
+            -moz-transform: rotate(-90%);
+            -moz-transform-origin: bottom left;
+        }
+    }
 </style>
