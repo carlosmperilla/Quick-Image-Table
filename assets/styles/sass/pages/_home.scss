@@ -6,6 +6,7 @@ dialog {
     background: none;
     padding: 0;
     overflow: hidden;
+    overflow-y: auto;
     border-radius: 25px;
     .dialog__inner-box {
         max-height: 100%;
