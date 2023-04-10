@@ -38,8 +38,9 @@
             
             video.value.pause()
             if (isFirefoxMobile.value) {
-                canvas.getContext('2d').rotate((Math.PI / 180) * -screen.orientation.angle)
-                canvas.getContext('2d').drawImage(video.value, 0, 0, width.value, height.value);
+                let context = canvas.getContext('2d')
+                context.rotate((Math.PI / 180) * -screen.orientation.angle)
+                context.drawImage(video.value, 0, 0, width.value, height.value);
             } else {
                 canvas.getContext('2d').drawImage(video.value, 0, 0, width.value, height.value);
             }
