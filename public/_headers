@@ -1,7 +1,7 @@
 /
  cache-control: no-cache
 
-/favicon
+/favicon.ico
  cache-control: no-cache
 
 /*.js
