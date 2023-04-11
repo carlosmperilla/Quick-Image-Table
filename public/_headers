@@ -1,6 +1,15 @@
 /
  cache-control: no-cache
 
+/contact
+ cache-control: no-cache
+
+/about
+ cache-control: no-cache
+
+/howToUse
+ cache-control: no-cache
+
 /favicon.ico
  cache-control: no-cache
 
