@@ -4,5 +4,7 @@ export default defineEventHandler((event) => {
     setResponseHeader(event, 'x-frame-options',  'SAMEORIGIN')
     setResponseHeader(event, 'referrer-policy', 'no-referrer')
     setResponseHeader(event, 'permissions-policy', 'camera=self')
+    setResponseHeader(event, 'x-permitted-cross-domain-policies', 'none')
+    setResponseHeader(event, 'x-xss-protection', '0')
     console.log(event.node.res._headers)
 })

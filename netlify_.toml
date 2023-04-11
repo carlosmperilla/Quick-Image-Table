@@ -5,3 +5,4 @@
     X-Frame-Options: "SAMEORIGIN"
     Referrer-Policy: "no-referrer"
     Permissions-Policy: "camera=self"
+    X-XSS-Protection: "0"
