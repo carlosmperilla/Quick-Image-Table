@@ -6,4 +6,3 @@
     Referrer-Policy: "no-referrer"
     Permissions-Policy: "camera=self"
     X-XSS-Protection: "0"
-    Content-Security-Policy: "default-src=self"
