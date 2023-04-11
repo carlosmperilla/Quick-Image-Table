@@ -8,7 +8,7 @@
     X-XSS-Protection =  "0"
     Content-Security-Policy = "frame-ancestors none;"
     cache-control = '''
-      public
-      max-age=86400
-      immutable
+      public,
+      max-age=86400,
+      immutable,
     '''
