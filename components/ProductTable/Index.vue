@@ -153,6 +153,7 @@
             loadingExportFile.value = true
             // https://sidebase.io/nuxt-pdf/getting-started/quick-start
             await exportToPDF(fileName, container, documentOptions, options)
+            alert(fileName)
             loadingExportFile.value = false
         })
     }
