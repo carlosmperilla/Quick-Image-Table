@@ -7,8 +7,8 @@
     Permissions-Policy =  "camera=self"
     X-XSS-Protection =  "0"
     Content-Security-Policy = "frame-ancestors none;"
-    cache-control = public
-    cache-control = max-age=86400
-    cache-control = stale-while-revalidate=2592000
-    cache-control = stale-if-error=2592000
-    cache-control = immutable
+    cache-control = "public"
+    cache-control = "max-age=86400"
+    cache-control = "stale-while-revalidate=2592000"
+    cache-control = "stale-if-error=2592000"
+    cache-control = "immutable"
