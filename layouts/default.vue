@@ -60,9 +60,13 @@
     @use '@/assets/styles/sass/core/reset';
     @use '@/assets/styles/sass/layout';
 
-    .block-layout {
-        height: 50vh;
-        overflow: hidden;
-        user-select: none;
+    // Evitamos que al girar el celular se mantenga bloqueado el layout.
+    // si abrimos el menu.
+    @media screen and (max-width: 750px) and (orientation: portrait) {
+        .block-layout {
+            height: 50vh;
+            overflow: hidden;
+            user-select: none;
+        }
     }
 </style>

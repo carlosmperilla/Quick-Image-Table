@@ -56,25 +56,33 @@ nav {
             vertical-align: baseline;
         }
     }
-    .principal-nav__menu--active {
-        @include mixins.center-flexbox;
-        @include mixins.fixed-extend-banner;
-        top: variables.$nav-height;
-        flex-direction: column;
-        justify-content: flex-start;
-        background-color: variables.$menu-bg-color;
-        padding: 10px variables.$thumb-space;
-        padding-top: 100px;
-        gap: 50px;
-        font-size: 3.2rem;
-        li {
-            background: variables.$menu-li-bg-color;
-            width: 100%;
-            padding: 0;
-            a {
-                @include mixins.expand-box-max;
-                padding: 5px 10px;
-                color: variables.$menu-li-color;
+}
+
+// Evitamos que al girar el celular se mantenga abierto el menu mobile vertical.
+@media screen and (max-width: 750px) and (orientation: portrait) {
+    nav {
+        menu {
+            &.principal-nav__menu--active {
+                @include mixins.center-flexbox;
+                @include mixins.fixed-extend-banner;
+                top: variables.$nav-height;
+                flex-direction: column;
+                justify-content: flex-start;
+                background-color: variables.$menu-bg-color;
+                padding: 10px variables.$thumb-space;
+                padding-top: 100px;
+                gap: 50px;
+                font-size: 3.2rem;
+                li {
+                    background: variables.$menu-li-bg-color;
+                    width: 100%;
+                    padding: 0;
+                    a {
+                        @include mixins.expand-box-max;
+                        padding: 5px 10px;
+                        color: variables.$menu-li-color;
+                    }
+                }
             }
         }
     }
