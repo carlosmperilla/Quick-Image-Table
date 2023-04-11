@@ -1,35 +1,9 @@
-/
- cache-control: no-cache
-
-/contact
- cache-control: no-cache
-
-/about
- cache-control: no-cache
-
-/howToUse
- cache-control: no-cache
-
-/favicon.ico
- cache-control: no-cache
-
 /*.js
 cache-control: public
 cache-control: max-age=31536000
 cache-control: immutable
 
-/_payload.js
-cache-control: no-cache
-
-/*/_payload.js
-cache-control: no-cache
-
 /*.css
-cache-control: public
-cache-control: max-age=31536000
-cache-control: immutable
-
-/*.*.css
 cache-control: public
 cache-control: max-age=31536000
 cache-control: immutable
