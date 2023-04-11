@@ -9,4 +9,5 @@ export default defineEventHandler((event) => {
     setResponseHeader(event, 'x-permitted-cross-domain-policies', 'none')
     setResponseHeader(event, 'x-xss-protection', '0')
     setResponseHeader(event, 'content-security-policy', 'frame-ancestors none;')
+    event.node.res.end()
 })
