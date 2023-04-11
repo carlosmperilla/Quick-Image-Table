@@ -19,6 +19,7 @@
             <dialog ref="dialog" @click.self="closeDialog">
                 <section class="dialog__inner-box">
                     <button
+                        type="button"
                         ref="closeButton"
                         alt="Botón de 'Cerrar'"
                         title="Botón de 'Cerrar'"

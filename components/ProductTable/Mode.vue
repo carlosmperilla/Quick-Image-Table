@@ -22,6 +22,7 @@
         </section>
         <section class="mode-selection__button-panel" v-show="!isViewMode">
             <button 
+                type="button"    
                 class="mode-selection__box-buttons--edit" 
                 v-if="isEditMode" 
                 @click="finishEditMode"
@@ -32,6 +33,7 @@
                  Terminar edición
             </button>
             <button 
+                type="button"
                 class="mode-selection__box-buttons--delete" 
                 v-if="isDeleteMode" 
                 @click="$emit('preRemovalProducts')"
@@ -39,6 +41,7 @@
                 Eliminar {{ checkedProducts.length }} productos
             </button>
             <button 
+                type="button"
                 class="mode-selection__box-buttons--delete" 
                 v-if="isDeleteMode" 
                 @click="$emit('preCleanProducts')"

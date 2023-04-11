@@ -5,6 +5,7 @@
             <img :src="productImageData" width="320" v-show="hasPicture" alt="Imagen de producto" title="Imagen de producto"/>
         </figure>
         <button
+            type="button"
             @click="photoAction" 
             v-if="step === 0"
             class="add-product__button-take-photo"
@@ -14,7 +15,8 @@
         </ClientOnly>
          {{ CameraControlButtonContent }}</button>
         <section v-show="hasPicture" class="add-product__box-arrow-buttons">
-            <button 
+            <button
+                type="button"
                 ref="prevButton" 
                 v-show="step > 0" 
                 @click="prevStep" 
@@ -25,7 +27,7 @@
                 </ClientOnly>
                  {{ prevButtonContent }}
             </button>
-            <button ref="nextButton" @click="nextStep" @keydown.tab="goNextTab">
+            <button type="button" ref="nextButton" @click="nextStep" @keydown.tab="goNextTab">
                 {{ nextButtonContent }}&nbsp;
                 <ClientOnly>
                     <font-awesome-icon :icon="['fas', 'arrow-right']" />

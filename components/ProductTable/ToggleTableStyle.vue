@@ -1,6 +1,7 @@
 <template>
     <ClientOnly>
         <button 
+            type="button"
             alt="Cambiar visualización de tabla" 
             title="Cambiar visualización de tabla" 
             class="product-table__toggle-table-style" 

@@ -5,7 +5,7 @@
                 <font-awesome-icon :icon="['fas', 'robot']" />
             </div>
             <p><strong>Error 404:</strong> Pagina no encontrada.</p>
-            <button @click="handleError">
+            <button @click="handleError" type="button">
                     <font-awesome-icon :icon="['fas', 'house']"/>
                 Volver al Inicio
             </button>

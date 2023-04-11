@@ -2,7 +2,7 @@
     <nav class="principal-nav">
         <img src="~/assets/img/QuickImageTable_logo_min.jpg" alt="QuickImageTable Logo" @click="toHome" height="43px" width="194px"/>
         <div class="principal-nav__burger-menu-container">
-            <button alt="Mostrar menu" title="Mostrar menu" class="principal-nav__burger-menu-container--button" @click="toggleMenu">
+            <button type="button" alt="Mostrar menu" title="Mostrar menu" class="principal-nav__burger-menu-container--button" @click="toggleMenu">
                 <ClientOnly fallback-tag="span" fallback="Menu...">
                     <font-awesome-icon :icon="['fas', burgerMenuIcon]" />
                 </ClientOnly>

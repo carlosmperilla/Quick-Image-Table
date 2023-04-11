@@ -10,6 +10,7 @@
             <slot/>
         </main>
         <button 
+            type="button"
             alt="Botón de 'Subir hacia arriba de la página'"
             title="Subir al inicio de la página"
             @click="scrollToUp" 
