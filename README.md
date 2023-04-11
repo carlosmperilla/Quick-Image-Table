@@ -120,3 +120,14 @@ El nombre por defecto es _MyQuickTable_, si haces clic en él, puedes modificarl
 * No se puede adaptar el diseño de PDF exportado, ni de los datos por imágenes en el ZIP.
 
 ## Example Images
+La aplicación se centra en funcionar para dispositivos móviles. Aunque también funciona en computadoras de escritorio con cámara.
+<p float="left" align="middle">
+  <img src="https://raw.githubusercontent.com/carlosmperilla/Quick-Image-Table/main/Example%20Images/Mobile/0%20-%20Inicio.PNG" alt="Movil - Index" width="200"/>
+  <img src="https://raw.githubusercontent.com/carlosmperilla/Quick-Image-Table/main/Example%20Images/Mobile/1%20-%20Detalles.PNG" alt="Movil - Details" width="200"/>
+  <img src="https://raw.githubusercontent.com/carlosmperilla/Quick-Image-Table/main/Example%20Images/Mobile/3%20-%20Producto%20A%C3%B1adido.PNG" alt="Movil - Add Product" width="200"/>
+  <img src="https://raw.githubusercontent.com/carlosmperilla/Quick-Image-Table/main/Example%20Images/Mobile/4%20-%20Cambio%20de%20modo%20vista.PNG" alt="Movil - Change Visual Mode" width="200"/>
+  <img src="https://github.com/carlosmperilla/Quick-Image-Table/blob/main/Example%20Images/Mobile/5%20-%20Modo%20edici%C3%B3n.PNG" alt="Movil - Edit Mode" width="200"/>
+  <img src="https://raw.githubusercontent.com/carlosmperilla/Quick-Image-Table/main/Example%20Images/Mobile/6%20-%20Modo%20eliminaci%C3%B3n.PNG" alt="Movil - Delete Mode" width="200"/>
+  <img src="https://raw.githubusercontent.com/carlosmperilla/Quick-Image-Table/main/Example%20Images/Mobile/7%20-%20Exportaci%C3%B3n.PNG" alt="Movil - Exportation" width="200"/>
+</p>
+
