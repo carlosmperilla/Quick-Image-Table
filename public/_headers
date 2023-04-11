@@ -1,9 +1,17 @@
+/
+ cache-control: no-cache
+
+/favicon
+ cache-control: no-cache
+
 /*.js
+X-Content-Type-Options: nosniff
 cache-control: public
 cache-control: max-age=31536000
 cache-control: immutable
 
 /*.css
+X-Content-Type-Options: nosniff
 cache-control: public
 cache-control: max-age=31536000
 cache-control: immutable
