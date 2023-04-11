@@ -6,6 +6,6 @@ export default defineEventHandler((event) => {
     setResponseHeader(event, 'permissions-policy', 'camera=self')
     setResponseHeader(event, 'x-permitted-cross-domain-policies', 'none')
     setResponseHeader(event, 'x-xss-protection', '0')
-    setResponseHeader(event, 'content-security-policy', 'default-src=self')
+    setResponseHeader(event, 'content-security-policy', 'default-src self;')
     console.log(event.node.res._headers)
 })
