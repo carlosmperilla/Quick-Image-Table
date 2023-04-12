@@ -59,7 +59,7 @@ nav {
 }
 
 // Evitamos que al girar el celular se mantenga abierto el menu mobile vertical.
-@media screen and (max-width: 750px) and (orientation: portrait) {
+@media screen and (max-width: 750px) {
     nav {
         menu {
             &.principal-nav__menu--active {

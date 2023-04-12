@@ -63,7 +63,7 @@
 
     // Evitamos que al girar el celular se mantenga bloqueado el layout.
     // si abrimos el menu.
-    @media screen and (max-width: 750px) and (orientation: portrait) {
+    @media screen and (max-width: 750px) {
         .block-layout {
             height: 50vh;
             overflow: hidden;
